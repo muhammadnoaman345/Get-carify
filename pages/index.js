@@ -14,6 +14,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import VehicleDataSection from "../components/VehicleDataSection";
 import ServicesSection from "../components/ServicesSection";
+import FAQ from "../components/FAQ";
+
 
 export default function Home() {
   const [searchType, setSearchType] = useState("vin");
@@ -380,20 +382,55 @@ export default function Home() {
             className="pb-10"
           >
             {[
-              { name: "David P.", review: "The report was detailed with accident history, mileage verification, and service records. Reliable and worth it." },
-              { name: "Michael L.", review: "It helped me avoid hidden damage when buying my car. Very accurate and useful." },
-              { name: "Sofia R.", review: "Professional, easy-to-read reports. Gave me full confidence to finalize my deal." },
-              { name: "Emma K.", review: "Great service! I could compare multiple cars and spot hidden issues." },
-              { name: "John D.", review: "Saved me thousands by avoiding a car with a salvage title. Highly recommend." },
-              { name: "Lucas M.", review: "Fast, accurate and very affordable compared to others." },
-              { name: "Ava W.", review: "Best car history reports online. I use it for every car purchase." },
+              {
+                name: "David P.",
+                review:
+                  "The report was detailed with accident history, mileage verification, and service records. Reliable and worth it.",
+              },
+              {
+                name: "Michael L.",
+                review:
+                  "It helped me avoid hidden damage when buying my car. Very accurate and useful.",
+              },
+              {
+                name: "Sofia R.",
+                review:
+                  "Professional, easy-to-read reports. Gave me full confidence to finalize my deal.",
+              },
+              {
+                name: "Emma K.",
+                review:
+                  "Great service! I could compare multiple cars and spot hidden issues.",
+              },
+              {
+                name: "John D.",
+                review:
+                  "Saved me thousands by avoiding a car with a salvage title. Highly recommend.",
+              },
+              {
+                name: "Lucas M.",
+                review:
+                  "Fast, accurate and very affordable compared to others.",
+              },
+              {
+                name: "Ava W.",
+                review:
+                  "Best car history reports online. I use it for every car purchase.",
+              },
             ].map((t, i) => (
               <SwiperSlide key={i}>
                 <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
                   <div className="flex justify-center mb-3">
-                    {Array(5).fill().map((_, idx) => (
-                      <span key={idx} className="text-green-500 text-xl">★</span>
-                    ))}
+                    {Array(5)
+                      .fill()
+                      .map((_, idx) => (
+                        <span
+                          key={idx}
+                          className="text-green-500 text-xl"
+                        >
+                          ★
+                        </span>
+                      ))}
                   </div>
                   <p className="italic">"{t.review}"</p>
                   <p className="mt-3 font-semibold">- {t.name}</p>
@@ -403,6 +440,9 @@ export default function Home() {
           </Swiper>
         </div>
       </section>
+
+      {/* ✅ FAQ Section */}
+      <FAQ />
 
       {/* ✅ Car Interior Section */}
       <section className="relative w-full bg-black h-[600px]">
@@ -420,7 +460,7 @@ export default function Home() {
         </div>
       </section>
 
-        {/* ✅ Footer */}
+      {/* ✅ Footer */}
       <Footer />
     </>
   );
