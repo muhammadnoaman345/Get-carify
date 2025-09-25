@@ -209,7 +209,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative flex items-center justify-center text-center text-white h-screen">
         <Image
-          src="/benjamin-zhao-5DremXTTKE0-unsplash.jpg"
+          src="/istockphoto-1165665234-612x612.jpg"
           alt="Hero Car Background"
           fill
           className="object-cover"
