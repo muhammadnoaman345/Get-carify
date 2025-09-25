@@ -10,6 +10,181 @@ import "swiper/css/navigation";
 export default function Home() {
   const [searchType, setSearchType] = useState("vin"); // vin | plate
   const [inputValue, setInputValue] = useState("");
+  const [activeTab, setActiveTab] = useState("cars");
+
+  const plans = {
+    cars: {
+      Silver: {
+        old: "$56.99",
+        price: "$49.99",
+        features: [
+          "Vehicle Overview",
+          "Market Value",
+          "Vehicle Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+        ],
+      },
+      Gold: {
+        old: "$119.99",
+        price: "$89.99",
+        features: [
+          "HQ Car Images",
+          "Vehicle Overview",
+          "Market Value",
+          "Vehicle Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+      Platinum: {
+        old: "$149.99",
+        price: "$119.99",
+        features: [
+          "2 Buyers Numbers from our Directory",
+          "Buy one get another Report Free for Lifetime",
+          "HQ Car Images",
+          "Vehicle Overview",
+          "Market Value",
+          "Vehicle Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+    },
+    motorbikes: {
+      Silver: {
+        old: "$56.99",
+        price: "$49.99",
+        features: [
+          "Bike Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+        ],
+      },
+      Gold: {
+        old: "$119.99",
+        price: "$89.99",
+        features: [
+          "HQ Bike Images",
+          "Bike Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+      Platinum: {
+        old: "$149.99",
+        price: "$119.99",
+        features: [
+          "2 Buyers Numbers from our Directory",
+          "Buy one get another Report Free for Lifetime",
+          "HQ Bike Images",
+          "Bike Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+    },
+    rv: {
+      Silver: {
+        old: "$56.99",
+        price: "$49.99",
+        features: [
+          "RV Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+        ],
+      },
+      Gold: {
+        old: "$119.99",
+        price: "$89.99",
+        features: [
+          "HQ RV Images",
+          "RV Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+      Platinum: {
+        old: "$149.99",
+        price: "$119.99",
+        features: [
+          "2 Buyers Numbers from our Directory",
+          "Buy one get another Report Free for Lifetime",
+          "HQ RV Images",
+          "RV Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+    },
+  };
 
   return (
     <>
@@ -105,21 +280,9 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-12">
           {[
-            {
-              icon: "📦",
-              title: "Comprehensive Data",
-              desc: "Access extensive records from thousands of sources, including DMVs, insurance carriers, and salvage auctions."
-            },
-            {
-              icon: "🛡️",
-              title: "Unmatched Accuracy",
-              desc: "Our advanced algorithms cross-reference data to ensure the highest level of accuracy in every report."
-            },
-            {
-              icon: "📄",
-              title: "Clear & Simple Reports",
-              desc: "We present complex vehicle history in a clean, easy-to-read format, so you can understand the facts quickly."
-            }
+            { icon: "📦", title: "Comprehensive Data", desc: "Access extensive records from thousands of sources, including DMVs, insurance carriers, and salvage auctions." },
+            { icon: "🛡️", title: "Unmatched Accuracy", desc: "Our advanced algorithms cross-reference data to ensure the highest level of accuracy in every report." },
+            { icon: "📄", title: "Clear & Simple Reports", desc: "We present complex vehicle history in a clean, easy-to-read format, so you can understand the facts quickly." }
           ].map((item, i) => (
             <div key={i} className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg">
               <div className="flex justify-center">
@@ -136,27 +299,53 @@ export default function Home() {
 
       {/* Pricing Section */}
       <section className="py-20 bg-[#0e0e0e] text-white text-center">
-        <h2 className="text-4xl font-bold">Flexible Pricing for Every Need</h2>
-        <p className="mt-3 text-gray-400">
-          Choose the plan that’s right for you. Get a single report or save with our multi-report packages.
-        </p>
+        <h2 className="text-4xl font-bold">Recommended Plans</h2>
+        <p className="mt-3 text-gray-400">Get Your Vehicle's Inspection Report!</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-12">
-          {[
-            { title: "Silver", price: "$40", features: ["Vehicle Overview", "Market Value", "Specs", "Sales Listing", "Accident Record", "Salvage", "Theft Record"] },
-            { title: "Gold", price: "$80", features: ["HQ Car Images", "Vehicle Overview", "Market Value", "Sales Listing", "Accident Record", "Salvage", "Theft Record", "Title Record", "Warranty"] },
-            { title: "Platinum", price: "$120", features: ["Buyers Directory", "HQ Car Images", "Vehicle Overview", "Accident Record", "Salvage", "Theft Record", "Title Record", "Warranty", "Free Lifetime Report"] },
-          ].map((plan, i) => (
-            <div key={i} className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg hover:scale-105 transition-transform">
-              <h3 className="text-2xl font-bold">{plan.title}</h3>
-              <p className="text-green-500 text-4xl font-bold mt-2">{plan.price}</p>
-              <ul className="mt-6 text-gray-300 space-y-2 text-left">
-                {plan.features.map((f, idx) => (
+        {/* Tabs */}
+        <div className="flex justify-center gap-4 mb-10">
+          {["cars", "motorbikes", "rv"].map((type) => (
+            <button
+              key={type}
+              onClick={() => setActiveTab(type)}
+              className={`px-5 py-2 rounded-full font-semibold transition ${
+                activeTab === type ? "bg-green-500 text-white" : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {type === "cars" ? "Car Reports" : type === "motorbikes" ? "Motorbike Reports" : "RV Reports"}
+            </button>
+          ))}
+        </div>
+
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {Object.entries(plans[activeTab]).map(([tier, { old, price, features }]) => (
+            <div
+              key={tier}
+              className="relative bg-[#1c1c1c] rounded-2xl shadow-md p-6 flex flex-col hover:scale-105 transition"
+            >
+              {/* Popular Ribbon */}
+              {tier === "Gold" && (
+                <span className="absolute top-4 right-[-20px] rotate-45 bg-green-500 text-xs font-bold text-white px-12 py-1 shadow-md">
+                  POPULAR
+                </span>
+              )}
+
+              <h3 className="text-2xl font-bold mb-2">{tier}</h3>
+              <div className="mb-4">
+                <span className="line-through text-gray-400 mr-2">{old}</span>
+                <span className="text-green-500 text-3xl font-bold">{price}</span>
+                <span className="text-sm text-gray-400"> / Report</span>
+              </div>
+
+              <ul className="text-left space-y-2 flex-1 overflow-y-auto max-h-64 scrollbar-thin">
+                {features.map((f, idx) => (
                   <li key={idx}>✔ {f}</li>
                 ))}
               </ul>
+
               <button className="mt-6 bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-full">
-                Choose Plan
+                Order Now
               </button>
             </div>
           ))}
@@ -170,11 +359,7 @@ export default function Home() {
           <Swiper
             spaceBetween={30}
             slidesPerView={1}
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 }
-            }}
+            breakpoints={{ 640: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
             autoplay={{ delay: 3000 }}
             pagination={{ clickable: true, dynamicBullets: true }}
             navigation
