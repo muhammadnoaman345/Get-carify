@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Fix unwanted horizontal scroll (white strip on right) */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Optional: smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optional: better font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
