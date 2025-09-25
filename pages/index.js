@@ -35,10 +35,7 @@ export default function Home() {
           backgroundPosition: "center",
         }}
       >
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
-
-        {/* Content */}
         <div className="relative z-10 px-4 max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
             GetCarify Vehicle History Reports
@@ -47,7 +44,7 @@ export default function Home() {
             Instant, reliable reports to help you buy and sell cars with confidence.
           </p>
 
-          {/* VIN Input Box */}
+          {/* VIN Input */}
           <div className="mt-10 flex flex-col md:flex-row justify-center">
             <input
               type="text"
@@ -58,8 +55,6 @@ export default function Home() {
               Get Report
             </button>
           </div>
-
-          {/* Small Note */}
           <p className="mt-4 text-sm text-gray-400">
             Trusted by thousands of car buyers and sellers.
           </p>
@@ -74,41 +69,33 @@ export default function Home() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-12">
-          <div className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg">
-            <div className="flex justify-center">
-              <div className="bg-green-500 w-14 h-14 rounded-full flex items-center justify-center">
-                <span className="text-white text-2xl">📦</span>
+          {[
+            {
+              icon: "📦",
+              title: "Comprehensive Data",
+              desc: "Access extensive records from thousands of sources, including DMVs, insurance carriers, and salvage auctions."
+            },
+            {
+              icon: "🛡️",
+              title: "Unmatched Accuracy",
+              desc: "Our advanced algorithms cross-reference data to ensure the highest level of accuracy in every report."
+            },
+            {
+              icon: "📄",
+              title: "Clear & Simple Reports",
+              desc: "We present complex vehicle history in a clean, easy-to-read format, so you can understand the facts quickly."
+            }
+          ].map((item, i) => (
+            <div key={i} className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg">
+              <div className="flex justify-center">
+                <div className="bg-green-500 w-14 h-14 rounded-full flex items-center justify-center">
+                  <span className="text-white text-2xl">{item.icon}</span>
+                </div>
               </div>
+              <h3 className="text-xl font-bold mt-6">{item.title}</h3>
+              <p className="mt-3 text-gray-400">{item.desc}</p>
             </div>
-            <h3 className="text-xl font-bold mt-6">Comprehensive Data</h3>
-            <p className="mt-3 text-gray-400">
-              Access extensive records from thousands of sources, including DMVs, insurance carriers, and salvage auctions.
-            </p>
-          </div>
-
-          <div className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg">
-            <div className="flex justify-center">
-              <div className="bg-green-500 w-14 h-14 rounded-full flex items-center justify-center">
-                <span className="text-white text-2xl">🛡️</span>
-              </div>
-            </div>
-            <h3 className="text-xl font-bold mt-6">Unmatched Accuracy</h3>
-            <p className="mt-3 text-gray-400">
-              Our advanced algorithms cross-reference data to ensure the highest level of accuracy in every report.
-            </p>
-          </div>
-
-          <div className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg">
-            <div className="flex justify-center">
-              <div className="bg-green-500 w-14 h-14 rounded-full flex items-center justify-center">
-                <span className="text-white text-2xl">📄</span>
-              </div>
-            </div>
-            <h3 className="text-xl font-bold mt-6">Clear & Simple Reports</h3>
-            <p className="mt-3 text-gray-400">
-              We present complex vehicle history in a clean, easy-to-read format, so you can understand the facts quickly.
-            </p>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -141,50 +128,50 @@ export default function Home() {
         </div>
       </section>
 
-     {/* Testimonials (Slider) */}
-<section className="py-16 bg-black text-white text-center">
-  <h2 className="text-3xl font-bold mb-10">Trusted by Thousands</h2>
-  <div className="max-w-6xl mx-auto px-4">
-    <Swiper
-      spaceBetween={30}
-      slidesPerView={1}
-      breakpoints={{
-        640: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-      }}
-      autoplay={{ delay: 3000 }}
-      pagination={{ clickable: true, dynamicBullets: true }}  {/* ✅ Dots below slider */}
-      navigation
-      modules={[Autoplay, Pagination, Navigation]}
-      className="pb-10"  {/* extra bottom padding for dots */}
-    >
-      {[
-        { name: "David P.", review: "The report was detailed with accident history, mileage verification, and service records. Reliable and worth it." },
-        { name: "Michael L.", review: "It helped me avoid hidden damage when buying my car. Very accurate and useful." },
-        { name: "Sofia R.", review: "Professional, easy-to-read reports. Gave me full confidence to finalize my deal." },
-        { name: "Emma K.", review: "Great service! I could compare multiple cars and spot hidden issues." },
-        { name: "John D.", review: "Saved me thousands by avoiding a car with a salvage title. Highly recommend." },
-        { name: "Lucas M.", review: "Fast, accurate and very affordable compared to others." },
-        { name: "Ava W.", review: "Best car history reports online. I use it for every car purchase." },
-      ].map((t, i) => (
-        <SwiperSlide key={i}>
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-            <div className="flex justify-center mb-3">
-              {Array(5).fill().map((_, idx) => (
-                <span key={idx} className="text-green-500 text-xl">★</span>
-              ))}
-            </div>
-            <p className="italic">"{t.review}"</p>
-            <p className="mt-3 font-semibold">- {t.name}</p>
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  </div>
-</section>
+      {/* Testimonials Slider */}
+      <section className="py-16 bg-black text-white text-center">
+        <h2 className="text-3xl font-bold mb-10">Trusted by Thousands</h2>
+        <div className="max-w-6xl mx-auto px-4">
+          <Swiper
+            spaceBetween={30}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 }
+            }}
+            autoplay={{ delay: 3000 }}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            navigation
+            modules={[Autoplay, Pagination, Navigation]}
+            className="pb-10"
+          >
+            {[
+              { name: "David P.", review: "The report was detailed with accident history, mileage verification, and service records. Reliable and worth it." },
+              { name: "Michael L.", review: "It helped me avoid hidden damage when buying my car. Very accurate and useful." },
+              { name: "Sofia R.", review: "Professional, easy-to-read reports. Gave me full confidence to finalize my deal." },
+              { name: "Emma K.", review: "Great service! I could compare multiple cars and spot hidden issues." },
+              { name: "John D.", review: "Saved me thousands by avoiding a car with a salvage title. Highly recommend." },
+              { name: "Lucas M.", review: "Fast, accurate and very affordable compared to others." },
+              { name: "Ava W.", review: "Best car history reports online. I use it for every car purchase." },
+            ].map((t, i) => (
+              <SwiperSlide key={i}>
+                <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+                  <div className="flex justify-center mb-3">
+                    {Array(5).fill().map((_, idx) => (
+                      <span key={idx} className="text-green-500 text-xl">★</span>
+                    ))}
+                  </div>
+                  <p className="italic">"{t.review}"</p>
+                  <p className="mt-3 font-semibold">- {t.name}</p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
 
-      {/* Car Interior Image Section */}
+      {/* Car Interior Image */}
       <section className="relative w-full bg-black">
         <img
           src="/michael-lock-YVmUf2TyIGc-unsplash.jpg"
