@@ -1,15 +1,19 @@
-// app/about/layout.js
+// app/layout.js
+import "./globals.css";
+import Navbar from "../components/Navbar";
+
 export const metadata = {
-  title: "About Us | Carify",
-  description: "Learn more about Carify and our vehicle history solutions",
+  title: "The Vehicle Audit",
+  description: "Get comprehensive vehicle history reports",
 };
 
-export default function AboutLayout({ children }) {
+export default function RootLayout({ children }) {
   return (
-    <section className="min-h-screen bg-gray-50 text-gray-800 p-8">
-      <div className="max-w-4xl mx-auto">
-        {children}
-      </div>
-    </section>
+    <html lang="en">
+      <body className="bg-black text-white">
+        <Navbar />
+        <main className="pt-24 px-6">{children}</main>
+      </body>
+    </html>
   );
 }
