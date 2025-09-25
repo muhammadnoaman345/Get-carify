@@ -260,20 +260,20 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Input + Button */}
-            <div className="flex w-full max-w-xl shadow-lg rounded-md overflow-hidden">
+            {/* ✅ Rounded Search Bar */}
+            <div className="flex items-center w-full max-w-md">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder={
                   searchType === "vin"
-                    ? "Enter Vehicle Identification Number (VIN)"
+                    ? "Enter Vehicle Identification Number"
                     : "Enter License Plate Number"
                 }
-                className="flex-1 px-4 py-4 text-black focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="flex-1 px-4 py-3 rounded-full border border-gray-300 text-black shadow focus:outline-none focus:ring-2 focus:ring-green-500"
               />
-              <button className="bg-green-500 px-8 py-4 font-semibold hover:bg-green-600 transition-colors">
+              <button className="ml-2 px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition">
                 Get Report
               </button>
             </div>
