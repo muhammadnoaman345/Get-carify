@@ -16,7 +16,6 @@ import VehicleDataSection from "../components/VehicleDataSection";
 import ServicesSection from "../components/ServicesSection";
 import FAQ from "../components/FAQ";
 
-
 export default function Home() {
   const [searchType, setSearchType] = useState("vin");
   const [inputValue, setInputValue] = useState("");
@@ -304,8 +303,8 @@ export default function Home() {
       {/* ✅ Vehicle Data Section */}
       <VehicleDataSection />
         
-      {/* ✅ Pricing Section */}
-      <section className="py-20 bg-[#0e0e0e] text-white text-center">
+      {/* ✅ Pricing Section (with ID) */}
+      <section id="pricing" className="py-20 bg-[#0e0e0e] text-white text-center">
         <h2 className="text-4xl font-bold">Recommended Plans</h2>
         <p className="mt-3 mb-6 text-gray-400">Get Your Vehicle's Inspection Report!</p>
 
