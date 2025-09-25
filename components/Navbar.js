@@ -17,7 +17,7 @@ export default function Navbar() {
     { name: "Testimonials", href: "/#testimonials" }, // ✅ scroll to testimonials
     { name: "FAQs", href: "/#faq" },              // ✅ scroll to FAQ section
     { name: "Privacy Policy", href: "/privacy-policy" },
-    { name: "Terms & Conditions", href: "/terms" },
+    { name: "Terms & Conditions", href: "/#terms and conditions" },
   ];
 
   return (
