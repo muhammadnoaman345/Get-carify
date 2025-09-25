@@ -1,96 +1,79 @@
-"use client";
+// app/about/page.js
+import { CheckCircle } from "lucide-react"; // for green check icons
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-
-export default function About() {
+export default function AboutPage() {
   return (
-    <div className="bg-black text-white min-h-screen pt-28 px-6 md:px-16">
+    <div className="bg-black text-white min-h-screen">
       {/* Hero Section */}
-      <section className="text-center mb-16">
-        <motion.h1
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold text-green-500 mb-4"
-        >
-          About Us
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-lg md:text-xl max-w-3xl mx-auto text-gray-300"
-        >
-          We’re here to bring **trust and transparency** to vehicle history
-          reporting worldwide.
-        </motion.p>
+      <section className="relative w-full h-[300px] flex items-center justify-center bg-gray-900">
+        <img
+          src="/about/hero.jpg" // <- replace with your image
+          alt="About Vehicle Audit"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        />
+        <h1 className="relative text-4xl md:text-5xl font-bold text-green-400">
+          About Vehicle Audit
+        </h1>
       </section>
 
-      {/* Core Content */}
-      <section className="grid md:grid-cols-2 gap-10 mb-16">
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-green-400">
-            Why Choose Us?
-          </h2>
-          <ul className="space-y-4 text-gray-300">
-            <li className="border border-green-500 rounded-lg p-4 hover:bg-green-500 hover:text-black transition">
-              Get up-to-date vehicle information directly from NMVTIS and
-              government agencies across the U.S., Canada, Australia, New
-              Zealand, and the UK.
-            </li>
-            <li className="border border-green-500 rounded-lg p-4 hover:bg-green-500 hover:text-black transition">
-              Access comprehensive title, salvage, and total loss details.
-            </li>
-            <li className="border border-green-500 rounded-lg p-4 hover:bg-green-500 hover:text-black transition">
-              Exclusive data on thefts, recalls, liens, and vehicle values.
-            </li>
-            <li className="border border-green-500 rounded-lg p-4 hover:bg-green-500 hover:text-black transition">
-              Advanced dealer dashboard with batch reporting and printing.
-            </li>
-            <li className="border border-green-500 rounded-lg p-4 hover:bg-green-500 hover:text-black transition">
-              Competitive pricing with no hidden fees.
-            </li>
-          </ul>
-        </div>
-
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-green-400">
-            Our Mission
-          </h2>
-          <p className="text-gray-300 leading-relaxed">
-            We believe that buying or selling a vehicle should be simple,
-            transparent, and stress-free. That’s why we combine **government
-            data, insurance records, and exclusive industry insights** into
-            one powerful platform. Whether you’re a car buyer, seller, or
-            dealership, our reports help you make informed decisions with
-            confidence.
-          </p>
-          <p className="text-gray-300 leading-relaxed">
-            From checking accident history to confirming ownership records, we
-            go beyond the basics to give you **a complete picture of any
-            vehicle’s past**.
-          </p>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-green-500 mb-6">
-          Ready to Get Started?
-        </h2>
-        <p className="text-gray-300 mb-6">
-          Run your first report today and discover the peace of mind that comes
-          with having all the details at your fingertips.
+      {/* Intro Text */}
+      <section className="max-w-6xl mx-auto px-6 py-12">
+        <p className="text-gray-300 leading-relaxed mb-6">
+          Vehicle Audit is the answer to endless questions about car values,
+          safety, history, and possible damages. Whether you are buying or
+          selling, committing to a long-term loan or lease, or just checking the
+          future value of your car, we provide the data you need to make smarter
+          decisions.
         </p>
-        <Link
-          href="/reports"
-          className="bg-green-500 text-black font-semibold px-6 py-3 rounded-md hover:bg-green-600 transition"
-        >
-          Get Your Report
-        </Link>
+        <p className="text-gray-300 leading-relaxed">
+          We bring together reliable records from trusted government and private
+          sources worldwide. Our detailed Vehicle History Reports give you
+          complete visibility at a fraction of the industry cost—helping you
+          safeguard your equity, investment, and finances.
+        </p>
+      </section>
+
+      {/* Feature Checklist */}
+      <section className="bg-gray-900 py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-semibold text-green-400 mb-8">
+            Our Reports Cover:
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-300">
+            {[
+              "Title Records",
+              "Title Brand Records",
+              "Junk & Salvage Records",
+              'Insurer "Total Loss"',
+              "Full Auto Specs",
+              "Flood Damage Records",
+              "Commercial Use Records",
+              "Fire & Hail Records",
+              "Recalls & Defects",
+              "Insurance Claims",
+              "Current & Past Owners",
+              "Prior Theft Records",
+              "Repair & Rebuilt Records",
+              "Current Title Records",
+              "Historical Title Records",
+              "Cash For Clunkers",
+              "Odometer Reading",
+              "Sales History",
+              "Awards and Accolades",
+              "NHTSA Crash Test Ratings",
+              "Safety and Security",
+              "Manufacturer Information",
+              "Residual Values",
+              "And More...",
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-start space-x-2">
+                <CheckCircle className="text-green-400 mt-1 w-5 h-5" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
     </div>
   );
 }
-
