@@ -43,3 +43,12 @@ body {
   display: flex;
   animation: marquee 30s linear infinite;
 }
+.flags-marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+}
+
+.flags-marquee:hover .flags-marquee-track {
+  animation-play-state: paused; /* ⏸ pause when hovered */
+}
+
