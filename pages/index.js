@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image"; // ✅ Next.js Image Optimization
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -27,14 +28,14 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section
-        className="relative flex items-center justify-center text-center text-white h-screen"
-        style={{
-          backgroundImage: "url('/benjamin-zhao-5DremXTTKE0-unsplash.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <section className="relative flex items-center justify-center text-center text-white h-screen">
+        <Image
+          src="/benjamin-zhao-5DremXTTKE0-unsplash.jpg"
+          alt="Hero Car Background"
+          layout="fill"
+          objectFit="cover"
+          priority // ✅ Loads first
+        />
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         <div className="relative z-10 px-4 max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
@@ -172,11 +173,13 @@ export default function Home() {
       </section>
 
       {/* Car Interior Image */}
-      <section className="relative w-full bg-black">
-        <img
+      <section className="relative w-full bg-black h-[600px]">
+        <Image
           src="/michael-lock-YVmUf2TyIGc-unsplash.jpg"
           alt="Car Interior"
-          className="w-full h-[600px] object-cover"
+          layout="fill"
+          objectFit="cover"
+          priority // ✅ Faster load
         />
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white">
