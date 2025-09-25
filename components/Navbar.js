@@ -13,16 +13,16 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "Pricing", href: "/#pricing" },  // <-- update this
-    { name: "Testimonials", href: "/#testimonials" }, // ✅ updated
-    { name: "FAQs", href: "/faqs" },
+    { name: "Pricing", href: "/#pricing" },        // ✅ scroll to pricing section
+    { name: "Testimonials", href: "/#testimonials" }, // ✅ scroll to testimonials
+    { name: "FAQs", href: "/#faq" },              // ✅ scroll to FAQ section
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms & Conditions", href: "/terms" },
   ];
 
   return (
     <header className="bg-black text-white py-4 px-6 flex items-center justify-between fixed top-0 left-0 w-full z-50 shadow-md">
-      {/* ✅ Logo (centered on mobile, left on desktop) */}
+      {/* ✅ Logo */}
       <div className="flex-1 flex justify-center md:justify-start">
         <Link href="/" className="flex items-center">
           <img
@@ -81,7 +81,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => setIsOpen(false)} // ✅ close menu after click
+                onClick={() => setIsOpen(false)} // ✅ close after click
                 className={`px-4 py-2 rounded-lg w-4/5 text-center font-semibold whitespace-nowrap transition ${
                   pathname === item.href
                     ? "bg-green-500 text-black"
