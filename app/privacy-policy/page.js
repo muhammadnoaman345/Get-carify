@@ -2,9 +2,9 @@
 
 export default function PrivacyPolicy() {
   return (
-    <div className="bg-black text-white min-h-screen">
-      {/* ✅ Increased padding-top so content won’t hide under navbar */}
-      <div className="max-w-4xl mx-auto px-6 pt-40 pb-20">
+    <div className="bg-black text-white min-h-screen pt-32">
+      {/* ✅ Added pt-32 to push everything below the navbar */}
+      <div className="max-w-4xl mx-auto px-6 pb-20">
         <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>
         <p className="text-gray-300 mb-4">
           At <span className="text-green-500 font-semibold">The Vehicle Audit</span>, 
