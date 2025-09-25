@@ -25,7 +25,7 @@ export default function Home() {
       <section
         className="relative flex items-center justify-center text-center text-white h-screen"
         style={{
-          backgroundImage: "url('/car-bg.jpg')",
+          backgroundImage: "url('/benjamin-zhao-5DremXTTKE0-unsplash.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -110,6 +110,20 @@ export default function Home() {
               <p className="mt-3 font-semibold">- {t.name}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Car Interior Image Section */}
+      <section className="relative w-full bg-black">
+        <img
+          src="/benjamin-zhao-5DremXTTKE0-unsplash.jpg"
+          alt="Car Interior"
+          className="w-full h-[600px] object-cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white">
+            Experience Transparency in Every Report
+          </h2>
         </div>
       </section>
 
