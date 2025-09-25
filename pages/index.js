@@ -190,12 +190,12 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>GetCarify - Vehicle History Reports</title>
+        <title>The Vehicle Audit - Vehicle History Reports</title>
       </Head>
 
       {/* Navbar */}
       <header className="bg-black text-white py-4 px-8 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-        <a href="/" className="text-2xl font-bold text-green-500">getCarify</a>
+        <a href="/" className="text-2xl font-bold text-green-500">The Vehicle Audit</a>
         <nav className="hidden md:flex space-x-6">
           <a href="#" className="hover:text-green-400">Home</a>
           <a href="#" className="hover:text-green-400">About Us</a>
@@ -219,7 +219,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         <div className="relative z-10 px-4 max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-            GetCarify Vehicle History Reports
+            The Vehicle Audit Vehicle History Reports
           </h1>
           <p className="mt-6 text-lg md:text-xl text-gray-300">
             Instant, reliable reports to help you buy and sell cars with confidence.
@@ -274,7 +274,7 @@ export default function Home() {
 
       {/* Why Choose Section */}
       <section className="py-20 bg-[#121212] text-white text-center">
-        <h2 className="text-4xl font-bold">Why Choose GetCarify?</h2>
+        <h2 className="text-4xl font-bold">Why Choose The Vehicle Audit?</h2>
         <p className="mt-3 text-gray-400">
           We deliver trustworthy vehicle intelligence to help you buy and sell with confidence.
         </p>
@@ -413,7 +413,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {/* Brand */}
           <div>
-            <a href="/" className="text-green-500 font-bold text-xl">getCarify</a>
+            <a href="/" className="text-green-500 font-bold text-xl">The Vehicle Audit</a>
             <p className="mt-2 text-gray-400 text-sm">
               Your trusted partner in vehicle history reports.
             </p>
