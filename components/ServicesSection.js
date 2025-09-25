@@ -19,9 +19,9 @@ export default function ServicesSection() {
         </h2>
       </div>
 
-      {/* Scrolling flags */}
-      <div className="overflow-hidden relative">
-        <div className="flex animate-scroll gap-12">
+      {/* ✅ Scrolling flags */}
+      <div className="flags-marquee">
+        <div className="flags-marquee-track gap-12">
           {[...countries, ...countries].map((country, i) => (
             <div key={i} className="flex flex-col items-center min-w-[120px]">
               <Image
