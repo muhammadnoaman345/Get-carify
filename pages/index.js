@@ -3,7 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "swiper/css";
@@ -11,6 +10,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // ✅ Custom Components
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import VehicleDataSection from "../components/VehicleDataSection";
 import ServicesSection from "../components/ServicesSection";
 
@@ -205,20 +206,7 @@ export default function Home() {
       </Head>
 
       {/* ✅ Navbar */}
-      <header className="bg-black text-white py-4 px-8 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-        <a href="/" className="text-2xl font-bold text-green-500">
-          The Vehicle Audit
-        </a>
-        <nav className="hidden md:flex space-x-6">
-          <a href="#" className="hover:text-green-400">Home</a>
-          <a href="#" className="hover:text-green-400">About Us</a>
-          <a href="#" className="hover:text-green-400">Reports</a>
-          <a href="#" className="hover:text-green-400">Pricing</a>
-        </nav>
-        <button className="bg-green-500 px-4 py-2 rounded-md font-semibold hover:bg-green-600">
-          Get Your Report
-        </button>
-      </header>
+      <Navbar />
 
       {/* ✅ Hero Section */}
       <section className="relative flex items-center justify-center text-center text-white h-screen">
@@ -432,59 +420,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ✅ Footer */}
-      <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-10 px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {/* Brand */}
-          <div>
-            <a href="/" className="text-green-500 font-bold text-xl">The Vehicle Audit</a>
-            <p className="mt-2 text-gray-400 text-sm">
-              Your trusted partner in vehicle history reports.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold">Quick Links</h4>
-            <ul className="mt-2 space-y-2 text-sm text-gray-400">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Reports</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h4 className="font-semibold">Legal</h4>
-            <ul className="mt-2 space-y-2 text-sm text-gray-400">
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-            </ul>
-          </div>
-
-          {/* Social Icons */}
-          <div>
-            <h4 className="font-semibold">Connect</h4>
-            <div className="flex space-x-4 mt-3">
-              <a href="#" className="text-gray-400 hover:text-green-500 transition">
-                <Facebook size={22} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-green-500 transition">
-                <Instagram size={22} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-green-500 transition">
-                <Linkedin size={22} />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom note */}
-        <div className="mt-10 text-center text-gray-500 text-xs border-t border-gray-800 pt-4">
-          © 2025 RedHorseTraders. All rights reserved.
-        </div>
-      </footer>
+        {/* ✅ Footer */}
+      <Footer />
     </>
   );
 }
