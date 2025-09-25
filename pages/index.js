@@ -21,80 +21,120 @@ export default function Home() {
         </button>
       </header>
 
-      {/* Hero Section */}
-      <section
-        className="relative flex items-center justify-center text-center text-white h-screen"
-        style={{
-          backgroundImage: "url('/nur-faizin-H9pmsONaObo-unsplash.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+     {/* Hero Section */}
+<section
+  className="relative flex items-center justify-center text-center text-white h-screen"
+  style={{
+    backgroundImage: "url('/benjamin-zhao-5DremXTTKE0-unsplash.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black bg-opacity-70"></div>
 
-        {/* Content */}
-        <div className="relative z-10 px-4">
-          <h2 className="text-4xl md:text-6xl font-bold">Instant, Reliable Car History Reports</h2>
-          <p className="mt-4 text-lg md:text-xl">
-            Empower your car buying decisions with GetCarify.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <input
-              type="text"
-              placeholder="Enter Vehicle Identification Number (VIN)"
-              className="px-4 py-3 rounded-l-md w-80 md:w-96 text-black focus:outline-none"
-            />
-            <button className="bg-green-500 px-6 py-3 rounded-r-md font-semibold hover:bg-green-600">
-              Get Report
-            </button>
-          </div>
-        </div>
-      </section>
+  {/* Content */}
+  <div className="relative z-10 px-4 max-w-3xl mx-auto">
+    <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+      GetCarify Vehicle History Reports
+    </h1>
+    <p className="mt-6 text-lg md:text-xl text-gray-300">
+      Instant, reliable reports to help you buy and sell cars with confidence.
+    </p>
+
+    {/* VIN Input Box */}
+    <div className="mt-10 flex flex-col md:flex-row justify-center">
+      <input
+        type="text"
+        placeholder="Enter Vehicle Identification Number (VIN)"
+        className="px-4 py-4 rounded-t-md md:rounded-l-md md:rounded-tr-none w-full md:w-96 text-black focus:outline-none"
+      />
+      <button className="bg-green-500 px-8 py-4 rounded-b-md md:rounded-r-md md:rounded-bl-none font-semibold hover:bg-green-600 transition-colors">
+        Get Report
+      </button>
+    </div>
+
+    {/* Small Note */}
+    <p className="mt-4 text-sm text-gray-400">
+      Trusted by thousands of car buyers and sellers.
+    </p>
+  </div>
+</section>
 
       {/* Why Choose Section */}
-      <section className="py-16 bg-black text-white text-center">
-        <h2 className="text-3xl font-bold mb-10">Why Choose GetCarify?</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <div className="bg-gray-800 p-6 rounded-lg">
-            <h3 className="text-green-500 text-xl font-bold">Comprehensive Data</h3>
-            <p className="mt-3">Access records from DMVs, insurers, and auctions.</p>
-          </div>
-          <div className="bg-gray-800 p-6 rounded-lg">
-            <h3 className="text-green-500 text-xl font-bold">Unmatched Accuracy</h3>
-            <p className="mt-3">Advanced algorithms ensure the highest accuracy.</p>
-          </div>
-          <div className="bg-gray-800 p-6 rounded-lg">
-            <h3 className="text-green-500 text-xl font-bold">Clear & Simple Reports</h3>
-            <p className="mt-3">Understand vehicle history quickly with clean design.</p>
-          </div>
-        </div>
-      </section>
+<section className="py-20 bg-[#121212] text-white text-center">
+  <h2 className="text-4xl font-bold">Why Choose GetCarify?</h2>
+  <p className="mt-3 text-gray-400">
+    We deliver trustworthy vehicle intelligence to help you buy and sell with confidence.
+  </p>
 
-      {/* Pricing Section */}
-      <section className="py-16 bg-gray-900 text-white text-center">
-        <h2 className="text-3xl font-bold mb-10">Flexible Pricing for Every Need</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {[
-            { title: "Silver", price: "$40", features: ["Vehicle Overview", "Market Value", "Specs", "Sales Listing", "Accident Record", "Salvage", "Theft Record"] },
-            { title: "Gold", price: "$80", features: ["HQ Car Images", "Vehicle Overview", "Market Value", "Sales Listing", "Accident Record", "Salvage", "Theft Record", "Title Record", "Warranty"] },
-            { title: "Platinum", price: "$120", features: ["Buyers Directory", "HQ Car Images", "Vehicle Overview", "Accident Record", "Salvage", "Theft Record", "Title Record", "Warranty", "Free Lifetime Report"] },
-          ].map((plan, i) => (
-            <div key={i} className="bg-gray-800 p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold">{plan.title}</h3>
-              <p className="text-green-500 text-3xl font-bold mt-2">{plan.price}</p>
-              <ul className="mt-4 text-left">
-                {plan.features.map((f, idx) => (
-                  <li key={idx} className="mt-2">✔ {f}</li>
-                ))}
-              </ul>
-              <button className="mt-6 bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600">
-                Choose Plan
-              </button>
-            </div>
-          ))}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-12">
+    <div className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg">
+      <div className="flex justify-center">
+        <div className="bg-green-500 w-14 h-14 rounded-full flex items-center justify-center">
+          <span className="text-white text-2xl">📦</span>
         </div>
-      </section>
+      </div>
+      <h3 className="text-xl font-bold mt-6">Comprehensive Data</h3>
+      <p className="mt-3 text-gray-400">
+        Access extensive records from thousands of sources, including DMVs, insurance carriers, and salvage auctions.
+      </p>
+    </div>
+
+    <div className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg">
+      <div className="flex justify-center">
+        <div className="bg-green-500 w-14 h-14 rounded-full flex items-center justify-center">
+          <span className="text-white text-2xl">🛡️</span>
+        </div>
+      </div>
+      <h3 className="text-xl font-bold mt-6">Unmatched Accuracy</h3>
+      <p className="mt-3 text-gray-400">
+        Our advanced algorithms cross-reference data to ensure the highest level of accuracy in every report.
+      </p>
+    </div>
+
+    <div className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg">
+      <div className="flex justify-center">
+        <div className="bg-green-500 w-14 h-14 rounded-full flex items-center justify-center">
+          <span className="text-white text-2xl">📄</span>
+        </div>
+      </div>
+      <h3 className="text-xl font-bold mt-6">Clear & Simple Reports</h3>
+      <p className="mt-3 text-gray-400">
+        We present complex vehicle history in a clean, easy-to-read format, so you can understand the facts quickly.
+      </p>
+    </div>
+  </div>
+</section>
+
+{/* Pricing Section */}
+<section className="py-20 bg-[#0e0e0e] text-white text-center">
+  <h2 className="text-4xl font-bold">Flexible Pricing for Every Need</h2>
+  <p className="mt-3 text-gray-400">
+    Choose the plan that’s right for you. Get a single report or save with our multi-report packages.
+  </p>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-12">
+    {[
+      { title: "Silver", price: "$40", features: ["Vehicle Overview", "Market Value", "Specs", "Sales Listing", "Accident Record", "Salvage", "Theft Record"] },
+      { title: "Gold", price: "$80", features: ["HQ Car Images", "Vehicle Overview", "Market Value", "Sales Listing", "Accident Record", "Salvage", "Theft Record", "Title Record", "Warranty"] },
+      { title: "Platinum", price: "$120", features: ["Buyers Directory", "HQ Car Images", "Vehicle Overview", "Accident Record", "Salvage", "Theft Record", "Title Record", "Warranty", "Free Lifetime Report"] },
+    ].map((plan, i) => (
+      <div key={i} className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg hover:scale-105 transition-transform">
+        <h3 className="text-2xl font-bold">{plan.title}</h3>
+        <p className="text-green-500 text-4xl font-bold mt-2">{plan.price}</p>
+        <ul className="mt-6 text-gray-300 space-y-2 text-left">
+          {plan.features.map((f, idx) => (
+            <li key={idx}>✔ {f}</li>
+          ))}
+        </ul>
+        <button className="mt-6 bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-full">
+          Choose Plan
+        </button>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* Testimonials */}
       <section className="py-16 bg-black text-white text-center">
