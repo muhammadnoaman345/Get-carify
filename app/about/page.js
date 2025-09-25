@@ -8,7 +8,7 @@ export default function AboutPage() {
       <section className="relative w-full h-[300px] flex items-center justify-center bg-gray-900 pt-20">
         {/* pt-20 pushes it below the fixed navbar */}
         <img
-          src="/about/hero.jpg" // <- replace with your image
+          src="/logo.png" // <- replace with your image
           alt="About Vehicle Audit"
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         />
@@ -40,7 +40,7 @@ export default function AboutPage() {
       <section className="bg-gray-900 py-12">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
           <img
-            src="/about/offer.jpg" // <- replace with your image
+            src="/logo.png" // <- replace with your image
             alt="Vehicle audit illustration"
             className="rounded-2xl shadow-lg"
           />
