@@ -116,7 +116,7 @@ export default function Home() {
       {/* Car Interior Image Section */}
       <section className="relative w-full bg-black">
         <img
-          src="/benjamin-zhao-5DremXTTKE0-unsplash.jpg"
+          src="/michael-lock-YVmUf2TyIGc-unsplash.jpg"
           alt="Car Interior"
           className="w-full h-[600px] object-cover"
         />
