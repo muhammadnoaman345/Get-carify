@@ -1,21 +1,30 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 
 export default function VehicleDataSection() {
-  const [startCount, setStartCount] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const { ref, inView } = useInView({
+    triggerOnce: true, // only once
+    threshold: 0.3,    // 30% visible
+  });
+
+  if (inView && !hasAnimated) {
+    setHasAnimated(true);
+  }
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white" ref={ref}>
       <div className="mx-auto px-6 container flex flex-col md:flex-row items-center justify-between">
+        
         {/* Left: text + counters */}
         <motion.div
           initial={{ x: -120, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          onViewportBoxUpdate={() => setStartCount(true)} // ✅ this triggers count when visible
           className="md:w-1/2 space-y-6"
         >
           <h2 className="text-3xl md:text-4xl font-bold">
@@ -30,28 +39,28 @@ export default function VehicleDataSection() {
           <div className="grid grid-cols-2 gap-6 mt-6">
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-500">
-                {startCount ? <CountUp start={0} end={20} duration={2} suffix="K" /> : "0K"}
+                {hasAnimated ? <CountUp start={0} end={2000} duration={2} suffix="K" /> : "0K"}
               </div>
               <p className="text-gray-600 text-sm mt-1">HAPPY CUSTOMER</p>
             </div>
 
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-500">
-                {startCount ? <CountUp start={0} end={50} duration={2} suffix="K" /> : "0K"}
+                {hasAnimated ? <CountUp start={0} end={5000} duration={2} suffix="K" /> : "0K"}
               </div>
               <p className="text-gray-600 text-sm mt-1">REPORTS SOLD</p>
             </div>
 
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-500">
-                {startCount ? <CountUp start={0} end={5} duration={2} suffix="+" /> : "0+"}
+                {hasAnimated ? <CountUp start={0} end={5} duration={2} suffix="+" /> : "0+"}
               </div>
               <p className="text-gray-600 text-sm mt-1">YEARS EXPERIENCE</p>
             </div>
 
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-500">
-                {startCount ? <CountUp start={0} end={4} duration={2} suffix="+" /> : "0+"}
+                {hasAnimated ? <CountUp start={0} end={4} duration={2} suffix="+" /> : "0+"}
               </div>
               <p className="text-gray-600 text-sm mt-1">ACTIVE PARTNERS</p>
             </div>
@@ -62,7 +71,7 @@ export default function VehicleDataSection() {
         <motion.div
           initial={{ x: 120, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="md:w-1/2 mt-10 md:mt-0 flex justify-center"
         >
