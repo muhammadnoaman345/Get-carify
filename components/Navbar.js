@@ -13,7 +13,7 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "Pricing", href: "/pricing" },
+    { name: "Pricing", href: "/#packages" }, // ✅ Updated to scroll to Packages section
     { name: "Testimonials", href: "/testimonials" },
     { name: "FAQs", href: "/faqs" },
     { name: "Privacy Policy", href: "/privacy-policy" },
