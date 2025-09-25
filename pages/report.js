@@ -1,56 +1,27 @@
-import { useState } from 'react'
-
-export default function ReportPage(){
-  const [vin,setVin] = useState('')
-  const [name,setName] = useState('')
-  const [email,setEmail] = useState('')
-  const [loading,setLoading] = useState(false)
-  const [error,setError] = useState('')
-
-  async function handleSubmit(e){
-    e.preventDefault()
-    setError('')
-    if(!vin || !email){ setError('Please enter VIN and email'); return }
-    setLoading(true)
-    try{
-      await fetch('/api/submit',{
-        method:'POST',
-        headers:{'content-type':'application/json'},
-        body: JSON.stringify({ vin, name, email })
-      })
-
-      const r = await fetch('/api/create-checkout-session',{
-        method:'POST',
-        headers:{'content-type':'application/json'},
-        body: JSON.stringify({ vin, name, email })
-      })
-      const data = await r.json()
-      if(data.url){ window.location = data.url }
-      else { setError(data.error || 'Failed to create checkout session') }
-    }catch(err){ setError(err.message || 'Error'); console.error(err) }
-    finally{ setLoading(false) }
-  }
-
+export default function Report() {
   return (
-    <div className="container">
-      <h1>Request Vehicle History Report</h1>
-      <form onSubmit={handleSubmit}>
-        <label>VIN
-          <input className="input" value={vin} onChange={e=>setVin(e.target.value)} placeholder="Enter VIN" />
-        </label>
-        <label>Name (optional)
-          <input className="input" value={name} onChange={e=>setName(e.target.value)} />
-        </label>
-        <label>Email
-          <input className="input" type="email" value={email} onChange={e=>setEmail(e.target.value)} />
-        </label>
-        <button className="button" style={{marginTop:12}} disabled={loading}>
-          {loading ? 'Processing...' : 'Buy Report — $9.99 (test)'}
-        </button>
-        {error && <p style={{color:'crimson'}}>{error}</p>}
-      </form>
+    <div className="min-h-screen bg-gray-50">
+      <header className="w-full bg-white shadow p-4 flex justify-between">
+        <h1 className="text-xl font-bold text-blue-600">Carify</h1>
+        <nav>
+          <a href="/" className="px-3">Home</a>
+          <a href="/pricing" className="px-3">Pricing</a>
+          <a href="/contact" className="px-3">Contact</a>
+        </nav>
+      </header>
 
-      <p className="small">This demo uses Stripe test mode and stores requests in Supabase. The site will not automatically fetch Carfax reports — you'll deliver them manually or add an API later.</p>
+      <main className="p-10 max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold mb-6">Vehicle Report</h2>
+        <div className="bg-white p-6 shadow rounded-lg space-y-4">
+          <p><strong>VIN:</strong> 123456789ABCDEFG</p>
+          <p><strong>Make:</strong> Toyota</p>
+          <p><strong>Model:</strong> Corolla</p>
+          <p><strong>Year:</strong> 2018</p>
+          <p><strong>Mileage:</strong> 65,000 km</p>
+          <p><strong>Accidents:</strong> None reported</p>
+          <p><strong>Service Records:</strong> Regular maintenance</p>
+        </div>
+      </main>
     </div>
-  )
+  );
 }
