@@ -14,7 +14,7 @@ export default function Navbar() {
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Pricing", href: "/#pricing" },  // <-- update this
-    { name: "Testimonials", href: "/testimonials" },
+    { name: "Testimonials", href: "/#testimonials" }, // ✅ updated
     { name: "FAQs", href: "/faqs" },
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms & Conditions", href: "/terms" },
