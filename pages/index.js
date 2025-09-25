@@ -440,8 +440,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ✅ FAQ Section */}
-      <FAQ />
+      {/* ✅ FAQ Section (with ID) */}
+      <section id="faq">
+        <FAQ />
+      </section>
 
       {/* ✅ Car Interior Section */}
       <section className="relative w-full bg-black h-[600px]">
