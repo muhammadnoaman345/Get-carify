@@ -25,7 +25,7 @@ export default function Home() {
       <section
         className="relative flex items-center justify-center text-center text-white h-screen"
         style={{
-          backgroundImage: "url('/benjamin-zhao-5DremXTTKE0-unsplash.jpg')",
+          backgroundImage: "url('/nur-faizin-H9pmsONaObo-unsplash.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
