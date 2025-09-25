@@ -68,7 +68,7 @@ export default function VehicleDataSection() {
         >
           <div className="relative w-full max-w-md">
             <Image
-              src="/car-stat.png"   // upload this image in /public
+              src="/bmw-3-series-phev-lci-modelfinder.png.asset.1716814924098.png"   // upload this image in /public
               alt="Car"
               width={680}
               height={400}
