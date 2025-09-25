@@ -362,8 +362,8 @@ export default function Home() {
       {/* ✅ Services Section */}
       <ServicesSection />
 
-      {/* ✅ Testimonials Slider */}
-      <section className="py-16 bg-black text-white text-center">
+      {/* ✅ Testimonials Slider (with ID) */}
+      <section id="testimonials" className="py-16 bg-black text-white text-center">
         <h2 className="text-3xl font-bold mb-10">Trusted by Thousands</h2>
         <div className="max-w-6xl mx-auto px-4">
           <Swiper
