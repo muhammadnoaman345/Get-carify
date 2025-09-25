@@ -1,5 +1,6 @@
+import { useState } from "react";
 import Head from "next/head";
-import Image from "next/image"; // ✅ Next.js Image Optimization
+import Image from "next/image"; 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -7,6 +8,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 export default function Home() {
+  const [searchType, setSearchType] = useState("vin"); // vin | plate
+  const [inputValue, setInputValue] = useState("");
+
   return (
     <>
       <Head>
@@ -32,9 +36,9 @@ export default function Home() {
         <Image
           src="/benjamin-zhao-5DremXTTKE0-unsplash.jpg"
           alt="Hero Car Background"
-          layout="fill"
-          objectFit="cover"
-          priority // ✅ Loads first
+          fill
+          className="object-cover"
+          priority
         />
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         <div className="relative z-10 px-4 max-w-3xl mx-auto">
@@ -45,20 +49,50 @@ export default function Home() {
             Instant, reliable reports to help you buy and sell cars with confidence.
           </p>
 
-          {/* VIN Input */}
-          <div className="mt-10 flex flex-col md:flex-row justify-center">
-            <input
-              type="text"
-              placeholder="Enter Vehicle Identification Number (VIN)"
-              className="px-4 py-4 rounded-t-md md:rounded-l-md md:rounded-tr-none w-full md:w-96 text-black focus:outline-none"
-            />
-            <button className="bg-green-500 px-8 py-4 rounded-b-md md:rounded-r-md md:rounded-bl-none font-semibold hover:bg-green-600 transition-colors">
-              Get Report
-            </button>
+          {/* VIN / Plate Input */}
+          <div className="mt-10 flex flex-col items-center">
+            {/* Tabs */}
+            <div className="flex bg-gray-800 rounded-md overflow-hidden mb-6 shadow-md">
+              <button
+                onClick={() => { setSearchType("vin"); setInputValue(""); }}
+                className={`px-6 py-3 font-semibold transition ${
+                  searchType === "vin" ? "bg-green-500 text-white" : "text-gray-300 hover:bg-gray-700"
+                }`}
+              >
+                VIN
+              </button>
+              <button
+                onClick={() => { setSearchType("plate"); setInputValue(""); }}
+                className={`px-6 py-3 font-semibold transition ${
+                  searchType === "plate" ? "bg-green-500 text-white" : "text-gray-300 hover:bg-gray-700"
+                }`}
+              >
+                License Plate
+              </button>
+            </div>
+
+            {/* Input + Button */}
+            <div className="flex w-full max-w-xl shadow-lg">
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder={
+                  searchType === "vin"
+                    ? "Enter Vehicle Identification Number (VIN)"
+                    : "Enter License Plate Number"
+                }
+                className="flex-1 px-4 py-4 rounded-l-md text-black focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+              <button className="bg-green-500 px-8 py-4 rounded-r-md font-semibold hover:bg-green-600 transition-colors">
+                Get Report
+              </button>
+            </div>
+
+            <p className="mt-4 text-sm text-gray-400">
+              Search by {searchType === "vin" ? "VIN" : "License Plate"} to get started.
+            </p>
           </div>
-          <p className="mt-4 text-sm text-gray-400">
-            Trusted by thousands of car buyers and sellers.
-          </p>
         </div>
       </section>
 
@@ -177,9 +211,9 @@ export default function Home() {
         <Image
           src="/michael-lock-YVmUf2TyIGc-unsplash.jpg"
           alt="Car Interior"
-          layout="fill"
-          objectFit="cover"
-          priority // ✅ Faster load
+          fill
+          className="object-cover"
+          priority
         />
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white">
