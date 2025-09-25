@@ -5,7 +5,8 @@ export default function AboutPage() {
   return (
     <div className="bg-black text-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full h-[300px] flex items-center justify-center bg-gray-900">
+      <section className="relative w-full h-[300px] flex items-center justify-center bg-gray-900 pt-20">
+        {/* pt-20 pushes it below the fixed navbar */}
         <img
           src="/about/hero.jpg" // <- replace with your image
           alt="About Vehicle Audit"
@@ -17,7 +18,8 @@ export default function AboutPage() {
       </section>
 
       {/* Mission / Intro */}
-      <section className="max-w-6xl mx-auto px-6 py-12">
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        {/* ↑ py-16 gives more breathing room */}
         <h2 className="text-3xl font-bold text-green-400 mb-6">Our Mission</h2>
         <p className="text-gray-300 leading-relaxed mb-6">
           Vehicle Audit is the answer to endless questions about car values,
