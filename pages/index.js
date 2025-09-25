@@ -300,7 +300,7 @@ export default function Home() {
       {/* Pricing Section */}
       <section className="py-20 bg-[#0e0e0e] text-white text-center">
         <h2 className="text-4xl font-bold">Recommended Plans</h2>
-        <p className="mt-3 text-gray-400">Get Your Vehicle's Inspection Report!</p>
+        <p className="mt-3 mb-6 text-gray-400">Get Your Vehicle's Inspection Report!</p>
 
         {/* Tabs */}
         <div className="flex justify-center gap-4 mb-10">
