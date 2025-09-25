@@ -1,42 +1,53 @@
+"use client";
+
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navItems = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Reports", href: "/reports" },
+    { name: "Pricing", href: "/pricing" },
+    { name: "Testimonials", href: "/testimonials" },
+    { name: "FAQs", href: "/faqs" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Terms & Conditions", href: "/terms" },
+  ];
 
   return (
     <header className="bg-black text-white py-4 px-6 flex items-center justify-between fixed top-0 left-0 w-full z-50 shadow-md">
       {/* ✅ Logo (centered on mobile, left on desktop) */}
       <div className="flex-1 flex justify-center md:justify-start">
-        <a href="/" className="flex items-center">
+        <Link href="/" className="flex items-center">
           <img
             src="/logo.png"
             alt="The Vehicle Audit"
             className="h-16 md:h-20 object-contain"
           />
-        </a>
+        </Link>
       </div>
 
       {/* ✅ Desktop Menu */}
       <nav className="hidden md:flex flex-1 justify-center space-x-4 lg:space-x-6">
-        {[
-          "Home",
-          "About Us",
-          "Reports",
-          "Pricing",
-          "Testimonials",
-          "FAQs",
-          "Privacy Policy",
-          "Terms & Conditions",
-        ].map((item) => (
-          <a
-            key={item}
-            href="#"
-            className="px-3 py-1 border border-green-500 rounded-lg text-sm lg:text-base font-semibold text-white hover:bg-green-500 hover:text-black transition"
+        {navItems.map((item) => (
+          <Link
+            key={item.name}
+            href={item.href}
+            className={`px-3 py-1 rounded-lg text-sm lg:text-base font-semibold transition ${
+              pathname === item.href
+                ? "bg-green-500 text-black"
+                : "border border-green-500 text-white hover:bg-green-500 hover:text-black"
+            }`}
           >
-            {item}
-          </a>
+            {item.name}
+          </Link>
         ))}
       </nav>
 
@@ -67,23 +78,19 @@ export default function Navbar() {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="absolute top-20 left-0 w-full bg-black text-white flex flex-col items-center space-y-4 py-6 border-t border-gray-700 md:hidden"
           >
-            {[
-              "Home",
-              "About Us",
-              "Reports",
-              "Pricing",
-              "Testimonials",
-              "FAQs",
-              "Privacy Policy",
-              "Terms & Conditions",
-            ].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="px-4 py-2 border border-green-500 rounded-lg w-4/5 text-center font-semibold text-white hover:bg-green-500 hover:text-black transition"
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsOpen(false)} // ✅ close menu after click
+                className={`px-4 py-2 rounded-lg w-4/5 text-center font-semibold transition ${
+                  pathname === item.href
+                    ? "bg-green-500 text-black"
+                    : "border border-green-500 text-white hover:bg-green-500 hover:text-black"
+                }`}
               >
-                {item}
-              </a>
+                {item.name}
+              </Link>
             ))}
             <button className="bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-4/5 transition">
               Get Your Report
