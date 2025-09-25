@@ -10,8 +10,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-// ✅ Custom Component
+// ✅ Custom Components
 import VehicleDataSection from "../components/VehicleDataSection";
+import ServicesSection from "../components/ServicesSection";
 
 export default function Home() {
   const [searchType, setSearchType] = useState("vin");
@@ -310,9 +311,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ✅ Vehicle Data Section (New) */}
+      {/* ✅ Vehicle Data Section */}
       <VehicleDataSection />
-
+        
       {/* ✅ Pricing Section */}
       <section className="py-20 bg-[#0e0e0e] text-white text-center">
         <h2 className="text-4xl font-bold">Recommended Plans</h2>
@@ -368,6 +369,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* ✅ Services Section */}
+      <ServicesSection />
 
       {/* ✅ Testimonials Slider */}
       <section className="py-16 bg-black text-white text-center">
