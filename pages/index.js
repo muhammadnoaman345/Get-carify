@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
-import Image from "next/image"; 
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
@@ -12,11 +12,10 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 export default function Home() {
-  const [searchType, setSearchType] = useState("vin"); // vin | plate
+  const [searchType, setSearchType] = useState("vin");
   const [inputValue, setInputValue] = useState("");
   const [activeTab, setActiveTab] = useState("cars");
 
-  // Initialize AOS
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
@@ -203,7 +202,9 @@ export default function Home() {
 
       {/* Navbar */}
       <header className="bg-black text-white py-4 px-8 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-        <a href="/" className="text-2xl font-bold text-green-500">The Vehicle Audit</a>
+        <a href="/" className="text-2xl font-bold text-green-500">
+          The Vehicle Audit
+        </a>
         <nav className="hidden md:flex space-x-6">
           <a href="#" className="hover:text-green-400">Home</a>
           <a href="#" className="hover:text-green-400">About Us</a>
@@ -412,7 +413,11 @@ export default function Home() {
           <Swiper
             spaceBetween={30}
             slidesPerView={1}
-            breakpoints={{ 640: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
             autoplay={{ delay: 3000 }}
             pagination={{ clickable: true, dynamicBullets: true }}
             navigation
@@ -461,56 +466,58 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-<footer className="bg-gradient-to-b from-gray-900 to-black text-white py-10 px-8">
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-    {/* Brand */}
-    <div>
-      <a href="/" className="text-green-500 font-bold text-xl">The Vehicle Audit</a>
-      <p className="mt-2 text-gray-400 text-sm">
-        Your trusted partner in vehicle history reports.
-      </p>
-    </div>
+      <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-10 px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {/* Brand */}
+          <div>
+            <a href="/" className="text-green-500 font-bold text-xl">The Vehicle Audit</a>
+            <p className="mt-2 text-gray-400 text-sm">
+              Your trusted partner in vehicle history reports.
+            </p>
+          </div>
 
-    {/* Quick Links */}
-    <div>
-      <h4 className="font-semibold">Quick Links</h4>
-      <ul className="mt-2 space-y-2 text-sm text-gray-400">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Reports</a></li>
-        <li><a href="#">Pricing</a></li>
-      </ul>
-    </div>
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-semibold">Quick Links</h4>
+            <ul className="mt-2 space-y-2 text-sm text-gray-400">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Reports</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+          </div>
 
-    {/* Legal */}
-    <div>
-      <h4 className="font-semibold">Legal</h4>
-      <ul className="mt-2 space-y-2 text-sm text-gray-400">
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-      </ul>
-    </div>
+          {/* Legal */}
+          <div>
+            <h4 className="font-semibold">Legal</h4>
+            <ul className="mt-2 space-y-2 text-sm text-gray-400">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
 
-    {/* Social Icons */}
-    <div>
-      <h4 className="font-semibold">Connect</h4>
-      <div className="flex space-x-4 mt-3">
-        <a href="#" className="text-gray-400 hover:text-green-500 transition">
-          <Facebook size={22} />
-        </a>
-        <a href="#" className="text-gray-400 hover:text-green-500 transition">
-          <Instagram size={22} />
-        </a>
-        <a href="#" className="text-gray-400 hover:text-green-500 transition">
-          <Linkedin size={22} />
-        </a>
-      </div>
-    </div>
-  </div>
+          {/* Social Icons */}
+          <div>
+            <h4 className="font-semibold">Connect</h4>
+            <div className="flex space-x-4 mt-3">
+              <a href="#" className="text-gray-400 hover:text-green-500 transition">
+                <Facebook size={22} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-green-500 transition">
+                <Instagram size={22} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-green-500 transition">
+                <Linkedin size={22} />
+              </a>
+            </div>
+          </div>
+        </div>
 
-  {/* Bottom note */}
-  <div className="mt-10 text-center text-gray-500 text-xs border-t border-gray-800 pt-4">
-    © 2025 RedHorseTraders. All rights reserved.
-  </div>
-</footer>
-
+        {/* Bottom note */}
+        <div className="mt-10 text-center text-gray-500 text-xs border-t border-gray-800 pt-4">
+          © 2025 RedHorseTraders. All rights reserved.
+        </div>
+      </footer>
+    </>
+  );
+}
