@@ -40,7 +40,7 @@ export default function Navbar() {
           <Link
             key={item.name}
             href={item.href}
-            className={`px-3 py-1 rounded-lg text-sm lg:text-base font-semibold transition ${
+            className={`px-3 py-1 rounded-lg text-sm lg:text-base font-semibold transition whitespace-nowrap ${
               pathname === item.href
                 ? "bg-green-500 text-black"
                 : "border border-green-500 text-white hover:bg-green-500 hover:text-black"
@@ -53,7 +53,7 @@ export default function Navbar() {
 
       {/* ✅ CTA Button (desktop only) */}
       <div className="flex-1 hidden md:flex justify-end">
-        <button className="bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 transition">
+        <button className="bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 transition whitespace-nowrap">
           Get Your Report
         </button>
       </div>
@@ -83,7 +83,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsOpen(false)} // ✅ close menu after click
-                className={`px-4 py-2 rounded-lg w-4/5 text-center font-semibold transition ${
+                className={`px-4 py-2 rounded-lg w-4/5 text-center font-semibold whitespace-nowrap transition ${
                   pathname === item.href
                     ? "bg-green-500 text-black"
                     : "border border-green-500 text-white hover:bg-green-500 hover:text-black"
@@ -92,7 +92,7 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
-            <button className="bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-4/5 transition">
+            <button className="bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-4/5 transition whitespace-nowrap">
               Get Your Report
             </button>
           </motion.div>
