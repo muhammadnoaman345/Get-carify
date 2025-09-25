@@ -10,9 +10,10 @@ html, body {
   width: 100%;
 }
 
-/* Optional: smooth scrolling */
+/* ✅ Fix: Add scroll offset so sections don’t hide behind fixed navbar */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* adjust if navbar is taller/shorter */
 }
 
 /* Optional: better font rendering */
@@ -43,12 +44,7 @@ body {
   display: flex;
   animation: marquee 30s linear infinite;
 }
-.flags-marquee-track {
-  display: flex;
-  animation: marquee 30s linear infinite;
-}
 
 .flags-marquee:hover .flags-marquee-track {
   animation-play-state: paused; /* ⏸ pause when hovered */
 }
-
