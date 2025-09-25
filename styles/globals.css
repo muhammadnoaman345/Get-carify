@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fix unwanted horizontal scroll (white strip on right) */
+/* Prevent unwanted horizontal scroll (white strip on right) */
 html, body {
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 /* Optional: smooth scrolling */
@@ -16,4 +19,27 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', sans-serif; /* or your theme font */
+  background-color: #ffffff; /* keep consistent theme */
+}
+
+/* Animation for continuously moving flags */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.flags-marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.flags-marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
 }
