@@ -3,8 +3,10 @@
 export default function PrivacyPolicy() {
   return (
     <div className="bg-black text-white min-h-screen">
-      <div className="max-w-4xl mx-auto px-6 pb-20 mt-32">
-        {/* ✅ Added mt-32 to push everything below the fixed navbar */}
+      {/* ✅ Spacer to prevent hiding under fixed navbar */}
+      <div className="h-56 md:h-60"></div>
+
+      <div className="max-w-4xl mx-auto px-6 pb-20">
         <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>
         <p className="text-gray-300 mb-4">
           At <span className="text-green-500 font-semibold">The Vehicle Audit</span>, 
