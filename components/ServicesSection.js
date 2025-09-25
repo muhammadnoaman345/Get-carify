@@ -21,7 +21,7 @@ export default function ServicesSection() {
 
       {/* ✅ Scrolling flags */}
       <div className="flags-marquee">
-        <div className="flags-marquee-track gap-12">
+        <div className="flags-marquee-track gap-18">
           {[...countries, ...countries].map((country, i) => (
             <div key={i} className="flex flex-col items-center min-w-[120px]">
               <Image
