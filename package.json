@@ -16,6 +16,9 @@
     "postcss": "^8.4.27",
     "swiper": "^11.1.0",
     "stripe": "^14.0.0",
-    "@supabase/supabase-js": "^2.36.0"
+    "@supabase/supabase-js": "^2.36.0",
+    "lucide-react": "^0.469.0",
+    "classnames": "^2.5.1",
+    "@headlessui/react": "^1.7.17"
   }
 }
