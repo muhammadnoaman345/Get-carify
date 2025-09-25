@@ -13,9 +13,9 @@ export default function VehicleDataSection() {
         <motion.div
           initial={{ x: -120, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
-          onViewportEnter={() => setStartCount(true)}
+          onViewportBoxUpdate={() => setStartCount(true)} // ✅ this triggers count when visible
           className="md:w-1/2 space-y-6"
         >
           <h2 className="text-3xl md:text-4xl font-bold">
@@ -30,28 +30,28 @@ export default function VehicleDataSection() {
           <div className="grid grid-cols-2 gap-6 mt-6">
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-500">
-                {startCount ? <CountUp end={20} duration={1} suffix="K" /> : "0K"}
+                {startCount ? <CountUp start={0} end={20} duration={2} suffix="K" /> : "0K"}
               </div>
               <p className="text-gray-600 text-sm mt-1">HAPPY CUSTOMER</p>
             </div>
 
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-500">
-                {startCount ? <CountUp end={50} duration={1} suffix="K" /> : "0K"}
+                {startCount ? <CountUp start={0} end={50} duration={2} suffix="K" /> : "0K"}
               </div>
               <p className="text-gray-600 text-sm mt-1">REPORTS SOLD</p>
             </div>
 
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-500">
-                {startCount ? <CountUp end={5} duration={1} suffix="+" /> : "0+"}
+                {startCount ? <CountUp start={0} end={5} duration={2} suffix="+" /> : "0+"}
               </div>
               <p className="text-gray-600 text-sm mt-1">YEARS EXPERIENCE</p>
             </div>
 
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-500">
-                {startCount ? <CountUp end={4} duration={1} suffix="+" /> : "0+"}
+                {startCount ? <CountUp start={0} end={4} duration={2} suffix="+" /> : "0+"}
               </div>
               <p className="text-gray-600 text-sm mt-1">ACTIVE PARTNERS</p>
             </div>
@@ -62,13 +62,13 @@ export default function VehicleDataSection() {
         <motion.div
           initial={{ x: 120, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
           className="md:w-1/2 mt-10 md:mt-0 flex justify-center"
         >
           <div className="relative w-full max-w-md">
             <Image
-              src="/bmw-3-series-phev-lci-modelfinder.png.asset.1716814924098.png"   // upload this image in /public
+              src="/bmw-3-series-phev-lci-modelfinder.png.asset.1716814924098.png"
               alt="Car"
               width={680}
               height={400}
