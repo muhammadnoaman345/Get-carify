@@ -16,8 +16,9 @@ export default function AboutPage() {
         </h1>
       </section>
 
-      {/* Intro Text */}
+      {/* Mission / Intro */}
       <section className="max-w-6xl mx-auto px-6 py-12">
+        <h2 className="text-3xl font-bold text-green-400 mb-6">Our Mission</h2>
         <p className="text-gray-300 leading-relaxed mb-6">
           Vehicle Audit is the answer to endless questions about car values,
           safety, history, and possible damages. Whether you are buying or
@@ -33,10 +34,48 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* Feature Checklist */}
+      {/* What We Offer */}
       <section className="bg-gray-900 py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-semibold text-green-400 mb-8">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+          <img
+            src="/about/offer.jpg" // <- replace with your image
+            alt="Vehicle audit illustration"
+            className="rounded-2xl shadow-lg"
+          />
+          <div>
+            <h2 className="text-3xl font-bold text-green-400 mb-6">
+              What We Offer
+            </h2>
+            <ul className="space-y-4 text-gray-300 text-lg">
+              <li className="flex items-start space-x-2">
+                <CheckCircle className="text-green-400 mt-1 w-5 h-5" />
+                <span>Comprehensive vehicle history checks</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <CheckCircle className="text-green-400 mt-1 w-5 h-5" />
+                <span>Accident & damage reports</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <CheckCircle className="text-green-400 mt-1 w-5 h-5" />
+                <span>Import & export tracking</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <CheckCircle className="text-green-400 mt-1 w-5 h-5" />
+                <span>Service & maintenance history</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <CheckCircle className="text-green-400 mt-1 w-5 h-5" />
+                <span>Mechanic-style detailed inspections</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed Coverage Checklist */}
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-semibold text-green-400 mb-8 text-center">
             Our Reports Cover:
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-300">
@@ -72,6 +111,21 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="bg-gray-900 py-16 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-green-400 mb-6">
+            Why Choose Us?
+          </h2>
+          <p className="text-lg text-gray-300 leading-relaxed">
+            Unlike generic reports, <span className="font-semibold">Vehicle Audit</span> 
+            goes the extra mile. We don’t just give you raw data — we explain what it means, 
+            highlighting the key details that truly matter. Whether you’re buying, selling, 
+            or simply checking your car’s background, our reports provide the peace of mind you deserve.
+          </p>
         </div>
       </section>
     </div>
