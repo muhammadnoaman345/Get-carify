@@ -2,7 +2,7 @@
 
 export default function PrivacyPolicy() {
   return (
-    <div className="bg-black text-white min-h-screen pt-32">
+    <div className="bg-black text-white min-h-screen pt-40">
       {/* ✅ Added pt-32 to push everything below the navbar */}
       <div className="max-w-4xl mx-auto px-6 pb-20">
         <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>
