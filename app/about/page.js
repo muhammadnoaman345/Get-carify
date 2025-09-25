@@ -8,7 +8,6 @@ export default function AboutPage() {
       <section className="relative w-full h-[300px] flex items-center justify-center bg-gray-900 pt-20">
         {/* pt-20 pushes it below the fixed navbar */}
         <img
-          src="/logo.png" // <- replace with your image
           alt="About Vehicle Audit"
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         />
