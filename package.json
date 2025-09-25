@@ -21,6 +21,7 @@
     "classnames": "^2.5.1",
     "@headlessui/react": "^1.7.17",
     "framer-motion": "^10.12.5",
-    "react-countup": "^8.3.2"
+    "react-countup": "^6.4.0",
+    "aos": "^2.3.4"
   }
 }
