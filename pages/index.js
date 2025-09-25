@@ -4,12 +4,14 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
-import CountUp from "react-countup";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+
+// ✅ Custom Component
+import VehicleDataSection from "../components/VehicleDataSection";
 
 export default function Home() {
   const [searchType, setSearchType] = useState("vin");
@@ -20,6 +22,7 @@ export default function Home() {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
+  // ✅ Pricing Plans Data
   const plans = {
     cars: {
       Silver: {
@@ -200,7 +203,7 @@ export default function Home() {
         <title>The Vehicle Audit - Vehicle History Reports</title>
       </Head>
 
-      {/* Navbar */}
+      {/* ✅ Navbar */}
       <header className="bg-black text-white py-4 px-8 flex justify-between items-center fixed top-0 left-0 w-full z-50">
         <a href="/" className="text-2xl font-bold text-green-500">
           The Vehicle Audit
@@ -216,7 +219,7 @@ export default function Home() {
         </button>
       </header>
 
-      {/* Hero Section */}
+      {/* ✅ Hero Section */}
       <section className="relative flex items-center justify-center text-center text-white h-screen">
         <Image
           src="/istockphoto-1165665234-612x612.jpg"
@@ -234,7 +237,7 @@ export default function Home() {
             Instant, reliable reports to help you buy and sell cars with confidence.
           </p>
 
-          {/* VIN / Plate Input */}
+          {/* ✅ VIN / Plate Input */}
           <div className="mt-10 flex flex-col items-center">
             {/* Tabs */}
             <div className="flex bg-gray-800 rounded-full overflow-hidden mb-6 shadow-lg">
@@ -281,7 +284,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Section */}
+      {/* ✅ Why Choose Section */}
       <section className="py-20 bg-[#121212] text-white text-center">
         <h2 className="text-4xl font-bold">Why Choose The Vehicle Audit?</h2>
         <p className="mt-3 text-gray-400">
@@ -307,50 +310,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Vehicle Data Authority Section */}
-      <section className="py-20 bg-black text-white">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
-          {/* Text */}
-          <div data-aos="fade-right" className="max-w-lg">
-            <h2 className="text-3xl font-bold mb-4">
-              The <span className="text-green-600">Vehicle Data</span> Authority
-            </h2>
-            <p className="text-gray-400 mb-8">
-              Over the past decade, The Vehicle Audit has compiled more than 40 billion vehicle records from trusted sources.
-            </p>
+      {/* ✅ Vehicle Data Section (New) */}
+      <VehicleDataSection />
 
-            <div className="grid grid-cols-2 gap-8 text-center">
-              <div>
-                <h3 className="text-3xl font-bold text-green-500">
-                  <CountUp end={2000} duration={2} />K+
-                </h3>
-                <p className="text-gray-400 text-sm">Happy Customers</p>
-              </div>
-              <div>
-                <h3 className="text-3xl font-bold text-green-500">
-                  <CountUp end={5000} duration={2} />K+
-                </h3>
-                <p className="text-gray-400 text-sm">Reports Sold</p>
-              </div>
-              <div>
-                <h3 className="text-3xl font-bold text-green-500">5+</h3>
-                <p className="text-gray-400 text-sm">Years Experience</p>
-              </div>
-              <div>
-                <h3 className="text-3xl font-bold text-green-500">4+</h3>
-                <p className="text-gray-400 text-sm">Active Partners</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Image */}
-          <div data-aos="fade-left" className="mt-10 md:mt-0">
-            <img src="/car.png" alt="Car" className="w-full max-w-md rounded-lg shadow-lg" />
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
+      {/* ✅ Pricing Section */}
       <section className="py-20 bg-[#0e0e0e] text-white text-center">
         <h2 className="text-4xl font-bold">Recommended Plans</h2>
         <p className="mt-3 mb-6 text-gray-400">Get Your Vehicle's Inspection Report!</p>
@@ -406,7 +369,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Slider */}
+      {/* ✅ Testimonials Slider */}
       <section className="py-16 bg-black text-white text-center">
         <h2 className="text-3xl font-bold mb-10">Trusted by Thousands</h2>
         <div className="max-w-6xl mx-auto px-4">
@@ -449,7 +412,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Car Interior Image */}
+      {/* ✅ Car Interior Section */}
       <section className="relative w-full bg-black h-[600px]">
         <Image
           src="/michael-lock-YVmUf2TyIGc-unsplash.jpg"
@@ -465,7 +428,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ✅ Footer */}
       <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-10 px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {/* Brand */}
