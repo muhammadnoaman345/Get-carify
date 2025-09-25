@@ -1,79 +1,61 @@
-// app/privacy-policy/page.js
+"use client";
+
 export default function PrivacyPolicy() {
   return (
-    <div className="bg-black text-white min-h-screen pt-32 pb-20 px-6">
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <h1 className="text-4xl md:text-5xl font-bold text-green-500 mb-6">
-          Privacy Policy
-        </h1>
-        <p className="text-gray-300 mb-12">
-          At <span className="text-green-400 font-semibold">The Vehicle Audit</span>, 
-          we value your trust. This Privacy Policy explains how we collect, use, and protect your 
-          information when you use our website and services.
+    <div className="bg-black text-white min-h-screen">
+      {/* ✅ Added padding-top so content won’t hide under navbar */}
+      <div className="max-w-4xl mx-auto px-6 py-20 pt-32">
+        <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>
+        <p className="text-gray-300 mb-4">
+          At <span className="text-green-500 font-semibold">The Vehicle Audit</span>, 
+          your privacy is our priority. This Privacy Policy explains how we collect, 
+          use, and protect your personal information when you use our website and 
+          services.
         </p>
 
-        {/* Section 1 */}
-        <h2 className="text-2xl font-semibold text-green-400 mb-4">1. Information We Collect</h2>
-        <p className="text-gray-300 mb-8">
-          We may collect personal details (such as name, email, and payment information) 
-          and vehicle-related data (such as VIN, license plate, and specifications) 
-          when you use our services to generate reports.
+        <h2 className="text-2xl font-semibold mt-8 mb-3">1. Information We Collect</h2>
+        <p className="text-gray-300 mb-4">
+          We may collect personal information such as your name, email address, 
+          payment details, and vehicle identification numbers (VINs) when you 
+          request a report or interact with our platform.
         </p>
 
-        {/* Section 2 */}
-        <h2 className="text-2xl font-semibold text-green-400 mb-4">2. How We Use Your Information</h2>
-        <p className="text-gray-300 mb-8">
-          The information collected is used to:
-        </p>
-        <ul className="list-disc list-inside text-gray-300 mb-8 space-y-2">
-          <li>Generate accurate vehicle reports</li>
-          <li>Process payments securely</li>
-          <li>Provide customer support</li>
-          <li>Improve our website and services</li>
-        </ul>
-
-        {/* Section 3 */}
-        <h2 className="text-2xl font-semibold text-green-400 mb-4">3. Sharing of Information</h2>
-        <p className="text-gray-300 mb-8">
-          We do not sell or trade your personal information. 
-          Data may be shared only with trusted third-party providers (such as payment processors) 
-          strictly for service-related purposes.
+        <h2 className="text-2xl font-semibold mt-8 mb-3">2. How We Use Your Information</h2>
+        <p className="text-gray-300 mb-4">
+          The information collected is used to generate accurate vehicle history 
+          reports, process payments securely, improve our services, and provide 
+          customer support. We do not sell or share your data with third parties 
+          except as required by law or to process payments.
         </p>
 
-        {/* Section 4 */}
-        <h2 className="text-2xl font-semibold text-green-400 mb-4">4. Data Security</h2>
-        <p className="text-gray-300 mb-8">
-          We implement strict security measures to protect your personal and payment data. 
-          However, no system is completely secure, and we cannot guarantee absolute protection.
+        <h2 className="text-2xl font-semibold mt-8 mb-3">3. Data Security</h2>
+        <p className="text-gray-300 mb-4">
+          We implement industry-standard security practices to protect your personal 
+          information against unauthorized access, alteration, or disclosure.
         </p>
 
-        {/* Section 5 */}
-        <h2 className="text-2xl font-semibold text-green-400 mb-4">5. Cookies & Tracking</h2>
-        <p className="text-gray-300 mb-8">
-          Our site may use cookies and tracking technologies to enhance your browsing experience, 
-          analyze traffic, and improve functionality. You can disable cookies in your browser settings.
+        <h2 className="text-2xl font-semibold mt-8 mb-3">4. Cookies</h2>
+        <p className="text-gray-300 mb-4">
+          Our website may use cookies to enhance user experience and analyze traffic. 
+          You may disable cookies in your browser, but some features of our site 
+          may not function properly.
         </p>
 
-        {/* Section 6 */}
-        <h2 className="text-2xl font-semibold text-green-400 mb-4">6. Your Rights</h2>
-        <p className="text-gray-300 mb-8">
-          You may request access, correction, or deletion of your personal data. 
-          Please contact us at{" "}
-          <span className="text-green-400">support@thevehicleaudit.com</span> 
-          for any privacy-related inquiries.
+        <h2 className="text-2xl font-semibold mt-8 mb-3">5. Your Rights</h2>
+        <p className="text-gray-300 mb-4">
+          You have the right to access, update, or delete your personal data. To 
+          exercise these rights, please contact us at 
+          <span className="text-green-500"> support@thevehicleaudit.com</span>.
         </p>
 
-        {/* Section 7 */}
-        <h2 className="text-2xl font-semibold text-green-400 mb-4">7. Updates to This Policy</h2>
-        <p className="text-gray-300 mb-8">
-          We may update this Privacy Policy from time to time. 
-          All changes will be posted on this page with an updated "Last Updated" date.
+        <h2 className="text-2xl font-semibold mt-8 mb-3">6. Updates to This Policy</h2>
+        <p className="text-gray-300 mb-4">
+          We may update this Privacy Policy from time to time. Changes will be 
+          reflected on this page with an updated "last revised" date.
         </p>
 
-        {/* Last Updated */}
-        <p className="text-sm text-gray-500 mt-12">
-          <strong>Last Updated:</strong> September 26, 2025
+        <p className="mt-10 text-gray-400 text-sm">
+          Last Updated: September 2025
         </p>
       </div>
     </div>
