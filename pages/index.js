@@ -5,8 +5,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-Swiper.use([Autoplay, Pagination, Navigation]);
-
 export default function Home() {
   return (
     <>
@@ -156,8 +154,10 @@ export default function Home() {
         1024: { slidesPerView: 3 },
       }}
       autoplay={{ delay: 3000 }}
-      pagination={{ clickable: true }}
+      pagination={{ clickable: true, dynamicBullets: true }}  {/* ✅ Dots below slider */}
       navigation
+      modules={[Autoplay, Pagination, Navigation]}
+      className="pb-10"  {/* extra bottom padding for dots */}
     >
       {[
         { name: "David P.", review: "The report was detailed with accident history, mileage verification, and service records. Reliable and worth it." },
