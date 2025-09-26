@@ -141,7 +141,8 @@ export default function Summary() {
                 </p>
                 <p className="flex items-center space-x-2">
                   <span className="text-green-500">✔</span>
-                  <span>Theft Record</span>              
+                  <span>Theft Record</span> 
+                </p>              
               </div>
             </div>
           </div>
