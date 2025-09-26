@@ -8,20 +8,18 @@ import {
   Settings,
   History,
   FileCheck,
-} from "lucide-react";
-
-// Import your header and footer
-import Header from "../components/Navbar.js";
-import Footer from "../components/Footer.js";
+} from "lucide-react"; // icons
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function Summary() {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white">
+    <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Header */}
       <Header />
 
       {/* Main Content */}
-      <main className="flex-grow p-6">
+      <main className="flex-grow p-6 mt-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left Side */}
           <div className="md:col-span-2 space-y-6">
@@ -75,15 +73,33 @@ export default function Summary() {
             <div className="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-lg p-6">
               <h2 className="text-xl font-bold mb-4">Key Specifications</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-300">
-                <p><span className="font-semibold">Year:</span> 2020</p>
-                <p><span className="font-semibold">Make & Model:</span> Toyota Corolla</p>
-                <p><span className="font-semibold">Drive Type:</span> FWD</p>
-                <p><span className="font-semibold">Engine:</span> 1.8L</p>
-                <p><span className="font-semibold">Body Style:</span> Sedan</p>
-                <p><span className="font-semibold">Fuel:</span> Petrol</p>
-                <p><span className="font-semibold">Transmission:</span> Automatic</p>
-                <p><span className="font-semibold">Manufactured In:</span> Japan</p>
-                <p><span className="font-semibold">Warranty:</span> Available</p>
+                <p>
+                  <span className="font-semibold">Year:</span> 2020
+                </p>
+                <p>
+                  <span className="font-semibold">Make & Model:</span> Toyota Corolla
+                </p>
+                <p>
+                  <span className="font-semibold">Drive Type:</span> FWD
+                </p>
+                <p>
+                  <span className="font-semibold">Engine:</span> 1.8L
+                </p>
+                <p>
+                  <span className="font-semibold">Body Style:</span> Sedan
+                </p>
+                <p>
+                  <span className="font-semibold">Fuel:</span> Petrol
+                </p>
+                <p>
+                  <span className="font-semibold">Transmission:</span> Automatic
+                </p>
+                <p>
+                  <span className="font-semibold">Manufactured In:</span> Japan
+                </p>
+                <p>
+                  <span className="font-semibold">Warranty:</span> Available
+                </p>
               </div>
             </div>
 
