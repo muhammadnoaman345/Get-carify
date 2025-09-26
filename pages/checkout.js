@@ -89,6 +89,7 @@ export default function Checkout() {
                 <input
                   type="text"
                   name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
@@ -101,6 +102,7 @@ export default function Checkout() {
                 <input
                   type="text"
                   name="lastName"
+                  value={formData.lastName}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
@@ -117,6 +119,7 @@ export default function Checkout() {
                 <input
                   type="email"
                   name="email"
+                  value={formData.email}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
@@ -129,6 +132,7 @@ export default function Checkout() {
                 <input
                   type="text"
                   name="vin"
+                  value={formData.vin}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
@@ -145,6 +149,7 @@ export default function Checkout() {
                 <input
                   type="text"
                   name="plate"
+                  value={formData.plate}
                   onChange={handleChange}
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 />
@@ -156,6 +161,7 @@ export default function Checkout() {
                 <input
                   type="text"
                   name="regState"
+                  value={formData.regState}
                   onChange={handleChange}
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 />
@@ -170,6 +176,7 @@ export default function Checkout() {
               <input
                 type="text"
                 name="company"
+                value={formData.company}
                 onChange={handleChange}
                 className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
               />
@@ -184,6 +191,7 @@ export default function Checkout() {
                 <input
                   type="text"
                   name="state"
+                  value={formData.state}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
@@ -196,6 +204,7 @@ export default function Checkout() {
                 <input
                   type="text"
                   name="city"
+                  value={formData.city}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
@@ -208,6 +217,7 @@ export default function Checkout() {
                 <input
                   type="text"
                   name="zip"
+                  value={formData.zip}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
@@ -223,6 +233,7 @@ export default function Checkout() {
               <input
                 type="text"
                 name="address"
+                value={formData.address}
                 onChange={handleChange}
                 required
                 className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
@@ -238,6 +249,7 @@ export default function Checkout() {
                 <input
                   type="text"
                   name="phone"
+                  value={formData.phone}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
@@ -249,6 +261,7 @@ export default function Checkout() {
                 </label>
                 <select
                   name="country"
+                  value={formData.country}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
