@@ -1,5 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardContent, CardFooter } from "../components/ui/card"
+import { Button } from "../components/ui/button"
+
 
 export default function SummaryPage() {
   const vin = "HFSJLDKHFK3U8U2I0"; // later make dynamic
