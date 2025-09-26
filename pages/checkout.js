@@ -40,7 +40,7 @@ export default function Checkout() {
   const handleProceedToPayment = async () => {
     try {
       // Save form data locally too (optional)
-      localStorage.setItem("formData", JSON.stringify(formData));
+      localStorage.setItem("checkoutForm", JSON.stringify(formData));
 
       // Call your API
       const res = await fetch("/api/create-checkout-session", {
