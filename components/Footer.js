@@ -75,7 +75,7 @@ export default function Footer() {
           
           {/* Copyright */}
           <p className="text-gray-500 text-xs mb-4 md:mb-0">
-            © 2025 RedHorseTraders. All rights reserved.
+            © 2019 The Vehicle Audit. All rights reserved.
           </p>
 
           {/* Payment Methods */}
