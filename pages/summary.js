@@ -74,31 +74,31 @@ export default function Summary() {
               <h2 className="text-xl font-bold mb-4">Key Specifications</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-300">
                 <p>
-                  <span className="font-semibold">Year:</span> 2020
+                  <span className="font-semibold">Year:</span> ****
                 </p>
                 <p>
-                  <span className="font-semibold">Make & Model:</span> Toyota Corolla
+                  <span className="font-semibold">Make & Model:</span> ***********
                 </p>
                 <p>
-                  <span className="font-semibold">Drive Type:</span> FWD
+                  <span className="font-semibold">Drive Type:</span> ****
                 </p>
                 <p>
-                  <span className="font-semibold">Engine:</span> 1.8L
+                  <span className="font-semibold">Engine:</span> ****
                 </p>
                 <p>
-                  <span className="font-semibold">Body Style:</span> Sedan
+                  <span className="font-semibold">Body Style:</span> ****
                 </p>
                 <p>
-                  <span className="font-semibold">Fuel:</span> Petrol
+                  <span className="font-semibold">Fuel:</span> *****
                 </p>
                 <p>
-                  <span className="font-semibold">Transmission:</span> Automatic
+                  <span className="font-semibold">Transmission:</span> *****
                 </p>
                 <p>
-                  <span className="font-semibold">Manufactured In:</span> Japan
+                  <span className="font-semibold">Manufactured In:</span> ****
                 </p>
                 <p>
-                  <span className="font-semibold">Warranty:</span> Available
+                  <span className="font-semibold">Warranty:</span> *****
                 </p>
               </div>
             </div>
@@ -109,20 +109,39 @@ export default function Summary() {
               <div className="grid grid-cols-2 gap-4 text-gray-300">
                 <p className="flex items-center space-x-2">
                   <span className="text-green-500">✔</span>
-                  <span>No Structural Damage</span>
+                  <span>Structural Damage Info</span>
                 </p>
                 <p className="flex items-center space-x-2">
                   <span className="text-green-500">✔</span>
-                  <span>Clear Title</span>
+                  <span>Title Info</span>
                 </p>
                 <p className="flex items-center space-x-2">
                   <span className="text-green-500">✔</span>
-                  <span>No Odometer Rollback</span>
+                  <span>Odometer Info</span>
                 </p>
                 <p className="flex items-center space-x-2">
                   <span className="text-green-500">✔</span>
-                  <span>No Accident Info</span>
+                  <span>Accident Info</span>
                 </p>
+                <p className="flex items-center space-x-2">
+                  <span className="text-green-500">✔</span>
+                  <span>Sales History</span>
+                </p>
+                <p className="flex items-center space-x-2">
+                  <span className="text-green-500">✔</span>
+                  <span>Specs</span> 
+                </p>
+                <p className="flex items-center space-x-2">
+                  <span className="text-green-500">✔</span>
+                  <span>Problem Check</span>
+                </p>
+                <p className="flex items-center space-x-2">
+                  <span className="text-green-500">✔</span>
+                  <span>Service Record</span>
+                </p>
+                <p className="flex items-center space-x-2">
+                  <span className="text-green-500">✔</span>
+                  <span>Theft Record</span>              
               </div>
             </div>
           </div>
