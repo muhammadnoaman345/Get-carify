@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,6 +21,9 @@ export default function Home() {
   const [inputValue, setInputValue] = useState("");
   const [activeTab, setActiveTab] = useState("cars");
   const [error, setError] = useState("");
+
+  // ✅ Ref for VIN/License section
+  const formRef = useRef(null);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
@@ -231,6 +234,18 @@ export default function Home() {
     }
   };
 
+  // ✅ Handle "Order Now" click
+  const handleOrderClick = () => {
+    if (inputValue.trim() === "") {
+      // Scroll UP to form if no VIN/Plate entered
+      if (formRef.current) {
+        formRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      alert("Proceed to checkout (hook up Stripe here)");
+    }
+  };
+
   return (
     <>
       <Head>
@@ -241,7 +256,10 @@ export default function Home() {
       <Navbar />
 
       {/* ✅ Hero Section */}
-      <section className="relative flex items-center justify-center text-center text-white h-screen">
+      <section
+        ref={formRef}
+        className="relative flex items-center justify-center text-center text-white h-screen"
+      >
         <Image
           src="/istockphoto-1165665234-612x612.jpg"
           alt="Hero Car Background"
@@ -438,7 +456,10 @@ export default function Home() {
                   ))}
                 </ul>
 
-                <button className="mt-6 bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-full">
+                <button
+                  onClick={handleOrderClick}
+                  className="mt-6 bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-full"
+                >
                   Order Now
                 </button>
               </div>
