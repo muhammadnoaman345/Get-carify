@@ -24,7 +24,8 @@
     "react-countup": "^6.4.0",
     "aos": "^2.3.4",
     "react-intersection-observer": "^9.13.1",
-    "framer-motion": "^10.18.0"
+    "framer-motion": "^10.18.0",
+    "lucide-react": "^0.451.0"
 
   }
 }
