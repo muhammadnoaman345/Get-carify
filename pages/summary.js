@@ -129,7 +129,7 @@ export default function Summary() {
                 </p>
                 <p className="flex items-center space-x-2">
                   <span className="text-green-500">✔</span>
-                  <span>Specs</span> 
+                  <span>Specs</span>
                 </p>
                 <p className="flex items-center space-x-2">
                   <span className="text-green-500">✔</span>
@@ -141,8 +141,8 @@ export default function Summary() {
                 </p>
                 <p className="flex items-center space-x-2">
                   <span className="text-green-500">✔</span>
-                  <span>Theft Record</span> 
-                </p>              
+                  <span>Theft Record</span>
+                </p>
               </div>
             </div>
           </div>
@@ -157,7 +157,9 @@ export default function Summary() {
                 height={250}
                 className="rounded-xl mx-auto"
               />
-              <h2 className="text-xl font-bold mt-4">Ready for the Full Story?</h2>
+              <h2 className="text-xl font-bold mt-4">
+                Ready for the Full Story?
+              </h2>
               <p className="text-gray-400 mt-2 text-sm">
                 Unlock the complete, detailed history of this vehicle. Our full
                 report includes:
@@ -169,9 +171,14 @@ export default function Summary() {
                 <li>Full Service & Maintenance Records</li>
                 <li>Market Value Analysis</li>
               </ul>
-              <button className="w-full bg-green-600 hover:bg-green-700 text-black font-bold py-3 px-4 rounded-2xl mt-4 shadow-md">
+
+              {/* Checkout Button */}
+              <a
+                href="/checkout"
+                className="w-full block text-center bg-green-600 hover:bg-green-700 text-black font-bold py-3 px-4 rounded-2xl mt-4 shadow-md"
+              >
                 Purchase Full Report
-              </button>
+              </a>
             </div>
           </div>
         </div>
