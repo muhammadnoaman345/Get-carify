@@ -15,16 +15,191 @@ import Footer from "../components/Footer";
 import VehicleDataSection from "../components/VehicleDataSection";
 import ServicesSection from "../components/ServicesSection";
 import FAQ from "../components/FAQ";
-import VehicleFormAndPackages from "../app/components/VehicleFormAndPackages";
 
 export default function Home() {
   const [searchType, setSearchType] = useState("vin");
   const [inputValue, setInputValue] = useState("");
+  const [activeTab, setActiveTab] = useState("cars");
   const [error, setError] = useState("");
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
+
+  // ✅ Pricing Plans Data
+  const plans = {
+    cars: {
+      Silver: {
+        old: "$56.99",
+        price: "$49.99",
+        features: [
+          "Vehicle Overview",
+          "Market Value",
+          "Vehicle Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+        ],
+      },
+      Gold: {
+        old: "$119.99",
+        price: "$89.99",
+        features: [
+          "HQ Car Images",
+          "Vehicle Overview",
+          "Market Value",
+          "Vehicle Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+      Platinum: {
+        old: "$149.99",
+        price: "$119.99",
+        features: [
+          "2 Buyers Numbers from our Directory",
+          "Buy one get another Report Free for Lifetime",
+          "HQ Car Images",
+          "Vehicle Overview",
+          "Market Value",
+          "Vehicle Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+    },
+    motorbikes: {
+      Silver: {
+        old: "$56.99",
+        price: "$49.99",
+        features: [
+          "Bike Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+        ],
+      },
+      Gold: {
+        old: "$119.99",
+        price: "$89.99",
+        features: [
+          "HQ Bike Images",
+          "Bike Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+      Platinum: {
+        old: "$149.99",
+        price: "$119.99",
+        features: [
+          "2 Buyers Numbers from our Directory",
+          "Buy one get another Report Free for Lifetime",
+          "HQ Bike Images",
+          "Bike Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+    },
+    rv: {
+      Silver: {
+        old: "$56.99",
+        price: "$49.99",
+        features: [
+          "RV Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+        ],
+      },
+      Gold: {
+        old: "$119.99",
+        price: "$89.99",
+        features: [
+          "HQ RV Images",
+          "RV Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+      Platinum: {
+        old: "$149.99",
+        price: "$119.99",
+        features: [
+          "2 Buyers Numbers from our Directory",
+          "Buy one get another Report Free for Lifetime",
+          "HQ RV Images",
+          "RV Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+    },
+  };
 
   // ✅ Handle "Get Report"
   const handleGetReport = () => {
@@ -199,8 +374,78 @@ export default function Home() {
       {/* ✅ Vehicle Data Section */}
       <VehicleDataSection />
 
-      {/* ✅ Pricing Section (moved into component) */}
-      <VehicleFormAndPackages />
+      {/* ✅ Pricing Section (with ID) */}
+      <section
+        id="pricing"
+        className="py-20 bg-[#0e0e0e] text-white text-center"
+      >
+        <h2 className="text-4xl font-bold">Recommended Plans</h2>
+        <p className="mt-3 mb-6 text-gray-400">
+          Get Your Vehicle's Inspection Report!
+        </p>
+
+        {/* Tabs */}
+        <div className="flex justify-center gap-4 mb-10">
+          {["cars", "motorbikes", "rv"].map((type) => (
+            <button
+              key={type}
+              onClick={() => setActiveTab(type)}
+              className={`px-5 py-2 rounded-full font-semibold transition ${
+                activeTab === type
+                  ? "bg-green-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {type === "cars"
+                ? "Car Reports"
+                : type === "motorbikes"
+                ? "Motorbike Reports"
+                : "RV Reports"}
+            </button>
+          ))}
+        </div>
+
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {Object.entries(plans[activeTab]).map(
+            ([tier, { old, price, features }]) => (
+              <div
+                key={tier}
+                data-aos="fade-up"
+                className="relative bg-[#1c1c1c] rounded-2xl shadow-md p-6 flex flex-col hover:scale-105 transition"
+              >
+                {/* Popular Ribbon */}
+                {tier === "Gold" && (
+                  <span className="absolute top-4 right-[-20px] rotate-45 bg-green-500 text-xs font-bold text-white px-12 py-1 shadow-md">
+                    POPULAR
+                  </span>
+                )}
+
+                <h3 className="text-2xl font-bold mb-2">{tier}</h3>
+                <div className="mb-4">
+                  <span className="line-through text-gray-400 mr-2">
+                    {old}
+                  </span>
+                  <span className="text-green-500 text-3xl font-bold">
+                    {price}
+                  </span>
+                  <span className="text-sm text-gray-400"> / Report</span>
+                </div>
+
+                <ul className="text-left space-y-2 flex-1 overflow-y-auto max-h-64 scrollbar-thin">
+                  {features.map((f, idx) => (
+                    <li key={idx}>✔ {f}</li>
+                  ))}
+                </ul>
+
+                <button className="mt-6 bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-full">
+                  Order Now
+                </button>
+              </div>
+            )
+          )}
+        </div>
+      </section>
 
       {/* ✅ Services Section */}
       <ServicesSection />
@@ -282,7 +527,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ✅ FAQ Section */}
+      {/* ✅ FAQ Section (with ID) */}
       <section id="faq">
         <FAQ />
       </section>
@@ -308,4 +553,3 @@ export default function Home() {
     </>
   );
 }
-
