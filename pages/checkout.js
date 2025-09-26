@@ -133,15 +133,7 @@ export default function Checkout() {
               </div>
             </div>
 
-            {/* Submit */}
-            <div className="pt-6">
-              <button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md transition">
-                Purchase Full Report
-              </button>
-            </div>
-          </form>
-        </div>
-
+          
         {/* Right: Order Summary */}
         <div className="bg-white shadow rounded-2xl p-6 border border-gray-100 h-fit">
           <h2 className="text-lg font-semibold text-gray-800">Order Summary</h2>
