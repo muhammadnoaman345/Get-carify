@@ -1,107 +1,133 @@
-import { FaCarCrash, FaFileAlt, FaTools, FaTachometerAlt, FaHistory, FaCogs, FaRecycle } from "react-icons/fa";
-import { MdOutlineReportGmailerrorred } from "react-icons/md";
+import Image from "next/image";
+import {
+  Car,
+  FileText,
+  AlertTriangle,
+  Wrench,
+  Gauge,
+  Settings,
+  History,
+  FileCheck,
+} from "lucide-react"; // icons
 
-export default function SummaryPage() {
+export default function Summary() {
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* Left Side - Report Details */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white rounded-2xl shadow p-6 border border-gray-200">
-            <h2 className="text-green-700 font-semibold text-lg text-center">
+    <div className="min-h-screen bg-black text-white p-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Left Side */}
+        <div className="md:col-span-2 space-y-6">
+          {/* VIN Header */}
+          <div className="text-center">
+            <h2 className="text-green-500 text-lg font-semibold">
               Vehicle Report for VIN:
             </h2>
-            <p className="text-2xl font-bold text-gray-900 text-center mt-1">
+            <p className="text-2xl font-bold tracking-widest">
               HSDJHFSJDHFI34Y29
             </p>
           </div>
 
-          {/* Icons Section */}
-          <div className="bg-white rounded-2xl shadow p-6 border border-gray-200 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-            <div className="flex flex-col items-center text-green-700">
-              <FaCarCrash size={28} />
-              <p className="mt-2 text-sm font-medium text-gray-800">Accident</p>
+          {/* Top Feature Icons */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-green-600/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg">
+            <div className="flex flex-col items-center space-y-2">
+              <Car className="w-8 h-8" />
+              <p>Accident</p>
             </div>
-            <div className="flex flex-col items-center text-green-700">
-              <FaFileAlt size={28} />
-              <p className="mt-2 text-sm font-medium text-gray-800">Title Record</p>
+            <div className="flex flex-col items-center space-y-2">
+              <FileText className="w-8 h-8" />
+              <p>Title Record</p>
             </div>
-            <div className="flex flex-col items-center text-green-700">
-              <MdOutlineReportGmailerrorred size={28} />
-              <p className="mt-2 text-sm font-medium text-gray-800">Recalls</p>
+            <div className="flex flex-col items-center space-y-2">
+              <AlertTriangle className="w-8 h-8" />
+              <p>Recalls</p>
             </div>
-            <div className="flex flex-col items-center text-green-700">
-              <FaTools size={28} />
-              <p className="mt-2 text-sm font-medium text-gray-800">Problem Checks</p>
+            <div className="flex flex-col items-center space-y-2">
+              <Wrench className="w-8 h-8" />
+              <p>Problem Checks</p>
             </div>
-            <div className="flex flex-col items-center text-green-700">
-              <FaTachometerAlt size={28} />
-              <p className="mt-2 text-sm font-medium text-gray-800">Odometer</p>
+            <div className="flex flex-col items-center space-y-2">
+              <Gauge className="w-8 h-8" />
+              <p>Odometer</p>
             </div>
-            <div className="flex flex-col items-center text-green-700">
-              <FaHistory size={28} />
-              <p className="mt-2 text-sm font-medium text-gray-800">Sales History</p>
+            <div className="flex flex-col items-center space-y-2">
+              <History className="w-8 h-8" />
+              <p>Sales History</p>
             </div>
-            <div className="flex flex-col items-center text-green-700">
-              <FaCogs size={28} />
-              <p className="mt-2 text-sm font-medium text-gray-800">Specs</p>
+            <div className="flex flex-col items-center space-y-2">
+              <Settings className="w-8 h-8" />
+              <p>Specs</p>
             </div>
-            <div className="flex flex-col items-center text-green-700">
-              <FaRecycle size={28} />
-              <p className="mt-2 text-sm font-medium text-gray-800">Salvage Records</p>
+            <div className="flex flex-col items-center space-y-2">
+              <FileCheck className="w-8 h-8" />
+              <p>Salvage Records</p>
             </div>
           </div>
 
-          {/* Key Specs */}
-          <div className="bg-white rounded-2xl shadow p-6 border border-gray-200">
-            <h3 className="font-semibold text-gray-900 text-lg mb-4">Key Specifications</h3>
-            <div className="grid grid-cols-2 gap-y-3 text-sm text-gray-800">
-              <p><span className="font-medium">Year:</span> 2020</p>
-              <p><span className="font-medium">Make & Model:</span> Toyota Corolla</p>
-              <p><span className="font-medium">Engine:</span> 1.8L</p>
-              <p><span className="font-medium">Drive Type:</span> FWD</p>
-              <p><span className="font-medium">Transmission:</span> Automatic</p>
-              <p><span className="font-medium">Fuel:</span> Petrol</p>
-              <p><span className="font-medium">Body Style:</span> Sedan</p>
-              <p><span className="font-medium">Warranty:</span> Available</p>
-              <p><span className="font-medium">Manufactured In:</span> Japan</p>
+          {/* Specifications */}
+          <div className="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-lg p-6">
+            <h2 className="text-xl font-bold mb-4">Key Specifications</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-300">
+              <p><span className="font-semibold">Year:</span> 2020</p>
+              <p><span className="font-semibold">Make & Model:</span> Toyota Corolla</p>
+              <p><span className="font-semibold">Drive Type:</span> FWD</p>
+              <p><span className="font-semibold">Engine:</span> 1.8L</p>
+              <p><span className="font-semibold">Body Style:</span> Sedan</p>
+              <p><span className="font-semibold">Fuel:</span> Petrol</p>
+              <p><span className="font-semibold">Transmission:</span> Automatic</p>
+              <p><span className="font-semibold">Manufactured In:</span> Japan</p>
+              <p><span className="font-semibold">Warranty:</span> Available</p>
             </div>
           </div>
 
           {/* Report Summary */}
-          <div className="bg-white rounded-2xl shadow p-6 border border-gray-200">
-            <h3 className="font-semibold text-gray-900 text-lg mb-4">Report Summary</h3>
-            <ul className="space-y-2 text-sm text-gray-700">
-              <li>✔ No Structural Damage</li>
-              <li>✔ No Odometer Rollback</li>
-              <li>✔ Clear Title</li>
-              <li>✔ No Accident Info</li>
-            </ul>
+          <div className="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-lg p-6">
+            <h2 className="text-xl font-bold mb-4">Report Summary</h2>
+            <div className="grid grid-cols-2 gap-4 text-gray-300">
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>No Structural Damage</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>Clear Title</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>No Odometer Rollback</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>No Accident Info</span>
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Right Side - Promo Card */}
-        <div className="bg-white rounded-2xl shadow p-6 border border-gray-200">
-          <img
-            src="https://via.placeholder.com/400x200"
-            alt="Car"
-            className="rounded-lg mb-4"
-          />
-          <h3 className="text-lg font-semibold text-gray-900">Ready for the Full Story?</h3>
-          <p className="text-sm text-gray-700 mt-2">
-            Unlock the complete, detailed history of this vehicle. Our full report includes:
-          </p>
-          <ul className="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
-            <li>Detailed Accident History & Damage Reports</li>
-            <li>Title History (Salvage, Rebuilt, etc.)</li>
-            <li>Odometer Reading Verification</li>
-            <li>Full Service & Maintenance Records</li>
-            <li>Market Value Analysis</li>
-          </ul>
-          <button className="w-full mt-5 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg font-semibold shadow">
-            Purchase Full Report
-          </button>
+        {/* Right Side */}
+        <div className="space-y-6">
+          <div className="bg-gray-900 rounded-2xl shadow-lg p-6">
+            <Image
+              src="/car-report.jpg"
+              alt="Car Image"
+              width={400}
+              height={250}
+              className="rounded-xl mx-auto"
+            />
+            <h2 className="text-xl font-bold mt-4">Ready for the Full Story?</h2>
+            <p className="text-gray-400 mt-2 text-sm">
+              Unlock the complete, detailed history of this vehicle. Our full
+              report includes:
+            </p>
+            <ul className="list-disc list-inside text-gray-300 mt-3 space-y-1 text-sm">
+              <li>Detailed Accident History & Damage Reports</li>
+              <li>Title History (Salvage, Rebuilt, etc.)</li>
+              <li>Odometer Reading Verification</li>
+              <li>Full Service & Maintenance Records</li>
+              <li>Market Value Analysis</li>
+            </ul>
+            <button className="w-full bg-green-600 hover:bg-green-700 text-black font-bold py-3 px-4 rounded-2xl mt-4 shadow-md">
+              Purchase Full Report
+            </button>
+          </div>
         </div>
       </div>
     </div>
