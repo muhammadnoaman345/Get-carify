@@ -33,7 +33,8 @@ export default async function handler(req, res) {
 
       const unitAmount = packagePrices[packageName] || 4999;
 
-      const session = await stripe.checkout.sessions.create({
+      // Build checkout session data
+      const checkoutData = {
         payment_method_types: ["card"],
         mode: "payment",
         line_items: [
@@ -48,7 +49,6 @@ export default async function handler(req, res) {
             quantity: 1,
           },
         ],
-        customer_email: email,
         metadata: {
           vin,
           plate,
@@ -64,7 +64,14 @@ export default async function handler(req, res) {
         },
         success_url: `${process.env.NEXT_PUBLIC_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.NEXT_PUBLIC_URL}/checkout`,
-      });
+      };
+
+      // ✅ only set email if it’s valid (avoid Stripe error)
+      if (email && /\S+@\S+\.\S+/.test(email)) {
+        checkoutData.customer_email = email;
+      }
+
+      const session = await stripe.checkout.sessions.create(checkoutData);
 
       res.status(200).json({ url: session.url });
     } catch (err) {
