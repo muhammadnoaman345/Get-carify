@@ -13,11 +13,11 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "Pricing", href: "/#pricing" },        // ✅ scroll to pricing section
-    { name: "Testimonials", href: "/#testimonials" }, // ✅ scroll to testimonials
-    { name: "FAQs", href: "/#faq" },              // ✅ scroll to FAQ section
+    { name: "Pricing", href: "/#pricing" },
+    { name: "Testimonials", href: "/#testimonials" },
+    { name: "FAQs", href: "/#faq" },
     { name: "Privacy Policy", href: "/privacy-policy" },
-    { name: "Terms & Conditions", href: "/terms-and-conditions" }, // ✅ fixed route
+    { name: "Terms & Conditions", href: "/terms-and-conditions" },
   ];
 
   return (
@@ -50,11 +50,13 @@ export default function Navbar() {
         ))}
       </nav>
 
-      {/* ✅ CTA Button (desktop only) */}
+      {/* ✅ CTA Button (desktop only → now links to /contact) */}
       <div className="flex-1 hidden md:flex justify-end">
-        <button className="bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 transition whitespace-nowrap">
-          Contact Us
-        </button>
+        <Link href="/contact">
+          <button className="bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 transition whitespace-nowrap">
+            Contact Us
+          </button>
+        </Link>
       </div>
 
       {/* ✅ Mobile Menu Toggle */}
@@ -91,9 +93,13 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
-            <button className="bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-4/5 transition whitespace-nowrap">
-              Get Your Report
-            </button>
+
+            {/* ✅ Mobile "Contact Us" Button */}
+            <Link href="/contact" onClick={() => setIsOpen(false)}>
+              <button className="bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-4/5 transition whitespace-nowrap">
+                Contact Us
+              </button>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
