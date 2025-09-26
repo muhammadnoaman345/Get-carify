@@ -13,6 +13,7 @@ import "swiper/css/navigation";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ServicesSection from "../components/ServicesSection";
+import VehicleDataSection from "@/app/components/VehicleDataSection";
 import FAQ from "../components/FAQ";
 
 export default function Home() {
@@ -370,6 +371,8 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Vehicle Data Section */}
+      <VehicleDataSection />
 
       {/* ✅ Pricing Section (with ID) */}
       <section
