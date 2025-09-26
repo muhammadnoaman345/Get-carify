@@ -59,8 +59,8 @@ export default async function handler(req, res) {
         phone,
         packageName,
       },
-      success_url: `${process.env.NEXT_PUBLIC_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_URL}/report`,
+      success_url: `${process.env.NEXT_PUBLIC_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_URL}/checkout`,
     });
 
     res.status(200).json({ url: session.url });
