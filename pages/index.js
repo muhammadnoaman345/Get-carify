@@ -201,6 +201,20 @@ export default function Home() {
     },
   };
 
+  // ✅ Scroll Helper
+  const scrollToVin = () => {
+    const vinSection = document.getElementById("vin-section");
+    if (vinSection) {
+      vinSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // ✅ Checkout Handler (placeholder for Stripe)
+  const handleCheckout = (tier) => {
+    console.log(`Proceed to checkout for ${tier}`);
+    // 👉 Later you can add Stripe checkout here
+  };
+
   // ✅ Handle "Get Report"
   const handleGetReport = () => {
     if (searchType === "vin") {
@@ -217,14 +231,12 @@ export default function Home() {
 
     setError("");
 
-    // Build URL
     const query =
       searchType === "vin"
         ? `?vin=${inputValue}`
         : `?license=${inputValue}`;
     window.history.pushState({}, "", "/" + query);
 
-    // Scroll to Pricing
     const pricingSection = document.getElementById("pricing");
     if (pricingSection) {
       pricingSection.scrollIntoView({ behavior: "smooth" });
@@ -241,7 +253,10 @@ export default function Home() {
       <Navbar />
 
       {/* ✅ Hero Section */}
-      <section className="relative flex items-center justify-center text-center text-white h-screen">
+      <section
+        id="vin-section"
+        className="relative flex items-center justify-center text-center text-white h-screen"
+      >
         <Image
           src="/istockphoto-1165665234-612x612.jpg"
           alt="Hero Car Background"
@@ -438,7 +453,17 @@ export default function Home() {
                   ))}
                 </ul>
 
-                <button className="mt-6 bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-full">
+                {/* ✅ Order Button with Scroll Logic */}
+                <button
+                  onClick={() => {
+                    if (!inputValue) {
+                      scrollToVin();
+                    } else {
+                      handleCheckout(tier);
+                    }
+                  }}
+                  className="mt-6 bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-full"
+                >
                   Order Now
                 </button>
               </div>
@@ -450,7 +475,7 @@ export default function Home() {
       {/* ✅ Services Section */}
       <ServicesSection />
 
-      {/* ✅ Testimonials Slider (with ID) */}
+      {/* ✅ Testimonials */}
       <section
         id="testimonials"
         className="py-16 bg-black text-white text-center"
@@ -527,7 +552,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ✅ FAQ Section (with ID) */}
+      {/* ✅ FAQ */}
       <section id="faq">
         <FAQ />
       </section>
@@ -553,4 +578,3 @@ export default function Home() {
     </>
   );
 }
-
