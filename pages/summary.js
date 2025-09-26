@@ -9,8 +9,8 @@ import {
   History,
   FileCheck,
 } from "lucide-react"; // icons
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/Navbar.js";
+import Footer from "../components/Footer.js";
 
 export default function Summary() {
   return (
