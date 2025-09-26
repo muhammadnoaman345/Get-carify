@@ -5,6 +5,9 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "The Vehicle Audit",
   description: "Get reliable vehicle history reports you can trust.",
+  icons: {
+    icon: "/favicon.ico", // ✅ this will use the favicon in public/
+  },
 };
 
 export default function RootLayout({ children }) {
