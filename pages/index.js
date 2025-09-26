@@ -16,42 +16,7 @@ import Footer from "../components/Footer";
 import ServicesSection from "../components/ServicesSection";
 import VehicleDataSection from "../components/VehicleDataSection";
 import FAQ from "../components/FAQ";
-
-// ✅ Loading Overlay Component
-function LoadingOverlay({ progress }) {
-  return (
-    <div className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 text-white">
-      <h2 className="text-3xl font-bold mb-6 text-green-500">
-        Loading {progress}%
-      </h2>
-
-      {/* Progress bar */}
-      <div className="w-3/4 bg-gray-700 rounded-full h-3 mb-8 overflow-hidden">
-        <div
-          className="bg-green-500 h-3 rounded-full transition-all"
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
-
-      {/* Icons grid */}
-      <div className="grid grid-cols-3 gap-6 mt-6">
-        {["Accident", "Title", "Odometer", "Problem", "Sales", "Salvage"].map(
-          (item, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center text-sm font-medium"
-            >
-              <div className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center mb-2">
-                ✔
-              </div>
-              {item}
-            </div>
-          )
-        )}
-      </div>
-    </div>
-  );
-}
+import LoadingOverlay from "../components/LoadingOverlay"; // ✅ using new overlay
 
 export default function Home() {
   const [searchType, setSearchType] = useState("vin");
@@ -82,19 +47,175 @@ export default function Home() {
   // ✅ Pricing Plans Data
   const plans = {
     cars: {
-      Silver: { old: "$56.99", price: "$49.99", features: ["Vehicle Overview","Market Value","Vehicle Specifications","Sales Listing","Accident Record","Salvage","Theft Record",], },
-      Gold: { old: "$119.99", price: "$89.99", features: ["HQ Car Images","Vehicle Overview","Market Value","Vehicle Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
-      Platinum: { old: "$149.99", price: "$119.99", features: ["2 Buyers Numbers from our Directory","Buy one get another Report Free for Lifetime","HQ Car Images","Vehicle Overview","Market Value","Vehicle Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
+      Silver: {
+        old: "$56.99",
+        price: "$49.99",
+        features: [
+          "Vehicle Overview",
+          "Market Value",
+          "Vehicle Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+        ],
+      },
+      Gold: {
+        old: "$119.99",
+        price: "$89.99",
+        features: [
+          "HQ Car Images",
+          "Vehicle Overview",
+          "Market Value",
+          "Vehicle Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+      Platinum: {
+        old: "$149.99",
+        price: "$119.99",
+        features: [
+          "2 Buyers Numbers from our Directory",
+          "Buy one get another Report Free for Lifetime",
+          "HQ Car Images",
+          "Vehicle Overview",
+          "Market Value",
+          "Vehicle Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
     },
     motorbikes: {
-      Silver: { old: "$56.99", price: "$49.99", features: ["Bike Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record",], },
-      Gold: { old: "$119.99", price: "$89.99", features: ["HQ Bike Images","Bike Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
-      Platinum: { old: "$149.99", price: "$119.99", features: ["2 Buyers Numbers from our Directory","Buy one get another Report Free for Lifetime","HQ Bike Images","Bike Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
+      Silver: {
+        old: "$56.99",
+        price: "$49.99",
+        features: [
+          "Bike Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+        ],
+      },
+      Gold: {
+        old: "$119.99",
+        price: "$89.99",
+        features: [
+          "HQ Bike Images",
+          "Bike Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+      Platinum: {
+        old: "$149.99",
+        price: "$119.99",
+        features: [
+          "2 Buyers Numbers from our Directory",
+          "Buy one get another Report Free for Lifetime",
+          "HQ Bike Images",
+          "Bike Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
     },
     rv: {
-      Silver: { old: "$56.99", price: "$49.99", features: ["RV Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record",], },
-      Gold: { old: "$119.99", price: "$89.99", features: ["HQ RV Images","RV Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
-      Platinum: { old: "$149.99", price: "$119.99", features: ["2 Buyers Numbers from our Directory","Buy one get another Report Free for Lifetime","HQ RV Images","RV Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
+      Silver: {
+        old: "$56.99",
+        price: "$49.99",
+        features: [
+          "RV Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+        ],
+      },
+      Gold: {
+        old: "$119.99",
+        price: "$89.99",
+        features: [
+          "HQ RV Images",
+          "RV Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
+      Platinum: {
+        old: "$149.99",
+        price: "$119.99",
+        features: [
+          "2 Buyers Numbers from our Directory",
+          "Buy one get another Report Free for Lifetime",
+          "HQ RV Images",
+          "RV Overview",
+          "Market Value",
+          "Specifications",
+          "Sales Listing",
+          "Accident Record",
+          "Salvage",
+          "Theft Record",
+          "Title Record",
+          "Impounds",
+          "Exports",
+          "Open Recalls",
+          "Installed Options and Packages",
+          "Active/Expire Warranty",
+        ],
+      },
     },
   };
 
