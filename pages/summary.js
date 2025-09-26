@@ -1,85 +1,115 @@
 import Image from "next/image";
+import {
+  Car,
+  FileText,
+  AlertTriangle,
+  Wrench,
+  Gauge,
+  Settings,
+  History,
+  FileCheck,
+} from "lucide-react"; // icons
 
 export default function Summary() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-gray-900 text-white p-8">
+    <div className="min-h-screen bg-black text-white p-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* LEFT SIDE */}
-        <div className="md:col-span-2 space-y-8">
-          {/* Vehicle Details */}
-          <div className="grid grid-cols-3 gap-4 bg-green-600/80 backdrop-blur-md text-black p-6 rounded-2xl font-bold text-lg shadow-lg">
-            <div>
-              <p className="uppercase text-sm text-gray-800">Make</p>
-              <p>Toyota</p>
+        {/* Left Side */}
+        <div className="md:col-span-2 space-y-6">
+          {/* VIN Header */}
+          <div className="text-center">
+            <h2 className="text-green-500 text-lg font-semibold">
+              Vehicle Report for VIN:
+            </h2>
+            <p className="text-2xl font-bold tracking-widest">
+              HSDJHFSJDHFI34Y29
+            </p>
+          </div>
+
+          {/* Top Feature Icons */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-green-600/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg">
+            <div className="flex flex-col items-center space-y-2">
+              <Car className="w-8 h-8" />
+              <p>Accident</p>
             </div>
-            <div>
-              <p className="uppercase text-sm text-gray-800">Model</p>
-              <p>Corolla</p>
+            <div className="flex flex-col items-center space-y-2">
+              <FileText className="w-8 h-8" />
+              <p>Title Record</p>
             </div>
-            <div>
-              <p className="uppercase text-sm text-gray-800">Year</p>
-              <p>2021</p>
+            <div className="flex flex-col items-center space-y-2">
+              <AlertTriangle className="w-8 h-8" />
+              <p>Recalls</p>
             </div>
-            <div>
-              <p className="uppercase text-sm text-gray-800">Manufacturer</p>
-              <p>Toyota Motors</p>
+            <div className="flex flex-col items-center space-y-2">
+              <Wrench className="w-8 h-8" />
+              <p>Problem Checks</p>
             </div>
-            <div>
-              <p className="uppercase text-sm text-gray-800">Make ID</p>
-              <p>TYT123</p>
+            <div className="flex flex-col items-center space-y-2">
+              <Gauge className="w-8 h-8" />
+              <p>Odometer</p>
             </div>
-            <div>
-              <p className="uppercase text-sm text-gray-800">Model ID</p>
-              <p>CRL2021</p>
+            <div className="flex flex-col items-center space-y-2">
+              <History className="w-8 h-8" />
+              <p>Sales History</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <Settings className="w-8 h-8" />
+              <p>Specs</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <FileCheck className="w-8 h-8" />
+              <p>Salvage Records</p>
             </div>
           </div>
 
-          {/* Key Specifications */}
-          <div className="bg-gray-900/70 backdrop-blur-md rounded-2xl shadow-lg p-6">
+          {/* Specifications */}
+          <div className="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-lg p-6">
             <h2 className="text-xl font-bold mb-4">Key Specifications</h2>
-            <div className="grid grid-cols-3 gap-6 text-gray-300">
-              <div>
-                <p className="font-semibold text-green-500">Body Style</p>
-                <p>Sedan</p>
-              </div>
-              <div>
-                <p className="font-semibold text-green-500">Made In</p>
-                <p>Japan</p>
-              </div>
-              <div>
-                <p className="font-semibold text-green-500">Fuel Type</p>
-                <p>Petrol</p>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-300">
+              <p><span className="font-semibold">Year:</span> 2020</p>
+              <p><span className="font-semibold">Make & Model:</span> Toyota Corolla</p>
+              <p><span className="font-semibold">Drive Type:</span> FWD</p>
+              <p><span className="font-semibold">Engine:</span> 1.8L</p>
+              <p><span className="font-semibold">Body Style:</span> Sedan</p>
+              <p><span className="font-semibold">Fuel:</span> Petrol</p>
+              <p><span className="font-semibold">Transmission:</span> Automatic</p>
+              <p><span className="font-semibold">Manufactured In:</span> Japan</p>
+              <p><span className="font-semibold">Warranty:</span> Available</p>
             </div>
           </div>
 
           {/* Report Summary */}
-          <div className="bg-gray-900/90 rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-bold mb-6">Report Summary</h2>
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                "No Structural Damage",
-                "Clear Title",
-                "No Odometer Rollback",
-                "No Accident Info",
-              ].map((item, i) => (
-                <div key={i} className="flex items-center space-x-3">
-                  <span className="text-green-500 text-lg">✔</span>
-                  <p className="text-gray-300">{item}</p>
-                </div>
-              ))}
+          <div className="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-lg p-6">
+            <h2 className="text-xl font-bold mb-4">Report Summary</h2>
+            <div className="grid grid-cols-2 gap-4 text-gray-300">
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>No Structural Damage</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>Clear Title</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>No Odometer Rollback</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>No Accident Info</span>
+              </p>
             </div>
           </div>
         </div>
 
-        {/* RIGHT SIDE */}
-        <div className="space-y-8">
-          <div className="bg-gray-900/90 rounded-2xl shadow-lg p-6">
+        {/* Right Side */}
+        <div className="space-y-6">
+          <div className="bg-gray-900 rounded-2xl shadow-lg p-6">
             <Image
               src="/car-report.jpg"
               alt="Car Image"
-              width={500}
-              height={300}
+              width={400}
+              height={250}
               className="rounded-xl mx-auto"
             />
             <h2 className="text-xl font-bold mt-4">Ready for the Full Story?</h2>
@@ -94,7 +124,7 @@ export default function Summary() {
               <li>Full Service & Maintenance Records</li>
               <li>Market Value Analysis</li>
             </ul>
-            <button className="w-full bg-green-600 hover:bg-green-700 text-black font-bold py-3 px-4 rounded-2xl mt-6 transition">
+            <button className="w-full bg-green-600 hover:bg-green-700 text-black font-bold py-3 px-4 rounded-2xl mt-4 shadow-md">
               Purchase Full Report
             </button>
           </div>
