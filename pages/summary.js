@@ -66,7 +66,7 @@ export default function CarDetails() {
         <div className="space-y-6">
           <div className="bg-gray-900 rounded-2xl shadow-md p-6">
             <Image
-              src="/car-report"
+              src="/public/car-report.jpg"
               alt="Car Image"
               width={400}
               height={250}
