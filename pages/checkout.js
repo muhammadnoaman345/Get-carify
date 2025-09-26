@@ -32,24 +32,20 @@ export default function Checkout() {
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <Navbar />
 
-
       {/* Main Content */}
       <main className="flex-1 max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 mt-24">
-    
-          {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-green-600">Checkout</h1>
-          <p className="text-gray-600 mt-1">
-            Complete the form below to purchase your full report
-          </p>
-        </div>
-      </div>
         
         {/* Left: Form */}
         <div className="lg:col-span-2 bg-white shadow rounded-2xl p-8 border border-gray-100">
+          {/* Header inside form box */}
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold text-green-600">Checkout</h1>
+            <p className="text-gray-600 mt-1">
+              Complete the form below to purchase your full report
+            </p>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-6">
-            
             {/* Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -133,11 +129,24 @@ export default function Checkout() {
               </div>
             </div>
 
-          
+            {/* Submit */}
+            <div className="pt-4">
+              <button
+                type="submit"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition"
+              >
+                Save & Continue
+              </button>
+            </div>
+          </form>
+        </div>
+
         {/* Right: Order Summary */}
         <div className="bg-white shadow rounded-2xl p-6 border border-gray-100 h-fit">
           <h2 className="text-lg font-semibold text-gray-800">Order Summary</h2>
-          <p className="text-sm text-gray-600 mt-1">Review your report details before payment</p>
+          <p className="text-sm text-gray-600 mt-1">
+            Review your report details before payment
+          </p>
           
           <div className="mt-6 space-y-3">
             <div className="flex justify-between text-gray-700">
