@@ -1,116 +1,135 @@
-// pages/summary.js
-import { useEffect, useState } from "react";
-import Head from "next/head";
 import Image from "next/image";
+import {
+  Car,
+  FileText,
+  AlertTriangle,
+  Wrench,
+  Gauge,
+  Settings,
+  History,
+  FileCheck,
+} from "lucide-react"; // icons
 
 export default function Summary() {
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("userData");
-    if (stored) {
-      setUserData(JSON.parse(stored));
-    }
-  }, []);
-
-  if (!userData) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-gray-500">Loading summary...</p>
-      </div>
-    );
-  }
-
   return (
-    <>
-      <Head>
-        <title>Vehicle Report Summary</title>
-      </Head>
-
-      {/* Header Bar */}
-      <header className="bg-white shadow-md sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <Image
-              src="/logo.png" // replace with your logo path
-              alt="Logo"
-              width={40}
-              height={40}
-              className="rounded-md"
-            />
-            <h1 className="text-xl md:text-2xl font-bold text-gray-800">
-              Vehicle Report Summary
-            </h1>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-        <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Left Side - Summary */}
-          <div className="md:col-span-2 bg-white rounded-2xl shadow-lg p-6">
-            {/* VIN on Top */}
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              VIN: {userData.vin || "N/A"}
+    <div className="min-h-screen bg-black text-white p-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Left Side */}
+        <div className="md:col-span-2 space-y-6">
+          {/* VIN Header */}
+          <div className="text-center">
+            <h2 className="text-green-500 text-lg font-semibold">
+              Vehicle Report for VIN:
             </h2>
+            <p className="text-2xl font-bold tracking-widest">
+              HSDJHFSJDHFI34Y29
+            </p>
+          </div>
 
-            {/* Vehicle Image */}
-            <div className="mb-6">
-              <Image
-                src="/car-placeholder.jpg" // Replace with real car image
-                alt="Vehicle"
-                width={600}
-                height={350}
-                className="rounded-xl object-cover w-full h-60"
-              />
+          {/* Top Feature Icons */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-green-600/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg">
+            <div className="flex flex-col items-center space-y-2">
+              <Car className="w-8 h-8" />
+              <p>Accident</p>
             </div>
-
-            {/* Vehicle Information */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-700 border-b pb-2 mb-3">
-                Vehicle Information
-              </h3>
-              <p><span className="font-medium">Make:</span> {userData.make || "N/A"}</p>
-              <p><span className="font-medium">Model:</span> {userData.model || "N/A"}</p>
-              <p><span className="font-medium">Year:</span> {userData.year || "N/A"}</p>
-              <p><span className="font-medium">Trim:</span> {userData.trim || "N/A"}</p>
+            <div className="flex flex-col items-center space-y-2">
+              <FileText className="w-8 h-8" />
+              <p>Title Record</p>
             </div>
-
-            {/* History Section */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-700 border-b pb-2 mb-3">
-                History
-              </h3>
-              <p><span className="font-medium">Accidents:</span> {userData.accidents || "None Reported"}</p>
-              <p><span className="font-medium">Ownership:</span> {userData.owners || "N/A"}</p>
-              <p><span className="font-medium">Service Records:</span> {userData.service || "N/A"}</p>
+            <div className="flex flex-col items-center space-y-2">
+              <AlertTriangle className="w-8 h-8" />
+              <p>Recalls</p>
             </div>
-
-            {/* Mileage */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-700 border-b pb-2 mb-3">
-                Mileage
-              </h3>
-              <p><span className="font-medium">Odometer:</span> {userData.mileage || "N/A"} km</p>
+            <div className="flex flex-col items-center space-y-2">
+              <Wrench className="w-8 h-8" />
+              <p>Problem Checks</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <Gauge className="w-8 h-8" />
+              <p>Odometer</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <History className="w-8 h-8" />
+              <p>Sales History</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <Settings className="w-8 h-8" />
+              <p>Specs</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <FileCheck className="w-8 h-8" />
+              <p>Salvage Records</p>
             </div>
           </div>
 
-          {/* Right Side - Customer Info / Package */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-700 border-b pb-2 mb-4">
-              Customer & Package Info
-            </h3>
-            <p><span className="font-medium">Name:</span> {userData.name || "N/A"}</p>
-            <p><span className="font-medium">Email:</span> {userData.email || "N/A"}</p>
-            <p><span className="font-medium">Phone:</span> {userData.phone || "N/A"}</p>
-            <hr className="my-4" />
-            <p><span className="font-medium">Package:</span> {userData.packageName || "N/A"}</p>
-            <p><span className="font-medium">Price:</span> ${userData.packagePrice || "N/A"}</p>
+          {/* Specifications */}
+          <div className="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-lg p-6">
+            <h2 className="text-xl font-bold mb-4">Key Specifications</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-300">
+              <p><span className="font-semibold">Year:</span> 2020</p>
+              <p><span className="font-semibold">Make & Model:</span> Toyota Corolla</p>
+              <p><span className="font-semibold">Drive Type:</span> FWD</p>
+              <p><span className="font-semibold">Engine:</span> 1.8L</p>
+              <p><span className="font-semibold">Body Style:</span> Sedan</p>
+              <p><span className="font-semibold">Fuel:</span> Petrol</p>
+              <p><span className="font-semibold">Transmission:</span> Automatic</p>
+              <p><span className="font-semibold">Manufactured In:</span> Japan</p>
+              <p><span className="font-semibold">Warranty:</span> Available</p>
+            </div>
+          </div>
+
+          {/* Report Summary */}
+          <div className="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-lg p-6">
+            <h2 className="text-xl font-bold mb-4">Report Summary</h2>
+            <div className="grid grid-cols-2 gap-4 text-gray-300">
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>No Structural Damage</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>Clear Title</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>No Odometer Rollback</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <span>No Accident Info</span>
+              </p>
+            </div>
           </div>
         </div>
-      </main>
-    </>
+
+        {/* Right Side */}
+        <div className="space-y-6">
+          <div className="bg-gray-900 rounded-2xl shadow-lg p-6">
+            <Image
+              src="/car-report.jpg"
+              alt="Car Image"
+              width={400}
+              height={250}
+              className="rounded-xl mx-auto"
+            />
+            <h2 className="text-xl font-bold mt-4">Ready for the Full Story?</h2>
+            <p className="text-gray-400 mt-2 text-sm">
+              Unlock the complete, detailed history of this vehicle. Our full
+              report includes:
+            </p>
+            <ul className="list-disc list-inside text-gray-300 mt-3 space-y-1 text-sm">
+              <li>Detailed Accident History & Damage Reports</li>
+              <li>Title History (Salvage, Rebuilt, etc.)</li>
+              <li>Odometer Reading Verification</li>
+              <li>Full Service & Maintenance Records</li>
+              <li>Market Value Analysis</li>
+            </ul>
+            <button className="w-full bg-green-600 hover:bg-green-700 text-black font-bold py-3 px-4 rounded-2xl mt-4 shadow-md">
+              Purchase Full Report
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
