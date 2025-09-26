@@ -26,6 +26,9 @@ export default function Checkout() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data:", formData);
+
+    // Here you can send formData to your API before payment
+    alert("Form saved, now proceed to payment!");
   };
 
   return (
@@ -45,16 +48,16 @@ export default function Checkout() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form id="checkoutForm" onSubmit={handleSubmit} className="space-y-6">
             {/* Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">First Name</label>
-                <input type="text" name="firstName" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <input type="text" name="firstName" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Last Name</label>
-                <input type="text" name="lastName" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <input type="text" name="lastName" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
               </div>
             </div>
 
@@ -62,11 +65,11 @@ export default function Checkout() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" name="email" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <input type="email" name="email" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">VIN</label>
-                <input type="text" name="vin" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <input type="text" name="vin" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
               </div>
             </div>
 
@@ -92,33 +95,33 @@ export default function Checkout() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">State</label>
-                <input type="text" name="state" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <input type="text" name="state" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">City</label>
-                <input type="text" name="city" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <input type="text" name="city" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Postal / ZIP Code</label>
-                <input type="text" name="zip" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <input type="text" name="zip" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
               </div>
             </div>
 
             {/* Address */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Billing Address</label>
-              <input type="text" name="address" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+              <input type="text" name="address" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
             </div>
 
             {/* Phone & Country */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">Phone Number</label>
-                <input type="text" name="phone" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <input type="text" name="phone" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Country</label>
-                <select name="country" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3">
+                <select name="country" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3">
                   <option value="">Select a country</option>
                   <option>USA</option>
                   <option>Canada</option>
@@ -127,16 +130,6 @@ export default function Checkout() {
                   <option>New Zealand</option>
                 </select>
               </div>
-            </div>
-
-            {/* Submit */}
-            <div className="pt-4">
-              <button
-                type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition"
-              >
-                Save & Continue
-              </button>
             </div>
           </form>
         </div>
@@ -160,7 +153,12 @@ export default function Checkout() {
           </div>
 
           <div className="mt-6">
-            <button className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md transition">
+            {/* This submits the form */}
+            <button
+              type="submit"
+              form="checkoutForm"
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md transition"
+            >
               Proceed to Payment
             </button>
           </div>
