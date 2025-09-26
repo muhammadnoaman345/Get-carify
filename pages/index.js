@@ -12,7 +12,6 @@ import "swiper/css/navigation";
 // ✅ Custom Components
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import VehicleDataSection from "../components/VehicleDataSection";
 import ServicesSection from "../components/ServicesSection";
 import FAQ from "../components/FAQ";
 
