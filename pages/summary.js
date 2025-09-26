@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Image from "next/image";
 import {
   Car,
@@ -13,6 +14,16 @@ import Header from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 
 export default function Summary() {
+  const router = useRouter();
+  const { package: pkg = "Silver", val = "VIN_NOT_PROVIDED" } = router.query;
+
+  // Package pricing
+  const packagePrices = {
+    Silver: "$49.99",
+    Gold: "$89.99",
+    Platinum: "$119.99",
+  };
+
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Header */}
@@ -28,8 +39,11 @@ export default function Summary() {
               <h2 className="text-green-500 text-lg font-semibold">
                 Vehicle Report for VIN:
               </h2>
-              <p className="text-2xl font-bold tracking-widest">
-                HSDJHFSJDHFI34Y29
+              <p className="text-2xl font-bold tracking-widest">{val}</p>
+              <p className="mt-2 text-gray-400">
+                Selected Package:{" "}
+                <span className="text-green-400 font-semibold">{pkg}</span> (
+                {packagePrices[pkg]})
               </p>
             </div>
 
@@ -174,10 +188,10 @@ export default function Summary() {
 
               {/* Checkout Button */}
               <a
-                href="/checkout"
+                href={`/checkout?package=${pkg}&vin=${val}`}
                 className="w-full block text-center bg-green-600 hover:bg-green-700 text-black font-bold py-3 px-4 rounded-2xl mt-4 shadow-md"
               >
-                Purchase Full Report
+                Purchase Full Report – {packagePrices[pkg]}
               </a>
             </div>
           </div>
