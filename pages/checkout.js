@@ -32,7 +32,11 @@ export default function Checkout() {
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <Navbar />
 
-      {/* Header */}
+
+      {/* Main Content */}
+      <main className="flex-1 max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 mt-24">
+    
+          {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <h1 className="text-3xl font-bold text-green-600">Checkout</h1>
@@ -41,9 +45,6 @@ export default function Checkout() {
           </p>
         </div>
       </div>
-
-      {/* Main Content */}
-      <main className="flex-1 max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 mt-24">
         
         {/* Left: Form */}
         <div className="lg:col-span-2 bg-white shadow rounded-2xl p-8 border border-gray-100">
