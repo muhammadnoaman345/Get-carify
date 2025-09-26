@@ -1,133 +1,80 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
-import {
-  Car,
-  FileText,
-  AlertTriangle,
-  Wrench,
-  Gauge,
-  Settings,
-  History,
-  FileCheck,
-} from "lucide-react"; // icons
 
-export default function Summary() {
+export default function SummaryPage() {
+  const [vin] = useState("1HGCM82633A123456"); // Example VIN
+
   return (
-    <div className="min-h-screen bg-black text-white p-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Left Side */}
-        <div className="md:col-span-2 space-y-6">
-          {/* VIN Header */}
-          <div className="text-center">
-            <h2 className="text-green-500 text-lg font-semibold">
-              Vehicle Report for VIN:
-            </h2>
-            <p className="text-2xl font-bold tracking-widest">
-              HSDJHFSJDHFI34Y29
-            </p>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="bg-white shadow-2xl rounded-2xl grid grid-cols-1 md:grid-cols-3 w-full max-w-6xl overflow-hidden">
+        
+        {/* Left Section */}
+        <div className="md:col-span-2 p-8 space-y-6">
+          {/* VIN */}
+          <div className="text-xl font-bold text-gray-800 mb-6">
+            VIN: <span className="text-blue-600">{vin}</span>
           </div>
 
-          {/* Top Feature Icons */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-green-600/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg">
-            <div className="flex flex-col items-center space-y-2">
-              <Car className="w-8 h-8" />
-              <p>Accident</p>
+          {/* Summary Boxes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* Box 1 - Blurred */}
+            <div className="relative group">
+              <div className="backdrop-blur-md bg-white/50 rounded-xl p-6 border shadow-md transition-all duration-300 group-hover:backdrop-blur-sm group-hover:scale-105">
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  Accident History
+                </h3>
+                <p className="text-gray-600">
+                  This section is blurred — upgrade to unlock full accident history.
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col items-center space-y-2">
-              <FileText className="w-8 h-8" />
-              <p>Title Record</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <AlertTriangle className="w-8 h-8" />
-              <p>Recalls</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <Wrench className="w-8 h-8" />
-              <p>Problem Checks</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <Gauge className="w-8 h-8" />
-              <p>Odometer</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <History className="w-8 h-8" />
-              <p>Sales History</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <Settings className="w-8 h-8" />
-              <p>Specs</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <FileCheck className="w-8 h-8" />
-              <p>Salvage Records</p>
-            </div>
-          </div>
 
-          {/* Specifications */}
-          <div className="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-bold mb-4">Key Specifications</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-300">
-              <p><span className="font-semibold">Year:</span> 2020</p>
-              <p><span className="font-semibold">Make & Model:</span> Toyota Corolla</p>
-              <p><span className="font-semibold">Drive Type:</span> FWD</p>
-              <p><span className="font-semibold">Engine:</span> 1.8L</p>
-              <p><span className="font-semibold">Body Style:</span> Sedan</p>
-              <p><span className="font-semibold">Fuel:</span> Petrol</p>
-              <p><span className="font-semibold">Transmission:</span> Automatic</p>
-              <p><span className="font-semibold">Manufactured In:</span> Japan</p>
-              <p><span className="font-semibold">Warranty:</span> Available</p>
+            {/* Box 2 - Blurred */}
+            <div className="relative group">
+              <div className="backdrop-blur-md bg-white/50 rounded-xl p-6 border shadow-md transition-all duration-300 group-hover:backdrop-blur-sm group-hover:scale-105">
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  Service Records
+                </h3>
+                <p className="text-gray-600">
+                  This section is blurred — upgrade to view complete service details.
+                </p>
+              </div>
             </div>
-          </div>
 
-          {/* Report Summary */}
-          <div className="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-bold mb-4">Report Summary</h2>
-            <div className="grid grid-cols-2 gap-4 text-gray-300">
-              <p className="flex items-center space-x-2">
-                <span className="text-green-500">✔</span>
-                <span>No Structural Damage</span>
-              </p>
-              <p className="flex items-center space-x-2">
-                <span className="text-green-500">✔</span>
-                <span>Clear Title</span>
-              </p>
-              <p className="flex items-center space-x-2">
-                <span className="text-green-500">✔</span>
-                <span>No Odometer Rollback</span>
-              </p>
-              <p className="flex items-center space-x-2">
-                <span className="text-green-500">✔</span>
-                <span>No Accident Info</span>
-              </p>
+            {/* Box 3 - Normal */}
+            <div className="rounded-xl p-6 border shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 bg-white">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                Ownership History
+              </h3>
+              <p className="text-gray-600">2 Previous Owners</p>
+            </div>
+
+            {/* Box 4 - Normal */}
+            <div className="rounded-xl p-6 border shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 bg-white">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                Odometer
+              </h3>
+              <p className="text-gray-600">85,230 km</p>
             </div>
           </div>
         </div>
 
-        {/* Right Side */}
-        <div className="space-y-6">
-          <div className="bg-gray-900 rounded-2xl shadow-lg p-6">
-            <Image
-              src="/car-report.jpg"
-              alt="Car Image"
-              width={400}
-              height={250}
-              className="rounded-xl mx-auto"
-            />
-            <h2 className="text-xl font-bold mt-4">Ready for the Full Story?</h2>
-            <p className="text-gray-400 mt-2 text-sm">
-              Unlock the complete, detailed history of this vehicle. Our full
-              report includes:
-            </p>
-            <ul className="list-disc list-inside text-gray-300 mt-3 space-y-1 text-sm">
-              <li>Detailed Accident History & Damage Reports</li>
-              <li>Title History (Salvage, Rebuilt, etc.)</li>
-              <li>Odometer Reading Verification</li>
-              <li>Full Service & Maintenance Records</li>
-              <li>Market Value Analysis</li>
-            </ul>
-            <button className="w-full bg-green-600 hover:bg-green-700 text-black font-bold py-3 px-4 rounded-2xl mt-4 shadow-md">
-              Purchase Full Report
-            </button>
-          </div>
+        {/* Right Section */}
+        <div className="bg-gradient-to-br from-blue-600 to-blue-800 text-white flex flex-col justify-center items-center p-8">
+          <Image
+            src="/car-summary.png"
+            alt="Car Image"
+            width={250}
+            height={150}
+            className="rounded-xl shadow-lg mb-6"
+          />
+          <h2 className="text-2xl font-bold mb-4">Car Summary</h2>
+          <p className="text-center text-blue-100">
+            Upgrade to view full accident history, detailed service records, 
+            and hidden insights about this vehicle.
+          </p>
         </div>
       </div>
     </div>
