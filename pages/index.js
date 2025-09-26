@@ -13,7 +13,7 @@ import "swiper/css/navigation";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ServicesSection from "../components/ServicesSection";
-import VehicleDataSection from "@/app/components/VehicleDataSection";
+import VehicleDataSection from "/components/VehicleDataSection";
 import FAQ from "../components/FAQ";
 
 export default function Home() {
