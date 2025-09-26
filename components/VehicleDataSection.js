@@ -41,14 +41,14 @@ export default function VehicleDataSection() {
           <div className="grid grid-cols-2 gap-6 mt-6">
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-500">
-                {hasAnimated ? <CountUp start={0} end={2000} duration={2} suffix="K" /> : "0K"}
+                {hasAnimated ? <CountUp start={0} end={20} duration={5} suffix="K" /> : "0K"}
               </div>
               <p className="text-gray-600 text-sm mt-1">HAPPY CUSTOMER</p>
             </div>
 
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-500">
-                {hasAnimated ? <CountUp start={0} end={5000} duration={2} suffix="K" /> : "0K"}
+                {hasAnimated ? <CountUp start={0} end={50} duration={4} suffix="K" /> : "0K"}
               </div>
               <p className="text-gray-600 text-sm mt-1">REPORTS SOLD</p>
             </div>
