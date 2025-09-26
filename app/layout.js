@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-black text-white">
         <Navbar />
-        <main className="pt-24">{children}</main>
+        <main className="pt-40">{children}</main>
         <Footer />  {/* ✅ Footer on every page */}
       </body>
     </html>
