@@ -77,7 +77,7 @@ export default function PrivacyPolicy() {
               info@thevehicleaudit.com
             </a>{" "}
             or by phone at{" "}
-            <span className="text-gray-200 font-medium">(800) 764-0104</span>.
+            <span className="text-gray-200 font-medium">+44 7577 303327</span>.
           </p>
         </section>
       </div>
