@@ -1,64 +1,64 @@
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-center pt-32 pb-16 px-6">
+    <div className="min-h-screen bg-black flex flex-col justify-center pt-32 pb-20 px-6">
       {/* Contact Section */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 bg-green-600 rounded-2xl shadow-lg overflow-hidden">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-green-600">
         
         {/* Left Side - Text */}
-        <div className="flex flex-col justify-center text-white p-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="flex flex-col justify-center text-white p-10 md:p-14">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-green-500">
             Let’s get in touch!
           </h1>
-          <p className="text-lg leading-relaxed">
+          <p className="text-lg text-gray-300 leading-relaxed">
             Have questions? We’ve got answers. Reach out to us for any queries 
             about our reports, pricing, or services. We’ll get back to you quickly 
             so you can make the best decision with confidence.
           </p>
-          <div className="mt-6 space-y-3">
-            <p><strong>Email:</strong> info@thevehicleaudit.com</p>
-            <p><strong>Phone:</strong> +92-XXX-XXXXXXX</p>
-            <p><strong>Office Hours:</strong> Mon - Sat (9 AM - 7 PM)</p>
+          <div className="mt-8 space-y-4 text-gray-300">
+            <p><strong className="text-green-500">📧 Email:</strong> info@thevehicleaudit.com</p>
+            <p><strong className="text-green-500">📞 Phone:</strong> +92-XXX-XXXXXXX</p>
+            <p><strong className="text-green-500">⏰ Office Hours:</strong> Mon - Sat (9 AM - 7 PM)</p>
           </div>
         </div>
 
         {/* Right Side - Contact Form */}
-        <div className="bg-white p-8 rounded-2xl md:rounded-none shadow-md flex flex-col justify-center">
+        <div className="bg-white p-8 md:p-10 flex flex-col justify-center">
           <form className="space-y-6">
             <div>
-              <label className="block text-sm font-semibold mb-1">First Name</label>
+              <label className="block text-sm font-semibold mb-1 text-gray-800">First Name</label>
               <input
                 type="text"
                 placeholder="Enter your first name"
-                className="w-full border border-green-500 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-600 outline-none"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 outline-none transition"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-1">Email</label>
+              <label className="block text-sm font-semibold mb-1 text-gray-800">Email</label>
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full border border-green-500 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-600 outline-none"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 outline-none transition"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-1">Phone No</label>
+              <label className="block text-sm font-semibold mb-1 text-gray-800">Phone No</label>
               <input
                 type="tel"
                 placeholder="Enter your phone number"
-                className="w-full border border-green-500 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-600 outline-none"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 outline-none transition"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-1">Message</label>
+              <label className="block text-sm font-semibold mb-1 text-gray-800">Message</label>
               <textarea
                 rows="4"
                 placeholder="Write your message here..."
-                className="w-full border border-green-500 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-600 outline-none resize-none"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 outline-none resize-none transition"
               ></textarea>
             </div>
             <button
               type="submit"
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition duration-300"
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md"
             >
               Send Message
             </button>
@@ -68,4 +68,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
