@@ -53,7 +53,7 @@ export default function Navbar() {
       {/* ✅ CTA Button (desktop only) */}
       <div className="flex-1 hidden md:flex justify-end">
         <button className="bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 transition whitespace-nowrap">
-          Get Your Report
+          Contact Us
         </button>
       </div>
 
