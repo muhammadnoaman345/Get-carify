@@ -23,12 +23,12 @@ export default function Checkout() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Data:", formData);
+  const handleProceedToPayment = () => {
+    // Save form data to localStorage
+    localStorage.setItem("formData", JSON.stringify(formData));
 
-    // Here you can send formData to your API before payment
-    alert("Form saved, now proceed to payment!");
+    // Redirect to payment (replace with your real API/payment route)
+    window.location.href = "/api/create-checkout-session";
   };
 
   return (
@@ -37,7 +37,6 @@ export default function Checkout() {
 
       {/* Main Content */}
       <main className="flex-1 max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 mt-24">
-        
         {/* Left: Form */}
         <div className="lg:col-span-2 bg-white shadow rounded-2xl p-8 border border-gray-100">
           {/* Header inside form box */}
@@ -48,80 +47,180 @@ export default function Checkout() {
             </p>
           </div>
 
-          <form id="checkoutForm" onSubmit={handleSubmit} className="space-y-6">
+          <form id="checkoutForm" className="space-y-6">
             {/* Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">First Name</label>
-                <input type="text" name="firstName" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <label className="block text-sm font-medium text-gray-700">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  name="firstName"
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Last Name</label>
-                <input type="text" name="lastName" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <label className="block text-sm font-medium text-gray-700">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
               </div>
             </div>
 
             {/* Email & VIN */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" name="email" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <label className="block text-sm font-medium text-gray-700">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">VIN</label>
-                <input type="text" name="vin" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <label className="block text-sm font-medium text-gray-700">
+                  VIN
+                </label>
+                <input
+                  type="text"
+                  name="vin"
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
               </div>
             </div>
 
             {/* Plate & Reg State */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">License Plate Number</label>
-                <input type="text" name="plate" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <label className="block text-sm font-medium text-gray-700">
+                  License Plate Number
+                </label>
+                <input
+                  type="text"
+                  name="plate"
+                  onChange={handleChange}
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Registration State (Optional)</label>
-                <input type="text" name="regState" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <label className="block text-sm font-medium text-gray-700">
+                  Registration State (Optional)
+                </label>
+                <input
+                  type="text"
+                  name="regState"
+                  onChange={handleChange}
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
               </div>
             </div>
 
             {/* Company */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Company (Optional)</label>
-              <input type="text" name="company" onChange={handleChange} className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+              <label className="block text-sm font-medium text-gray-700">
+                Company (Optional)
+              </label>
+              <input
+                type="text"
+                name="company"
+                onChange={handleChange}
+                className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+              />
             </div>
 
             {/* State, City, ZIP */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">State</label>
-                <input type="text" name="state" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <label className="block text-sm font-medium text-gray-700">
+                  State
+                </label>
+                <input
+                  type="text"
+                  name="state"
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">City</label>
-                <input type="text" name="city" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <label className="block text-sm font-medium text-gray-700">
+                  City
+                </label>
+                <input
+                  type="text"
+                  name="city"
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Postal / ZIP Code</label>
-                <input type="text" name="zip" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <label className="block text-sm font-medium text-gray-700">
+                  Postal / ZIP Code
+                </label>
+                <input
+                  type="text"
+                  name="zip"
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
               </div>
             </div>
 
             {/* Address */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Billing Address</label>
-              <input type="text" name="address" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+              <label className="block text-sm font-medium text-gray-700">
+                Billing Address
+              </label>
+              <input
+                type="text"
+                name="address"
+                onChange={handleChange}
+                required
+                className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+              />
             </div>
 
             {/* Phone & Country */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Phone Number</label>
-                <input type="text" name="phone" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"/>
+                <label className="block text-sm font-medium text-gray-700">
+                  Phone Number
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Country</label>
-                <select name="country" onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3">
+                <label className="block text-sm font-medium text-gray-700">
+                  Country
+                </label>
+                <select
+                  name="country"
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                >
                   <option value="">Select a country</option>
                   <option>USA</option>
                   <option>Canada</option>
@@ -140,7 +239,7 @@ export default function Checkout() {
           <p className="text-sm text-gray-600 mt-1">
             Review your report details before payment
           </p>
-          
+
           <div className="mt-6 space-y-3">
             <div className="flex justify-between text-gray-700">
               <span>Report:</span>
@@ -153,10 +252,10 @@ export default function Checkout() {
           </div>
 
           <div className="mt-6">
-            {/* This submits the form */}
+            {/* Save form & go to payment */}
             <button
-              type="submit"
-              form="checkoutForm"
+              type="button"
+              onClick={handleProceedToPayment}
               className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md transition"
             >
               Proceed to Payment
