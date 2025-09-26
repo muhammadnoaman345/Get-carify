@@ -370,8 +370,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ✅ Vehicle Data Section */}
-      <VehicleDataSection />
 
       {/* ✅ Pricing Section (with ID) */}
       <section
