@@ -1,6 +1,6 @@
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-black flex flex-col justify-center pt-32 pb-20 px-6">
+    <div className="min-h-screen bg-black flex flex-col justify-center pt-44 pb-20 px-6">
       {/* Contact Section */}
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-green-600">
         
@@ -16,8 +16,8 @@ export default function ContactPage() {
           </p>
           <div className="mt-8 space-y-4 text-gray-300">
             <p><strong className="text-green-500">📧 Email:</strong> info@thevehicleaudit.com</p>
-            <p><strong className="text-green-500">📞 Phone:</strong> +92-XXX-XXXXXXX</p>
-            <p><strong className="text-green-500">⏰ Office Hours:</strong> Mon - Sat (9 AM - 7 PM)</p>
+            <p><strong className="text-green-500">📞 Phone:</strong> +44-7577-303327</p>
+            <p><strong className="text-green-500">⏰ Office Hours:</strong> Mon - Fri (9 AM - 5 PM)</p>
           </div>
         </div>
 
