@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       // email content with phone + address
       let mailOptions = {
         from: `"Vehicle Audit" <${process.env.EMAIL_USER}>`,
-        to: "your-other-email@gmail.com", // <-- replace with your receiving email
+        to: "muhammadnoaman345@gmail.com", // <-- replace with your receiving email
         subject: "✅ New Checkout Form Submission",
         text: `
           📄 New order details:
