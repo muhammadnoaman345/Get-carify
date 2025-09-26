@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { useRouter } from "next/router";
 
 // ✅ Custom Components
 import Navbar from "../components/Navbar";
@@ -16,188 +17,84 @@ import ServicesSection from "../components/ServicesSection";
 import VehicleDataSection from "../components/VehicleDataSection";
 import FAQ from "../components/FAQ";
 
+// ✅ Loading Overlay Component
+function LoadingOverlay({ progress }) {
+  return (
+    <div className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 text-white">
+      <h2 className="text-3xl font-bold mb-6 text-green-500">
+        Loading {progress}%
+      </h2>
+
+      {/* Progress bar */}
+      <div className="w-3/4 bg-gray-700 rounded-full h-3 mb-8 overflow-hidden">
+        <div
+          className="bg-green-500 h-3 rounded-full transition-all"
+          style={{ width: `${progress}%` }}
+        ></div>
+      </div>
+
+      {/* Icons grid */}
+      <div className="grid grid-cols-3 gap-6 mt-6">
+        {["Accident", "Title", "Odometer", "Problem", "Sales", "Salvage"].map(
+          (item, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center text-sm font-medium"
+            >
+              <div className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center mb-2">
+                ✔
+              </div>
+              {item}
+            </div>
+          )
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [searchType, setSearchType] = useState("vin");
   const [inputValue, setInputValue] = useState("");
   const [activeTab, setActiveTab] = useState("cars");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
+  // Progress Effect
+  useEffect(() => {
+    if (loading) {
+      let i = 0;
+      const interval = setInterval(() => {
+        i += 1;
+        setProgress(i);
+        if (i >= 100) clearInterval(interval);
+      }, 100); // 100ms × 100 = 10s
+      return () => clearInterval(interval);
+    }
+  }, [loading]);
+
   // ✅ Pricing Plans Data
   const plans = {
     cars: {
-      Silver: {
-        old: "$56.99",
-        price: "$49.99",
-        features: [
-          "Vehicle Overview",
-          "Market Value",
-          "Vehicle Specifications",
-          "Sales Listing",
-          "Accident Record",
-          "Salvage",
-          "Theft Record",
-        ],
-      },
-      Gold: {
-        old: "$119.99",
-        price: "$89.99",
-        features: [
-          "HQ Car Images",
-          "Vehicle Overview",
-          "Market Value",
-          "Vehicle Specifications",
-          "Sales Listing",
-          "Accident Record",
-          "Salvage",
-          "Theft Record",
-          "Title Record",
-          "Impounds",
-          "Exports",
-          "Open Recalls",
-          "Installed Options and Packages",
-          "Active/Expire Warranty",
-        ],
-      },
-      Platinum: {
-        old: "$149.99",
-        price: "$119.99",
-        features: [
-          "2 Buyers Numbers from our Directory",
-          "Buy one get another Report Free for Lifetime",
-          "HQ Car Images",
-          "Vehicle Overview",
-          "Market Value",
-          "Vehicle Specifications",
-          "Sales Listing",
-          "Accident Record",
-          "Salvage",
-          "Theft Record",
-          "Title Record",
-          "Impounds",
-          "Exports",
-          "Open Recalls",
-          "Installed Options and Packages",
-          "Active/Expire Warranty",
-        ],
-      },
+      Silver: { old: "$56.99", price: "$49.99", features: ["Vehicle Overview","Market Value","Vehicle Specifications","Sales Listing","Accident Record","Salvage","Theft Record",], },
+      Gold: { old: "$119.99", price: "$89.99", features: ["HQ Car Images","Vehicle Overview","Market Value","Vehicle Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
+      Platinum: { old: "$149.99", price: "$119.99", features: ["2 Buyers Numbers from our Directory","Buy one get another Report Free for Lifetime","HQ Car Images","Vehicle Overview","Market Value","Vehicle Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
     },
     motorbikes: {
-      Silver: {
-        old: "$56.99",
-        price: "$49.99",
-        features: [
-          "Bike Overview",
-          "Market Value",
-          "Specifications",
-          "Sales Listing",
-          "Accident Record",
-          "Salvage",
-          "Theft Record",
-        ],
-      },
-      Gold: {
-        old: "$119.99",
-        price: "$89.99",
-        features: [
-          "HQ Bike Images",
-          "Bike Overview",
-          "Market Value",
-          "Specifications",
-          "Sales Listing",
-          "Accident Record",
-          "Salvage",
-          "Theft Record",
-          "Title Record",
-          "Impounds",
-          "Exports",
-          "Open Recalls",
-          "Installed Options and Packages",
-          "Active/Expire Warranty",
-        ],
-      },
-      Platinum: {
-        old: "$149.99",
-        price: "$119.99",
-        features: [
-          "2 Buyers Numbers from our Directory",
-          "Buy one get another Report Free for Lifetime",
-          "HQ Bike Images",
-          "Bike Overview",
-          "Market Value",
-          "Specifications",
-          "Sales Listing",
-          "Accident Record",
-          "Salvage",
-          "Theft Record",
-          "Title Record",
-          "Impounds",
-          "Exports",
-          "Open Recalls",
-          "Installed Options and Packages",
-          "Active/Expire Warranty",
-        ],
-      },
+      Silver: { old: "$56.99", price: "$49.99", features: ["Bike Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record",], },
+      Gold: { old: "$119.99", price: "$89.99", features: ["HQ Bike Images","Bike Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
+      Platinum: { old: "$149.99", price: "$119.99", features: ["2 Buyers Numbers from our Directory","Buy one get another Report Free for Lifetime","HQ Bike Images","Bike Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
     },
     rv: {
-      Silver: {
-        old: "$56.99",
-        price: "$49.99",
-        features: [
-          "RV Overview",
-          "Market Value",
-          "Specifications",
-          "Sales Listing",
-          "Accident Record",
-          "Salvage",
-          "Theft Record",
-        ],
-      },
-      Gold: {
-        old: "$119.99",
-        price: "$89.99",
-        features: [
-          "HQ RV Images",
-          "RV Overview",
-          "Market Value",
-          "Specifications",
-          "Sales Listing",
-          "Accident Record",
-          "Salvage",
-          "Theft Record",
-          "Title Record",
-          "Impounds",
-          "Exports",
-          "Open Recalls",
-          "Installed Options and Packages",
-          "Active/Expire Warranty",
-        ],
-      },
-      Platinum: {
-        old: "$149.99",
-        price: "$119.99",
-        features: [
-          "2 Buyers Numbers from our Directory",
-          "Buy one get another Report Free for Lifetime",
-          "HQ RV Images",
-          "RV Overview",
-          "Market Value",
-          "Specifications",
-          "Sales Listing",
-          "Accident Record",
-          "Salvage",
-          "Theft Record",
-          "Title Record",
-          "Impounds",
-          "Exports",
-          "Open Recalls",
-          "Installed Options and Packages",
-          "Active/Expire Warranty",
-        ],
-      },
+      Silver: { old: "$56.99", price: "$49.99", features: ["RV Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record",], },
+      Gold: { old: "$119.99", price: "$89.99", features: ["HQ RV Images","RV Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
+      Platinum: { old: "$149.99", price: "$119.99", features: ["2 Buyers Numbers from our Directory","Buy one get another Report Free for Lifetime","HQ RV Images","RV Overview","Market Value","Specifications","Sales Listing","Accident Record","Salvage","Theft Record","Title Record","Impounds","Exports","Open Recalls","Installed Options and Packages","Active/Expire Warranty",], },
     },
   };
 
@@ -209,10 +106,18 @@ export default function Home() {
     }
   };
 
-  // ✅ Checkout Handler (placeholder for Stripe)
-  const handleCheckout = (tier) => {
-    console.log(`Proceed to checkout for ${tier}`);
-    // 👉 Later you can add Stripe checkout here
+  // ✅ Order Now Handler
+  const handleOrderNow = (tier) => {
+    if (!inputValue) {
+      scrollToVin();
+      return;
+    }
+    setLoading(true);
+
+    // redirect after 10s
+    setTimeout(() => {
+      router.push(`/summary?package=${tier}&val=${inputValue}`);
+    }, 10000);
   };
 
   // ✅ Handle "Get Report"
@@ -248,6 +153,8 @@ export default function Home() {
       <Head>
         <title>The Vehicle Audit - Vehicle History Reports</title>
       </Head>
+
+      {loading && <LoadingOverlay progress={progress} />}
 
       {/* ✅ Navbar */}
       <Navbar />
@@ -370,10 +277,7 @@ export default function Home() {
               desc: "We present complex vehicle history in a clean, easy-to-read format, so you can understand the facts quickly.",
             },
           ].map((item, i) => (
-            <div
-              key={i}
-              className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg"
-            >
+            <div key={i} className="bg-[#1c1c1c] p-8 rounded-lg shadow-lg">
               <div className="flex justify-center">
                 <div className="bg-green-500 w-14 h-14 rounded-full flex items-center justify-center">
                   <span className="text-white text-2xl">{item.icon}</span>
@@ -389,11 +293,8 @@ export default function Home() {
       {/* Vehicle Data Section */}
       <VehicleDataSection />
 
-      {/* ✅ Pricing Section (with ID) */}
-      <section
-        id="pricing"
-        className="py-20 bg-[#0e0e0e] text-white text-center"
-      >
+      {/* ✅ Pricing Section */}
+      <section id="pricing" className="py-20 bg-[#0e0e0e] text-white text-center">
         <h2 className="text-4xl font-bold">Recommended Plans</h2>
         <p className="mt-3 mb-6 text-gray-400">
           Get Your Vehicle's Inspection Report!
@@ -422,53 +323,39 @@ export default function Home() {
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {Object.entries(plans[activeTab]).map(
-            ([tier, { old, price, features }]) => (
-              <div
-                key={tier}
-                data-aos="fade-up"
-                className="relative bg-[#1c1c1c] rounded-2xl shadow-md p-6 flex flex-col hover:scale-105 transition"
-              >
-                {/* Popular Ribbon */}
-                {tier === "Gold" && (
-                  <span className="absolute top-4 right-[-20px] rotate-45 bg-green-500 text-xs font-bold text-white px-12 py-1 shadow-md">
-                    POPULAR
-                  </span>
-                )}
+          {Object.entries(plans[activeTab]).map(([tier, { old, price, features }]) => (
+            <div
+              key={tier}
+              data-aos="fade-up"
+              className="relative bg-[#1c1c1c] rounded-2xl shadow-md p-6 flex flex-col hover:scale-105 transition"
+            >
+              {tier === "Gold" && (
+                <span className="absolute top-4 right-[-20px] rotate-45 bg-green-500 text-xs font-bold text-white px-12 py-1 shadow-md">
+                  POPULAR
+                </span>
+              )}
 
-                <h3 className="text-2xl font-bold mb-2">{tier}</h3>
-                <div className="mb-4">
-                  <span className="line-through text-gray-400 mr-2">
-                    {old}
-                  </span>
-                  <span className="text-green-500 text-3xl font-bold">
-                    {price}
-                  </span>
-                  <span className="text-sm text-gray-400"> / Report</span>
-                </div>
-
-                <ul className="text-left space-y-2 flex-1 overflow-y-auto max-h-64 scrollbar-thin">
-                  {features.map((f, idx) => (
-                    <li key={idx}>✔ {f}</li>
-                  ))}
-                </ul>
-
-                {/* ✅ Order Button with Scroll Logic */}
-                <button
-                  onClick={() => {
-                    if (!inputValue) {
-                      scrollToVin();
-                    } else {
-                      handleCheckout(tier);
-                    }
-                  }}
-                  className="mt-6 bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-full"
-                >
-                  Order Now
-                </button>
+              <h3 className="text-2xl font-bold mb-2">{tier}</h3>
+              <div className="mb-4">
+                <span className="line-through text-gray-400 mr-2">{old}</span>
+                <span className="text-green-500 text-3xl font-bold">{price}</span>
+                <span className="text-sm text-gray-400"> / Report</span>
               </div>
-            )
-          )}
+
+              <ul className="text-left space-y-2 flex-1 overflow-y-auto max-h-64 scrollbar-thin">
+                {features.map((f, idx) => (
+                  <li key={idx}>✔ {f}</li>
+                ))}
+              </ul>
+
+              <button
+                onClick={() => handleOrderNow(tier)}
+                className="mt-6 bg-green-500 px-6 py-2 rounded-md font-semibold hover:bg-green-600 w-full"
+              >
+                Order Now
+              </button>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -476,20 +363,13 @@ export default function Home() {
       <ServicesSection />
 
       {/* ✅ Testimonials */}
-      <section
-        id="testimonials"
-        className="py-16 bg-black text-white text-center"
-      >
+      <section id="testimonials" className="py-16 bg-black text-white text-center">
         <h2 className="text-3xl font-bold mb-10">Trusted by Thousands</h2>
         <div className="max-w-6xl mx-auto px-4">
           <Swiper
             spaceBetween={30}
             slidesPerView={1}
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
+            breakpoints={{ 640: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 }, }}
             autoplay={{ delay: 3000 }}
             pagination={{ clickable: true, dynamicBullets: true }}
             navigation
@@ -497,51 +377,20 @@ export default function Home() {
             className="pb-10"
           >
             {[
-              {
-                name: "David P.",
-                review:
-                  "The report was detailed with accident history, mileage verification, and service records. Reliable and worth it.",
-              },
-              {
-                name: "Michael L.",
-                review:
-                  "It helped me avoid hidden damage when buying my car. Very accurate and useful.",
-              },
-              {
-                name: "Sofia R.",
-                review:
-                  "Professional, easy-to-read reports. Gave me full confidence to finalize my deal.",
-              },
-              {
-                name: "Emma K.",
-                review:
-                  "Great service! I could compare multiple cars and spot hidden issues.",
-              },
-              {
-                name: "John D.",
-                review:
-                  "Saved me thousands by avoiding a car with a salvage title. Highly recommend.",
-              },
-              {
-                name: "Lucas M.",
-                review: "Fast, accurate and very affordable compared to others.",
-              },
-              {
-                name: "Ava W.",
-                review:
-                  "Best car history reports online. I use it for every car purchase.",
-              },
+              { name: "David P.", review: "The report was detailed with accident history, mileage verification, and service records. Reliable and worth it." },
+              { name: "Michael L.", review: "It helped me avoid hidden damage when buying my car. Very accurate and useful." },
+              { name: "Sofia R.", review: "Professional, easy-to-read reports. Gave me full confidence to finalize my deal." },
+              { name: "Emma K.", review: "Great service! I could compare multiple cars and spot hidden issues." },
+              { name: "John D.", review: "Saved me thousands by avoiding a car with a salvage title. Highly recommend." },
+              { name: "Lucas M.", review: "Fast, accurate and very affordable compared to others." },
+              { name: "Ava W.", review: "Best car history reports online. I use it for every car purchase." },
             ].map((t, i) => (
               <SwiperSlide key={i}>
                 <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
                   <div className="flex justify-center mb-3">
-                    {Array(5)
-                      .fill()
-                      .map((_, idx) => (
-                        <span key={idx} className="text-green-500 text-xl">
-                          ★
-                        </span>
-                      ))}
+                    {Array(5).fill().map((_, idx) => (
+                      <span key={idx} className="text-green-500 text-xl">★</span>
+                    ))}
                   </div>
                   <p className="italic">"{t.review}"</p>
                   <p className="mt-3 font-semibold">- {t.name}</p>
