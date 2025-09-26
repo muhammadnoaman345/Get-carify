@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { plans } from "@/app/lib/plans"; // ✅ import your plans
+import plans from "@/app/lib/plans";
 
 export default function VehicleFormAndPackages() {
   const vinRef = useRef(null);
