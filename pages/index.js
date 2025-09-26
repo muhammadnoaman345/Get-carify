@@ -15,7 +15,7 @@ import Footer from "../components/Footer";
 import VehicleDataSection from "../components/VehicleDataSection";
 import ServicesSection from "../components/ServicesSection";
 import FAQ from "../components/FAQ";
-import VehicleFormAndPackages from "..app/components/VehicleFormAndPackages.js";
+import VehicleFormAndPackages from "../app/components/VehicleFormAndPackages";
 
 export default function Home() {
   const [searchType, setSearchType] = useState("vin");
