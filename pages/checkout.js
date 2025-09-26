@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 
 export default function Checkout() {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -19,6 +22,16 @@ export default function Checkout() {
     country: "",
     packageName: "Silver", // ✅ default package
   });
+
+  // ✅ Pull package from URL query (if exists)
+  useEffect(() => {
+    if (router.query.package) {
+      setFormData((prev) => ({
+        ...prev,
+        packageName: router.query.package,
+      }));
+    }
+  }, [router.query.package]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
