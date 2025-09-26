@@ -1,105 +1,97 @@
-import { Card, CardHeader, CardContent, CardFooter } from "../components/ui/card"
-import { Button } from "../components/ui/button"
+import Image from "next/image";
 
-
-export default function SummaryPage() {
-  const vin = "HFSJLDKHFK3U8U2I0"; // later make dynamic
-
+export default function CarDetails() {
   return (
-    <div className="min-h-screen bg-neutral-900 text-white p-6">
-      {/* VIN */}
-      <div className="text-center text-2xl md:text-3xl font-bold tracking-widest mb-6">
-        {vin}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {/* LEFT SIDE */}
+    <div className="min-h-screen bg-black text-white p-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Left side */}
         <div className="md:col-span-2 space-y-6">
-          {/* Car Info */}
-          <div
-            className="grid grid-cols-2 gap-4 rounded-2xl p-6 shadow-xl 
-            bg-green-500/20 backdrop-blur-lg border border-green-400/30 
-            transform transition duration-300 hover:scale-[1.02] hover:shadow-green-500/40"
-          >
-            <div>Make</div>
-            <div>Model</div>
-            <div>Year</div>
-            <div>Manufacturer</div>
-            <div>Make Id</div>
-            <div>Model Id</div>
+          {/* Vehicle Details */}
+          <div className="grid grid-cols-3 gap-4 bg-green-600 text-black p-6 rounded-2xl font-bold text-lg">
+            <div>
+              <p>Make</p>
+              <p>Manufacturer</p>
+            </div>
+            <div>
+              <p>Model</p>
+              <p>Make Id</p>
+            </div>
+            <div>
+              <p>Year</p>
+              <p>Model Id</p>
+            </div>
           </div>
 
-          {/* Key Specs */}
-          <Card
-            className="bg-neutral-800/40 backdrop-blur-md border border-neutral-700/40 shadow-xl 
-            transform transition duration-300 hover:scale-[1.02] hover:shadow-gray-500/30"
-          >
-            <CardContent>
-              <h2 className="text-lg font-semibold mb-4">Key Specifications</h2>
-              <div className="grid grid-cols-2 gap-4 text-gray-300">
-                <div>Body Style</div>
-                <div>Made In</div>
-                <div>Fuel Type</div>
+          {/* Key Specifications */}
+          <div className="bg-gray-900 rounded-2xl shadow-md p-6">
+            <h2 className="text-xl font-bold mb-4">Key Specifications</h2>
+            <div className="grid grid-cols-3 gap-4 text-gray-300">
+              <div>
+                <p className="font-semibold">Body Style</p>
               </div>
-            </CardContent>
-          </Card>
+              <div>
+                <p className="font-semibold">Made In</p>
+              </div>
+              <div>
+                <p className="font-semibold">Fuel Type</p>
+              </div>
+            </div>
+          </div>
 
           {/* Report Summary */}
-          <Card
-            className="bg-neutral-800/50 backdrop-blur-md border border-neutral-700/30 shadow-xl 
-            transform transition duration-300 hover:scale-[1.02] hover:shadow-gray-500/40"
-          >
-            <CardContent>
-              <h2 className="text-lg font-semibold mb-4">Report Summary</h2>
-              <div className="grid grid-cols-2 gap-4 text-gray-300">
-                <div>✔ Accident Reports</div>
-                <div>✔ Title History</div>
-                <div>✔ Odometer Check</div>
-                <div>✔ Service Records</div>
-                <div>✔ Market Value</div>
+          <div className="bg-gray-900 rounded-2xl shadow-md p-6">
+            <h2 className="text-xl font-bold mb-4">Report Summary</h2>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <p className="text-gray-300">No Structural Damage</p>
               </div>
-            </CardContent>
-          </Card>
+              <div className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <p className="text-gray-300">Clear Title</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <p className="text-gray-300">No Odometer Rollback</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="text-green-500">✔</span>
+                <p className="text-gray-300">No Accident Info</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* RIGHT SIDE */}
+        {/* Right side */}
         <div className="space-y-6">
-          {/* Car Image */}
-          <Card className="bg-neutral-800/40 backdrop-blur-md border border-neutral-700/40 shadow-lg">
-            <CardContent className="p-0 overflow-hidden">
-              <img
-                src="/car-report"
-                alt="Car"
-                className="w-full object-cover rounded-lg"
-              />
-            </CardContent>
-          </Card>
-
-          {/* Full Report Box */}
-          <Card
-            className="bg-neutral-800/60 backdrop-blur-md border border-neutral-700/30 shadow-xl 
-            transform transition duration-300 hover:scale-[1.02] hover:shadow-green-500/40"
-          >
-            <CardContent>
-              <h2 className="text-lg font-semibold mb-4">Ready for the Full Story?</h2>
-              <p className="text-gray-300 mb-4 text-sm">
-                Unlock the complete, detailed history of this vehicle. Our full report includes:
-              </p>
-              <ul className="list-disc pl-5 text-gray-300 text-sm space-y-2">
-                <li>Detailed Accident History & Damage Reports</li>
-                <li>Title History (Salvage, Rebuilt, etc.)</li>
-                <li>Odometer Reading Verification</li>
-                <li>Full Service & Maintenance Records</li>
-                <li>Market Value Analysis</li>
-              </ul>
-              <Button className="w-full mt-6 bg-green-600 hover:bg-green-500">
-                Purchase Full Report
-              </Button>
-            </CardContent>
-          </Card>
+          <div className="bg-gray-900 rounded-2xl shadow-md p-6">
+            <Image
+              src="/car-report"
+              alt="Car Image"
+              width={400}
+              height={250}
+              className="rounded-xl mx-auto"
+            />
+            <h2 className="text-xl font-bold mt-4">
+              Ready for the Full Story?
+            </h2>
+            <p className="text-gray-400 mt-2 text-sm">
+              Unlock the complete, detailed history of this vehicle. Our full
+              report includes:
+            </p>
+            <ul className="list-disc list-inside text-gray-300 mt-3 space-y-1 text-sm">
+              <li>Detailed Accident History & Damage Reports</li>
+              <li>Title History (Salvage, Rebuilt, etc.)</li>
+              <li>Odometer Reading Verification</li>
+              <li>Full Service & Maintenance Records</li>
+              <li>Market Value Analysis</li>
+            </ul>
+            <button className="w-full bg-green-600 hover:bg-green-700 text-black font-bold py-3 px-4 rounded-2xl mt-4">
+              Purchase Full Report
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
