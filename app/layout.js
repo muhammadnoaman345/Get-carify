@@ -1,10 +1,10 @@
-// app/layout.js
-import "../styles/globals.css";
-import Navbar from "../components/Navbar";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "The Vehicle Audit",
-  description: "Get comprehensive vehicle history reports",
+  description: "Get reliable vehicle history reports you can trust.",
 };
 
 export default function RootLayout({ children }) {
@@ -12,7 +12,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-black text-white">
         <Navbar />
-        <main className="pt-24 px-6">{children}</main>
+        <main className="pt-24">{children}</main>
+        <Footer />  {/* ✅ Footer on every page */}
       </body>
     </html>
   );
