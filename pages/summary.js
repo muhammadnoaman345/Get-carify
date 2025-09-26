@@ -37,7 +37,7 @@ export default function Summary() {
             {/* VIN Header */}
             <div className="text-center">
               <h2 className="text-green-500 text-lg font-semibold">
-                Vehicle Report for VIN:
+                Vehicle Report for VIN/License plate:
               </h2>
               <p className="text-2xl font-bold tracking-widest">{val}</p>
               <p className="mt-2 text-gray-400">
