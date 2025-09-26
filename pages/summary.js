@@ -1,79 +1,101 @@
-import { useRouter } from "next/router";
-import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function SummaryPage() {
-  const router = useRouter();
-  const { package: pkg, val: vin } = router.query;
-
-  const packageDetails = {
-    Silver: { price: "49.99", features: ["Basic Vehicle Info", "Stolen Check"] },
-    Gold: { price: "84.99", features: ["Everything in Silver", "Accident History", "Import/Export Check"] },
-    Platinum: {
-      price: "109.99",
-      features: [
-        "Everything in Gold",
-        "Service Records",
-        "Mileage Verification",
-        "Warranty Check",
-      ],
-    },
-  };
-
-  const selected = packageDetails[pkg] || {};
-
-  const handleProceed = () => {
-    router.push(`/checkout?package=${pkg}&vin=${vin}`);
-  };
+  const vin = "HFSJLDKHFK3U8U2I0"; // later make dynamic
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-12">
-      <div className="bg-white rounded-2xl shadow-xl grid grid-cols-1 md:grid-cols-2 max-w-5xl w-full overflow-hidden">
-        {/* Left Side - Image */}
-        <div className="relative h-64 md:h-auto">
-          <Image
-            src="/car-report.jpg" // replace with your screenshot or image path in public folder
-            alt="Vehicle Report"
-            layout="fill"
-            objectFit="cover"
-            className="md:rounded-l-2xl"
-          />
+    <div className="min-h-screen bg-neutral-900 text-white p-6">
+      {/* VIN */}
+      <div className="text-center text-2xl md:text-3xl font-bold tracking-widest mb-6">
+        {vin}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* LEFT SIDE */}
+        <div className="md:col-span-2 space-y-6">
+          {/* Car Info */}
+          <div
+            className="grid grid-cols-2 gap-4 rounded-2xl p-6 shadow-xl 
+            bg-green-500/20 backdrop-blur-lg border border-green-400/30 
+            transform transition duration-300 hover:scale-[1.02] hover:shadow-green-500/40"
+          >
+            <div>Make</div>
+            <div>Model</div>
+            <div>Year</div>
+            <div>Manufacturer</div>
+            <div>Make Id</div>
+            <div>Model Id</div>
+          </div>
+
+          {/* Key Specs */}
+          <Card
+            className="bg-neutral-800/40 backdrop-blur-md border border-neutral-700/40 shadow-xl 
+            transform transition duration-300 hover:scale-[1.02] hover:shadow-gray-500/30"
+          >
+            <CardContent>
+              <h2 className="text-lg font-semibold mb-4">Key Specifications</h2>
+              <div className="grid grid-cols-2 gap-4 text-gray-300">
+                <div>Body Style</div>
+                <div>Made In</div>
+                <div>Fuel Type</div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Report Summary */}
+          <Card
+            className="bg-neutral-800/50 backdrop-blur-md border border-neutral-700/30 shadow-xl 
+            transform transition duration-300 hover:scale-[1.02] hover:shadow-gray-500/40"
+          >
+            <CardContent>
+              <h2 className="text-lg font-semibold mb-4">Report Summary</h2>
+              <div className="grid grid-cols-2 gap-4 text-gray-300">
+                <div>✔ Accident Reports</div>
+                <div>✔ Title History</div>
+                <div>✔ Odometer Check</div>
+                <div>✔ Service Records</div>
+                <div>✔ Market Value</div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
-        {/* Right Side - Summary */}
-        <div className="p-8 flex flex-col justify-center">
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">
-            Vehicle Report Summary
-          </h1>
+        {/* RIGHT SIDE */}
+        <div className="space-y-6">
+          {/* Car Image */}
+          <Card className="bg-neutral-800/40 backdrop-blur-md border border-neutral-700/40 shadow-lg">
+            <CardContent className="p-0 overflow-hidden">
+              <img
+                src="/car-report"
+                alt="Car"
+                className="w-full object-cover rounded-lg"
+              />
+            </CardContent>
+          </Card>
 
-          <div className="mb-4">
-            <p className="text-gray-600">
-              <span className="font-semibold">VIN:</span> {vin || "Not Provided"}
-            </p>
-            <p className="text-gray-600">
-              <span className="font-semibold">Package:</span> {pkg || "N/A"}
-            </p>
-            <p className="text-gray-800 font-semibold text-lg">
-              Price: ${selected.price || "--"}
-            </p>
-          </div>
-
-          <div className="mb-6">
-            <h2 className="text-lg font-semibold text-gray-700 mb-2">
-              What’s Included
-            </h2>
-            <ul className="list-disc list-inside text-gray-600 space-y-1">
-              {selected.features?.map((f, idx) => (
-                <li key={idx}>{f}</li>
-              )) || <li>No details available</li>}
-            </ul>
-          </div>
-
-          <button
-            onClick={handleProceed}
-            className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition"
+          {/* Full Report Box */}
+          <Card
+            className="bg-neutral-800/60 backdrop-blur-md border border-neutral-700/30 shadow-xl 
+            transform transition duration-300 hover:scale-[1.02] hover:shadow-green-500/40"
           >
-            Proceed to Checkout
-          </button>
+            <CardContent>
+              <h2 className="text-lg font-semibold mb-4">Ready for the Full Story?</h2>
+              <p className="text-gray-300 mb-4 text-sm">
+                Unlock the complete, detailed history of this vehicle. Our full report includes:
+              </p>
+              <ul className="list-disc pl-5 text-gray-300 text-sm space-y-2">
+                <li>Detailed Accident History & Damage Reports</li>
+                <li>Title History (Salvage, Rebuilt, etc.)</li>
+                <li>Odometer Reading Verification</li>
+                <li>Full Service & Maintenance Records</li>
+                <li>Market Value Analysis</li>
+              </ul>
+              <Button className="w-full mt-6 bg-green-600 hover:bg-green-500">
+                Purchase Full Report
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
