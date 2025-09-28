@@ -23,6 +23,9 @@ export default function Checkout() {
     packageName: "Silver", // ✅ default package
   });
 
+  // ✅ Track errors
+  const [errors, setErrors] = useState({});
+
   // ✅ Pull package from URL query (if exists)
   useEffect(() => {
     if (router.query.package) {
@@ -35,11 +38,13 @@ export default function Checkout() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    // clear error when typing
+    setErrors((prev) => ({ ...prev, [e.target.name]: "" }));
   };
 
-  // ✅ Updated function with required field validation
-  const handleProceedToPayment = async () => {
-    // ✅ List of fields that must be filled
+  // ✅ Validation function
+  const validateForm = () => {
     const requiredFields = [
       "firstName",
       "lastName",
@@ -54,13 +59,22 @@ export default function Checkout() {
       "country",
     ];
 
-    // ✅ Check if any are empty
-    for (let field of requiredFields) {
+    const newErrors = {};
+    requiredFields.forEach((field) => {
       if (!formData[field] || formData[field].trim() === "") {
-        alert(`Please fill in your ${field}.`);
-        return; // ⛔ stop here until filled
+        newErrors[field] = "This field is required";
       }
-    }
+    });
+
+    setErrors(newErrors);
+
+    // return true if no errors
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // ✅ Updated function with inline errors
+  const handleProceedToPayment = async () => {
+    if (!validateForm()) return; // stop if errors
 
     try {
       // Save form data locally too (optional)
@@ -106,27 +120,37 @@ export default function Checkout() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  First Name
+                  First Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                  className={`mt-1 w-full rounded-lg border ${
+                    errors.firstName ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
                 />
+                {errors.firstName && (
+                  <p className="text-red-500 text-sm">{errors.firstName}</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Last Name
+                  Last Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                  className={`mt-1 w-full rounded-lg border ${
+                    errors.lastName ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
                 />
+                {errors.lastName && (
+                  <p className="text-red-500 text-sm">{errors.lastName}</p>
+                )}
               </div>
             </div>
 
@@ -134,27 +158,37 @@ export default function Checkout() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Email
+                  Email <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                  className={`mt-1 w-full rounded-lg border ${
+                    errors.email ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm">{errors.email}</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  VIN
+                  VIN <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="vin"
                   value={formData.vin}
                   onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                  className={`mt-1 w-full rounded-lg border ${
+                    errors.vin ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
                 />
+                {errors.vin && (
+                  <p className="text-red-500 text-sm">{errors.vin}</p>
+                )}
               </div>
             </div>
 
@@ -162,15 +196,20 @@ export default function Checkout() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  License Plate Number
+                  License Plate Number <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="plate"
                   value={formData.plate}
                   onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                  className={`mt-1 w-full rounded-lg border ${
+                    errors.plate ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
                 />
+                {errors.plate && (
+                  <p className="text-red-500 text-sm">{errors.plate}</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
@@ -204,79 +243,106 @@ export default function Checkout() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  State
+                  State <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="state"
                   value={formData.state}
                   onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                  className={`mt-1 w-full rounded-lg border ${
+                    errors.state ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
                 />
+                {errors.state && (
+                  <p className="text-red-500 text-sm">{errors.state}</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  City
+                  City <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="city"
                   value={formData.city}
                   onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                  className={`mt-1 w-full rounded-lg border ${
+                    errors.city ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
                 />
+                {errors.city && (
+                  <p className="text-red-500 text-sm">{errors.city}</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Postal / ZIP Code
+                  Postal / ZIP Code <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="zip"
                   value={formData.zip}
                   onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                  className={`mt-1 w-full rounded-lg border ${
+                    errors.zip ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
                 />
+                {errors.zip && (
+                  <p className="text-red-500 text-sm">{errors.zip}</p>
+                )}
               </div>
             </div>
 
             {/* Address */}
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Billing Address
+                Billing Address <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 name="address"
                 value={formData.address}
                 onChange={handleChange}
-                className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                className={`mt-1 w-full rounded-lg border ${
+                  errors.address ? "border-red-500" : "border-gray-300"
+                } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
               />
+              {errors.address && (
+                <p className="text-red-500 text-sm">{errors.address}</p>
+              )}
             </div>
 
             {/* Phone & Country */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Phone Number
+                  Phone Number <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                  className={`mt-1 w-full rounded-lg border ${
+                    errors.phone ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
                 />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm">{errors.phone}</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Country
+                  Country <span className="text-red-500">*</span>
                 </label>
                 <select
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                  className={`mt-1 w-full rounded-lg border ${
+                    errors.country ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
                 >
                   <option value="">Select a country</option>
                   <option>USA</option>
@@ -285,6 +351,9 @@ export default function Checkout() {
                   <option>Australia</option>
                   <option>New Zealand</option>
                 </select>
+                {errors.country && (
+                  <p className="text-red-500 text-sm">{errors.country}</p>
+                )}
               </div>
             </div>
           </form>
