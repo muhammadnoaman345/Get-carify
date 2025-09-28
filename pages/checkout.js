@@ -37,7 +37,31 @@ export default function Checkout() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // ✅ Updated function with required field validation
   const handleProceedToPayment = async () => {
+    // ✅ List of fields that must be filled
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "email",
+      "vin",
+      "plate",
+      "state",
+      "city",
+      "zip",
+      "address",
+      "phone",
+      "country",
+    ];
+
+    // ✅ Check if any are empty
+    for (let field of requiredFields) {
+      if (!formData[field] || formData[field].trim() === "") {
+        alert(`Please fill in your ${field}.`);
+        return; // ⛔ stop here until filled
+      }
+    }
+
     try {
       // Save form data locally too (optional)
       localStorage.setItem("checkoutForm", JSON.stringify(formData));
@@ -55,10 +79,8 @@ export default function Checkout() {
         window.location.href = data.url; // ✅ Redirect to Stripe Checkout
       } else {
         alert("Payment session failed. Please try again.");
-        console.error(data.error);
       }
     } catch (error) {
-      console.error("Payment error:", error);
       alert("Something went wrong. Please try again.");
     }
   };
@@ -91,7 +113,6 @@ export default function Checkout() {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 />
               </div>
@@ -104,7 +125,6 @@ export default function Checkout() {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 />
               </div>
@@ -121,7 +141,6 @@ export default function Checkout() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 />
               </div>
@@ -134,7 +153,6 @@ export default function Checkout() {
                   name="vin"
                   value={formData.vin}
                   onChange={handleChange}
-                  required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 />
               </div>
@@ -193,7 +211,6 @@ export default function Checkout() {
                   name="state"
                   value={formData.state}
                   onChange={handleChange}
-                  required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 />
               </div>
@@ -206,7 +223,6 @@ export default function Checkout() {
                   name="city"
                   value={formData.city}
                   onChange={handleChange}
-                  required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 />
               </div>
@@ -219,7 +235,6 @@ export default function Checkout() {
                   name="zip"
                   value={formData.zip}
                   onChange={handleChange}
-                  required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 />
               </div>
@@ -235,7 +250,6 @@ export default function Checkout() {
                 name="address"
                 value={formData.address}
                 onChange={handleChange}
-                required
                 className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
               />
             </div>
@@ -251,7 +265,6 @@ export default function Checkout() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 />
               </div>
@@ -263,7 +276,6 @@ export default function Checkout() {
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  required
                   className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
                 >
                   <option value="">Select a country</option>
