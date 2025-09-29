@@ -1,7 +1,8 @@
-import Stripe from "stripe";
+import { Client, Environment } from "square";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2023-10-16",
+const client = new Client({
+  accessToken: process.env.SQUARE_ACCESS_TOKEN,
+  environment: process.env.NODE_ENV === "production" ? Environment.Production : Environment.Sandbox,
 });
 
 export default async function handler(req, res) {
@@ -31,51 +32,37 @@ export default async function handler(req, res) {
         Platinum: 11999 // $119.99
       };
 
-      const unitAmount = packagePrices[packageName] || 4999;
+      const amount = packagePrices[packageName] || 4999;
 
-      // Build checkout session data
-      const checkoutData = {
-        payment_method_types: ["card"],
-        mode: "payment",
-        line_items: [
-          {
-            price_data: {
-              currency: "usd",
-              product_data: {
-                name: `Vehicle History Report - ${packageName}`,
-              },
-              unit_amount: unitAmount,
+      // Create Square Checkout
+      const { result } = await client.checkoutApi.createCheckout(
+        process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID,
+        {
+          idempotencyKey: crypto.randomUUID(),
+          order: {
+            order: {
+              locationId: process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID,
+              lineItems: [
+                {
+                  name: `Vehicle History Report - ${packageName}`,
+                  quantity: "1",
+                  basePriceMoney: {
+                    amount: amount,
+                    currency: "USD",
+                  },
+                },
+              ],
             },
-            quantity: 1,
           },
-        ],
-        metadata: {
-          vin,
-          plate,
-          email,
-          name: `${firstName} ${lastName}`,
-          address,
-          city,
-          state,
-          zip,
-          country,
-          phone,
-          packageName,
-        },
-        success_url: `${process.env.NEXT_PUBLIC_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${process.env.NEXT_PUBLIC_URL}/checkout`,
-      };
+          redirectUrl: `${process.env.NEXT_PUBLIC_URL}/payment-success`,
+          prePopulateBuyerEmail: email && /\S+@\S+\.\S+/.test(email) ? email : undefined,
+          additionalRecipients: [],
+        }
+      );
 
-      // ✅ only set email if it’s valid (avoid Stripe error)
-      if (email && /\S+@\S+\.\S+/.test(email)) {
-        checkoutData.customer_email = email;
-      }
-
-      const session = await stripe.checkout.sessions.create(checkoutData);
-
-      res.status(200).json({ url: session.url });
+      res.status(200).json({ url: result.checkout.checkoutPageUrl });
     } catch (err) {
-      console.error("Stripe session error:", err);
+      console.error("Square checkout error:", err);
       res.status(500).json({ error: err.message });
     }
   } else {
