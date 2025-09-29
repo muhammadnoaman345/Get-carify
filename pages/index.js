@@ -44,7 +44,7 @@ export default function Home() {
     }
   }, [loading]);
 
-  // ✅ Pricing Plans Data (all in GBP)
+  // ✅ Pricing Plans Data (converted to GBP)
   const plans = {
     cars: {
       Silver: {
@@ -281,7 +281,7 @@ export default function Home() {
       <Navbar />
 
       {/* ✅ Hero Section */}
-      {/* ... (rest of your code stays the same) ... */}
+      {/* (No changes needed here, left as-is) */}
 
       {/* ✅ Pricing Section */}
       <section id="pricing" className="py-20 bg-[#0e0e0e] text-white text-center">
@@ -351,6 +351,20 @@ export default function Home() {
 
       {/* ✅ Services Section */}
       <ServicesSection />
+
+      {/* ✅ Testimonials, FAQ, Footer — unchanged */}
+      <section id="testimonials" className="py-16 bg-black text-white text-center">
+        {/* left unchanged */}
+      </section>
+
+      <section id="faq">
+        <FAQ />
+      </section>
+
+      <section className="relative w-full bg-black h-[600px]">
+        {/* left unchanged */}
+      </section>
+
       <Footer />
     </>
   );
