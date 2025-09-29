@@ -20,7 +20,7 @@ export default function Checkout() {
     address: "",
     phone: "",
     country: "",
-    packageName: "Silver",
+    packageName: "Silver", // default package
   });
 
   const [errors, setErrors] = useState({});
@@ -69,50 +69,37 @@ export default function Checkout() {
     if (!validateForm()) return;
 
     try {
-      // Save form data locally
       localStorage.setItem("checkoutForm", JSON.stringify(formData));
 
-      // Call your Square API route
-      const res = await fetch("/api/checkout", {
+      const res = await fetch("/api/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ formData }),
       });
 
-      // Parse JSON safely
-      let data = null;
-      try {
-        data = await res.json();
-      } catch (err) {
-        console.error("Failed to parse JSON from server:", err);
-        alert("Server returned invalid response. Check console.");
-        return;
-      }
-
-      // Handle errors
-      if (!res.ok) {
-        console.error("Server error:", data);
-        alert(data?.error || "Payment session failed. Please try again.");
-        return;
-      }
+      const data = await res.json();
 
       if (data.url) {
-        // Redirect to Square hosted checkout page
         window.location.href = data.url;
       } else {
         alert("Payment session failed. Please try again.");
       }
     } catch (error) {
-      console.error("Unexpected error:", error);
       alert("Something went wrong. Please try again.");
     }
   };
+
+  const getBorderClass = (field) =>
+    `mt-1 w-full rounded-lg border ${
+      errors[field] ? "border-red-500" : "border-gray-300"
+    } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`;
 
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <Navbar />
 
       <main className="flex-1 max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 mt-24">
+        {/* Left: Form */}
         <div className="lg:col-span-2 bg-white shadow rounded-2xl p-8 border border-gray-100">
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-green-600">Checkout</h1>
@@ -122,8 +109,7 @@ export default function Checkout() {
           </div>
 
           <form id="checkoutForm" className="space-y-6">
-            {/* All your form inputs remain unchanged */}
-            {/* First Name / Last Name */}
+            {/* Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
@@ -134,14 +120,13 @@ export default function Checkout() {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  className={`mt-1 w-full rounded-lg border ${
-                    errors.firstName ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
+                  className={getBorderClass("firstName")}
                 />
                 {errors.firstName && (
                   <p className="text-red-500 text-sm">{errors.firstName}</p>
                 )}
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Last Name <span className="text-red-500">*</span>
@@ -151,9 +136,7 @@ export default function Checkout() {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className={`mt-1 w-full rounded-lg border ${
-                    errors.lastName ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
+                  className={getBorderClass("lastName")}
                 />
                 {errors.lastName && (
                   <p className="text-red-500 text-sm">{errors.lastName}</p>
@@ -161,7 +144,7 @@ export default function Checkout() {
               </div>
             </div>
 
-            {/* Email / VIN */}
+            {/* Email & VIN */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
@@ -172,14 +155,13 @@ export default function Checkout() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`mt-1 w-full rounded-lg border ${
-                    errors.email ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
+                  className={getBorderClass("email")}
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm">{errors.email}</p>
                 )}
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   VIN <span className="text-red-500">*</span>
@@ -189,9 +171,7 @@ export default function Checkout() {
                   name="vin"
                   value={formData.vin}
                   onChange={handleChange}
-                  className={`mt-1 w-full rounded-lg border ${
-                    errors.vin ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3`}
+                  className={getBorderClass("vin")}
                 />
                 {errors.vin && (
                   <p className="text-red-500 text-sm">{errors.vin}</p>
@@ -199,11 +179,164 @@ export default function Checkout() {
               </div>
             </div>
 
-            {/* The rest of your form remains exactly the same */}
+            {/* Plate & Reg State */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  License Plate Number <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="plate"
+                  value={formData.plate}
+                  onChange={handleChange}
+                  className={getBorderClass("plate")}
+                />
+                {errors.plate && (
+                  <p className="text-red-500 text-sm">{errors.plate}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Registration State (Optional)
+                </label>
+                <input
+                  type="text"
+                  name="regState"
+                  value={formData.regState}
+                  onChange={handleChange}
+                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+                />
+              </div>
+            </div>
+
+            {/* Company */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Company (Optional)
+              </label>
+              <input
+                type="text"
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+              />
+            </div>
+
+            {/* State, City, ZIP */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  State <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleChange}
+                  className={getBorderClass("state")}
+                />
+                {errors.state && (
+                  <p className="text-red-500 text-sm">{errors.state}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  City <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  className={getBorderClass("city")}
+                />
+                {errors.city && (
+                  <p className="text-red-500 text-sm">{errors.city}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Postal / ZIP Code <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="zip"
+                  value={formData.zip}
+                  onChange={handleChange}
+                  className={getBorderClass("zip")}
+                />
+                {errors.zip && (
+                  <p className="text-red-500 text-sm">{errors.zip}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Address */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Billing Address <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                className={getBorderClass("address")}
+              />
+              {errors.address && (
+                <p className="text-red-500 text-sm">{errors.address}</p>
+              )}
+            </div>
+
+            {/* Phone & Country */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Phone Number <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className={getBorderClass("phone")}
+                />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm">{errors.phone}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Country <span className="text-red-500">*</span>
+                </label>
+                <select
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                  className={getBorderClass("country")}
+                >
+                  <option value="">Select a country</option>
+                  <option>USA</option>
+                  <option>Canada</option>
+                  <option>United Kingdom</option>
+                  <option>Australia</option>
+                  <option>New Zealand</option>
+                </select>
+                {errors.country && (
+                  <p className="text-red-500 text-sm">{errors.country}</p>
+                )}
+              </div>
+            </div>
           </form>
         </div>
 
-        {/* Order Summary / Payment Button */}
+        {/* Right: Order Summary */}
         <div className="bg-white shadow rounded-2xl p-6 border border-gray-100 h-fit">
           <h2 className="text-lg font-semibold text-gray-800">Order Summary</h2>
           <p className="text-sm text-gray-600 mt-1">
@@ -217,6 +350,7 @@ export default function Checkout() {
                 Vehicle History Report - {formData.packageName}
               </span>
             </div>
+
             <div className="flex justify-between text-gray-700">
               <span>Total:</span>
               <span className="font-semibold text-green-600">
