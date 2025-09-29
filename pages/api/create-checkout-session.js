@@ -19,7 +19,6 @@ export default async function handler(req, res) {
         lastName,
         email,
         vin,
-        plate,
         address,
         city,
         state,
