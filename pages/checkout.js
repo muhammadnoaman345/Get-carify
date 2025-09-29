@@ -65,7 +65,7 @@ export default function Checkout() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // ✅ Updated for Square backend
+  // ✅ Updated for safe backend error handling
   const handleProceedToPayment = async () => {
     if (!validateForm()) return;
 
@@ -80,16 +80,25 @@ export default function Checkout() {
         body: JSON.stringify({ formData }),
       });
 
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (err) {
+        const text = await res.text();
+        console.error("Failed to parse JSON. Server response:", text);
+        alert("Server error. Please check the console for details.");
+        return;
+      }
 
-      if (data.url) {
+      if (res.ok && data.url) {
         // Redirect to Square hosted checkout page
         window.location.href = data.url;
       } else {
-        alert("Payment session failed. Please try again.");
+        console.error("Server returned an error:", data);
+        alert(data.error || "Payment session failed. Please try again.");
       }
     } catch (error) {
-      console.error(error);
+      console.error("Unexpected error:", error);
       alert("Something went wrong. Please try again.");
     }
   };
