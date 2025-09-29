@@ -8,27 +8,12 @@ const client = new Client({
   environment: Environment.Production, // Change to Environment.Sandbox if testing
 });
 
-// Package prices in USD cents
-const PACKAGE_PRICES_USD_CENTS = {
-  Silver: 4999,   // $49.99
-  Gold: 8999,     // $89.99
-  Platinum: 11999 // $119.99
+// Package prices in GBP pence
+const PACKAGE_PRICES_GBP_PENCE = {
+  Silver: 4999,   // £49.99
+  Gold: 8999,     // £89.99
+  Platinum: 11999 // £119.99
 };
-
-// Helper: fetch USD -> GBP exchange rate
-async function fetchUsdToGbpRate() {
-  try {
-    const res = await fetch("https://api.exchangerate.host/latest?base=USD&symbols=GBP");
-    if (!res.ok) throw new Error(`Failed to fetch exchange rate: ${res.status}`);
-    const json = await res.json();
-    const rate = json?.rates?.GBP;
-    if (!rate) throw new Error("GBP rate not found");
-    return Number(rate);
-  } catch (err) {
-    console.error("Error fetching exchange rate:", err);
-    throw err;
-  }
-}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -58,19 +43,26 @@ export default async function handler(req, res) {
     } = formData;
 
     // Minimal validation for required fields
-    const requiredFields = ["firstName","lastName","email","vin","address","city","state","zip","country","phone"];
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "email",
+      "vin",
+      "address",
+      "city",
+      "state",
+      "zip",
+      "country",
+      "phone",
+    ];
     for (const field of requiredFields) {
       if (!formData[field] || String(formData[field]).trim() === "") {
         return res.status(400).json({ error: `Missing required field: ${field}` });
       }
     }
 
-    // USD price (displayed)
-    const usdCents = PACKAGE_PRICES_USD_CENTS[packageName] ?? PACKAGE_PRICES_USD_CENTS.Silver;
-
-    // Convert USD -> GBP
-    const rate = await fetchUsdToGbpRate();
-    const gbpPence = Math.round(usdCents * rate);
+    // GBP price (processed)
+    const gbpPence = PACKAGE_PRICES_GBP_PENCE[packageName] ?? PACKAGE_PRICES_GBP_PENCE.Silver;
 
     // Build order with metadata <= 10 fields
     const order = {
@@ -96,7 +88,7 @@ export default async function handler(req, res) {
           zip,
           country,
           phone,
-          packageName
+          packageName,
         },
       },
     };
