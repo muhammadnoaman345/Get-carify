@@ -72,7 +72,7 @@ export default function Checkout() {
     try {
       localStorage.setItem("checkoutForm", JSON.stringify(formData));
 
-      const res = await fetch("/api/create-checkout", {
+      const res = await fetch("/api/create-checkout-session.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ formData }),
