@@ -276,7 +276,7 @@ export default function Home() {
       {/* ✅ Hero Section */}
       <section
         id="vin-section"
-        className="relative flex items-center justify-center text-center text-white h-screen mt-28"
+        className="relative flex items-center justify-center text-center text-white h-screen mt-24"
       >
         <Image
           src="/istockphoto-1165665234-612x612.jpg"
