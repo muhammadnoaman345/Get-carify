@@ -1,7 +1,4 @@
-import Stripe from "stripe";
 import nodemailer from "nodemailer";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -9,16 +6,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { sessionId, formData } = req.body; // ✅ fixed (was userData)
+    const { formData } = req.body; // ✅ only formData needed now (Square flow)
 
-    // 1️⃣ Verify payment with Stripe
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-
-    if (session.payment_status !== "paid") {
-      return res.status(400).json({ error: "Payment not completed" });
-    }
-
-    // 2️⃣ Setup email transporter
+    // ✅ Setup email transporter
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -27,14 +17,14 @@ export default async function handler(req, res) {
       },
     });
 
-    // 3️⃣ Price mapping (so you see it in the email)
+    // ✅ Price mapping (so you see it in the email)
     const priceMap = {
-      Silver: "$49.99",
-      Gold: "$89.99",
-      Platinum: "$119.99",
+      Silver: "£49.99",
+      Gold: "£89.99",
+      Platinum: "£119.99",
     };
 
-    // 4️⃣ Create email message
+    // ✅ Create email message
     const mailOptions = {
       from: `"The Vehicle Audit" <${process.env.EMAIL_USER}>`,
       to: process.env.RECEIVER_EMAIL, // your personal receiving email
@@ -49,12 +39,10 @@ export default async function handler(req, res) {
         <p><b>VIN / Reg #:</b> ${formData?.vin}</p>
         <p><b>Package:</b> ${formData?.packageName}</p>
         <p><b>Price:</b> ${priceMap[formData?.packageName] || "N/A"}</p>
-        <hr />
-        <p><b>Stripe Session ID:</b> ${sessionId}</p>
       `,
     };
 
-    // 5️⃣ Send email
+    // ✅ Send email
     await transporter.sendMail(mailOptions);
 
     return res
