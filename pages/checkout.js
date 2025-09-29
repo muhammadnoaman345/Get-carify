@@ -11,7 +11,6 @@ export default function Checkout() {
     lastName: "",
     email: "",
     vin: "",
-    plate: "",
     regState: "",
     company: "",
     state: "",
@@ -45,7 +44,6 @@ export default function Checkout() {
       "lastName",
       "email",
       "vin",
-      "plate",
       "state",
       "city",
       "zip",
@@ -65,7 +63,7 @@ export default function Checkout() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Updated for Square hosted checkout
+  // Square hosted checkout
   const handleProceedToPayment = async () => {
     if (!validateForm()) return;
 
@@ -81,8 +79,7 @@ export default function Checkout() {
       const data = await res.json();
 
       if (data.url) {
-        // Redirect user to Square hosted checkout page
-        window.location.href = data.url;
+        window.location.href = data.url; // Redirect to Square hosted page
       } else {
         alert("Payment session failed. Please try again.");
       }
@@ -181,36 +178,18 @@ export default function Checkout() {
               </div>
             </div>
 
-            {/* Plate & Reg State */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  License Plate Number <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="plate"
-                  value={formData.plate}
-                  onChange={handleChange}
-                  className={getBorderClass("plate")}
-                />
-                {errors.plate && (
-                  <p className="text-red-500 text-sm">{errors.plate}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Registration State (Optional)
-                </label>
-                <input
-                  type="text"
-                  name="regState"
-                  value={formData.regState}
-                  onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
-                />
-              </div>
+            {/* Registration State */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Registration State (Optional)
+              </label>
+              <input
+                type="text"
+                name="regState"
+                value={formData.regState}
+                onChange={handleChange}
+                className="mt-1 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600 p-3"
+              />
             </div>
 
             {/* Company */}
