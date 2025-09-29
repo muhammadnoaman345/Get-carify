@@ -23,10 +23,8 @@ export default function Checkout() {
     packageName: "Silver", // ✅ default package
   });
 
-  // ✅ Track errors
   const [errors, setErrors] = useState({});
 
-  // ✅ Pull package from URL query (if exists)
   useEffect(() => {
     if (router.query.package) {
       setFormData((prev) => ({
@@ -38,12 +36,9 @@ export default function Checkout() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    // clear error when typing
     setErrors((prev) => ({ ...prev, [e.target.name]: "" }));
   };
 
-  // ✅ Validation function
   const validateForm = () => {
     const requiredFields = [
       "firstName",
@@ -67,21 +62,19 @@ export default function Checkout() {
     });
 
     setErrors(newErrors);
-
-    // return true if no errors
     return Object.keys(newErrors).length === 0;
   };
 
-  // ✅ Updated function with inline errors
+  // ✅ Updated for Square backend
   const handleProceedToPayment = async () => {
-    if (!validateForm()) return; // stop if errors
+    if (!validateForm()) return;
 
     try {
-      // Save form data locally too (optional)
+      // Save form data locally
       localStorage.setItem("checkoutForm", JSON.stringify(formData));
 
-      // Call your API
-      const res = await fetch("/api/create-checkout-session", {
+      // Call your Square API route
+      const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ formData }),
@@ -90,11 +83,13 @@ export default function Checkout() {
       const data = await res.json();
 
       if (data.url) {
-        window.location.href = data.url; // ✅ Redirect to Stripe Checkout
+        // Redirect to Square hosted checkout page
+        window.location.href = data.url;
       } else {
         alert("Payment session failed. Please try again.");
       }
     } catch (error) {
+      console.error(error);
       alert("Something went wrong. Please try again.");
     }
   };
@@ -103,11 +98,8 @@ export default function Checkout() {
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <Navbar />
 
-      {/* Main Content */}
       <main className="flex-1 max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 mt-24">
-        {/* Left: Form */}
         <div className="lg:col-span-2 bg-white shadow rounded-2xl p-8 border border-gray-100">
-          {/* Header inside form box */}
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-green-600">Checkout</h1>
             <p className="text-gray-600 mt-1">
@@ -386,7 +378,6 @@ export default function Checkout() {
           </div>
 
           <div className="mt-6">
-            {/* Save form & go to payment */}
             <button
               type="button"
               onClick={handleProceedToPayment}
