@@ -1,4 +1,5 @@
 import { Client, Environment } from "square";
+import crypto from "crypto"; // Ensure crypto is imported for idempotencyKey
 
 // Initialize Square client
 const client = new Client({
@@ -11,6 +12,10 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       const { formData } = req.body;
+
+      if (!formData) {
+        return res.status(400).json({ error: "Form data is required" });
+      }
 
       const {
         firstName,
