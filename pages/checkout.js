@@ -336,10 +336,10 @@ export default function Checkout() {
               <span>Total:</span>
               <span className="font-semibold text-green-600">
                 {formData.packageName === "Silver"
-                  ? "$49.99"
+                  ? "£49.99"
                   : formData.packageName === "Gold"
-                  ? "$89.99"
-                  : "$119.99"}
+                  ? "£89.99"
+                  : "£119.99"}
               </span>
             </div>
           </div>
