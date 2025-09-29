@@ -1,8 +1,10 @@
 import { Client, Environment } from "square";
 
+// Initialize Square client
 const client = new Client({
   accessToken: process.env.SQUARE_ACCESS_TOKEN,
-  environment: process.env.NODE_ENV === "production" ? Environment.Production : Environment.Sandbox,
+  environment:
+    process.env.NODE_ENV === "production" ? Environment.Production : Environment.Sandbox,
 });
 
 export default async function handler(req, res) {
@@ -60,13 +62,19 @@ export default async function handler(req, res) {
         }
       );
 
+      // Respond with checkout URL
       res.status(200).json({ url: result.checkout.checkoutPageUrl });
     } catch (err) {
       console.error("Square checkout error:", err);
-      res.status(500).json({ error: err.message });
+
+      // Ensure JSON is always returned even if an error occurs
+      res.status(500).json({
+        error: err?.message || "An unexpected error occurred while creating checkout.",
+      });
     }
   } else {
+    // Method not allowed
     res.setHeader("Allow", "POST");
-    res.status(405).end("Method Not Allowed");
+    res.status(405).json({ error: "Method Not Allowed" });
   }
 }
