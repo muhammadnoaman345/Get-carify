@@ -1,5 +1,5 @@
 import { Client, Environment } from "square";
-import crypto from "crypto"; // Ensure crypto is imported for idempotencyKey
+import crypto from "crypto"; // Required for idempotencyKey generation
 
 // Initialize Square client
 const client = new Client({
@@ -72,13 +72,13 @@ export default async function handler(req, res) {
     } catch (err) {
       console.error("Square checkout error:", err);
 
-      // Ensure JSON is always returned even if an error occurs
+      // Always return JSON for errors
       res.status(500).json({
         error: err?.message || "An unexpected error occurred while creating checkout.",
       });
     }
   } else {
-    // Method not allowed
+    // Only POST is allowed
     res.setHeader("Allow", "POST");
     res.status(405).json({ error: "Method Not Allowed" });
   }
