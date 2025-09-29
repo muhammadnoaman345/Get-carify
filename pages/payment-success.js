@@ -8,21 +8,14 @@ export default function PaymentSuccess() {
   useEffect(() => {
     const sendData = async () => {
       try {
-        // 1. Get Stripe session ID from URL query string
-        const urlParams = new URLSearchParams(window.location.search);
-        const sessionId = urlParams.get("session_id");
-
-        // 2. Get saved form data from localStorage
+        // ✅ Get saved form data from localStorage
         const formData = JSON.parse(localStorage.getItem("checkoutForm")) || {};
 
-        // 3. Send data to backend API
+        // ✅ Send data to backend API
         const res = await fetch("/api/payment-success", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            sessionId,
-            formData,
-          }),
+          body: JSON.stringify({ formData }),
         });
 
         if (res.ok) {
