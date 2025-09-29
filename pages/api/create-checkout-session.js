@@ -1,8 +1,10 @@
+// pages/api/create-checkout-session.js
 import { Client, Environment } from "square";
+import { randomBytes } from "crypto";
 
 const client = new Client({
   accessToken: process.env.SQUARE_ACCESS_TOKEN,
-  environment: Environment.Production, // Change to Sandbox if testing
+  environment: Environment.Production, // Change to Environment.Sandbox if testing
 });
 
 export default async function handler(req, res) {
@@ -46,14 +48,13 @@ export default async function handler(req, res) {
               name: `Vehicle History Report - ${packageName}`,
               quantity: "1",
               basePriceMoney: {
-                amount: amount, // in cents
+                amount, // in cents
                 currency: "USD",
               },
             },
           ],
           metadata: {
             vin,
-            plate,
             email,
             name: `${firstName} ${lastName}`,
             address,
@@ -62,7 +63,7 @@ export default async function handler(req, res) {
             zip,
             country,
             phone,
-            packageName,
+            packageName, // now exactly 10 fields max
           },
         },
       };
@@ -71,7 +72,7 @@ export default async function handler(req, res) {
       const response = await client.checkoutApi.createCheckout(
         process.env.SQUARE_LOCATION_ID,
         {
-          idempotencyKey: crypto.randomUUID(),
+          idempotencyKey: randomBytes(16).toString("hex"),
           order,
           redirectUrl: `${process.env.NEXT_PUBLIC_URL}/payment-success`,
         }
