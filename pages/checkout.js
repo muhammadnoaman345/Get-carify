@@ -65,13 +65,14 @@ export default function Checkout() {
     return Object.keys(newErrors).length === 0;
   };
 
+  // Updated for Square hosted checkout
   const handleProceedToPayment = async () => {
     if (!validateForm()) return;
 
     try {
       localStorage.setItem("checkoutForm", JSON.stringify(formData));
 
-      const res = await fetch("/api/create-checkout-session", {
+      const res = await fetch("/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ formData }),
@@ -80,6 +81,7 @@ export default function Checkout() {
       const data = await res.json();
 
       if (data.url) {
+        // Redirect user to Square hosted checkout page
         window.location.href = data.url;
       } else {
         alert("Payment session failed. Please try again.");
