@@ -31,13 +31,19 @@ export default async function handler(req, res) {
       subject: "✅ New Checkout Submission",
       html: `
         <h2>New Checkout Order</h2>
-        <p><b>Name:</b> ${formData?.firstName} ${formData?.lastName}</p>
-        <p><b>Email:</b> ${formData?.email}</p>
-        <p><b>Phone:</b> ${formData?.phone}</p>
-        <p><b>Address:</b> ${formData?.address}, ${formData?.city}, ${formData?.state}, ${formData?.zip}, ${formData?.country}</p>
-        <p><b>License Plate:</b> ${formData?.plate}</p>
-        <p><b>VIN / Reg #:</b> ${formData?.vin}</p>
-        <p><b>Package:</b> ${formData?.packageName}</p>
+        <p><b>Name:</b> ${formData?.firstName || ""} ${formData?.lastName || ""}</p>
+        <p><b>Email:</b> ${formData?.email || "N/A"}</p>
+        <p><b>Phone:</b> ${formData?.phone || "N/A"}</p>
+        <p><b>Address:</b> 
+          ${formData?.address || ""}, 
+          ${formData?.city || ""}, 
+          ${formData?.state || ""}, 
+          ${formData?.zip || ""}, 
+          ${formData?.country || ""}
+        </p>
+        <p><b>License Plate:</b> ${formData?.plate || "N/A"}</p>
+        <p><b>VIN / Reg #:</b> ${formData?.vin || "N/A"}</p>
+        <p><b>Package:</b> ${formData?.packageName || "N/A"}</p>
         <p><b>Price:</b> ${priceMap[formData?.packageName] || "N/A"}</p>
       `,
     };
