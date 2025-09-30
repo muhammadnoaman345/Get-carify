@@ -68,12 +68,25 @@ export default function Checkout() {
     if (!validateForm()) return;
 
     try {
-      localStorage.setItem("checkoutForm", JSON.stringify(formData));
+      // ✅ Map packageName to price
+      const priceMap = {
+        Silver: "£49.99",
+        Gold: "£89.99",
+        Platinum: "£119.99",
+      };
+
+      const checkoutData = {
+        ...formData,
+        price: priceMap[formData.packageName] || "N/A",
+      };
+
+      // Save with price
+      localStorage.setItem("checkoutForm", JSON.stringify(checkoutData));
 
       const res = await fetch("/api/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formData }),
+        body: JSON.stringify({ formData: checkoutData }),
       });
 
       const data = await res.json();
