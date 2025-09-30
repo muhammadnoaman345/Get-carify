@@ -188,7 +188,7 @@ export default function Summary() {
 
               {/* Checkout Button */}
               <a
-                href={`/checkout?package=£{pkg}&vin=£{val}`}
+                href={`/checkout?package=${pkg}&vin=${val}`}
                 className="w-full block text-center bg-green-600 hover:bg-green-700 text-black font-bold py-3 px-4 rounded-2xl mt-4 shadow-md"
               >
                 Purchase Full Report – {packagePrices[pkg]}
