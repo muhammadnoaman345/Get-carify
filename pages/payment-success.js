@@ -50,7 +50,7 @@ export default function PaymentSuccess() {
           </h2>
           <p className="text-gray-600 mt-2">
             We’ve received your order and will send your full report to your
-            email shortly.
+            email in 5-7 hours due to a large amount of orders in queue.
           </p>
         </div>
       </main>
